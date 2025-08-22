@@ -24,7 +24,7 @@ import {
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
-import { signIn } from "../../server/user";
+import {  signUp } from "../../server/user";
 import { toast } from "sonner";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
@@ -34,8 +34,9 @@ import { authClient } from "@/lib/auth-client";
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
+  name: z.string().min(3)
 });
-export function LoginForm({
+export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -48,6 +49,7 @@ export function LoginForm({
     defaultValues: {
       email: "",
       password: "",
+      name: "",
     },
   });
 
@@ -60,7 +62,7 @@ export function LoginForm({
 
  async function onSubmit(values: z.infer<typeof formSchema>) {
   setIsLoading(true)
-   const {success, message} = await signIn(values.email, values.password);
+   const {success, message} = await signUp(values.email, values.password, values.name);
    if(success){
     toast.success(message as string)
     router.push("/")
@@ -103,6 +105,22 @@ export function LoginForm({
                   <div className="grid gap-3">
                     <FormField
                       control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Username</FormLabel>
+                          <FormControl>
+                            <Input placeholder="name" {...field} />
+                          </FormControl>
+                          <FormDescription>This is your username.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="grid gap-3">
+                    <FormField
+                      control={form.control}
                       name="email"
                       render={({ field }) => (
                         <FormItem>
@@ -127,29 +145,20 @@ export function LoginForm({
                             <FormControl>
                               <Input placeholder="****" {...field} />
                             </FormControl>
-                            <FormDescription>
-                              This is your public display name.
-                            </FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-                      <a
-                        href="#"
-                        className="ml-auto text-sm underline-offset-4 hover:underline"
-                      >
-                        Forgot your password?
-                      </a>
                     </div>
                   </div>
                   <Button disabled={isLoading} type="submit" className="w-full">
-                    {isLoading ? <Loader2 className="size-4 animate-spin"/> : "Login"}
+                    {isLoading ? <Loader2 className="size-4 animate-spin"/> : "Sign Up"}
                   </Button>
                 </div>
                 <div className="text-center text-sm">
-                  Don&apos;t have an account?{" "}
+                  Have an account?{" "}
                   <a href="#" className="underline underline-offset-4">
-                    Sign up
+                    Sign In
                   </a>
                 </div>
               </div>
