@@ -6,12 +6,14 @@ import MenuBar from "./menu-bar";
 import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import { TaskItem, TaskList } from "@tiptap/extension-list";
+import { TaskItem, TaskList, OrderedList, BulletList } from "@tiptap/extension-list";
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
 import ts from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
+import Blockquote from "@tiptap/extension-blockquote";
+
 
 const lowlight = createLowlight(all);
 
@@ -25,7 +27,10 @@ const Tiptap = () => {
     extensions: [
       StarterKit,
       Highlight,
+      Blockquote,
       TaskList,
+      OrderedList,
+      BulletList,
       TaskItem.configure({
         nested: true,
       }),

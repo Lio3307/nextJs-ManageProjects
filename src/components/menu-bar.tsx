@@ -13,6 +13,8 @@ import {
   Pilcrow,
   Code,
   CheckSquare,
+  Quote,
+  ListOrdered,
 } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Editor } from "@tiptap/react";
@@ -104,6 +106,18 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
       icon: <CheckSquare className="h-4 w-4" />,
       action: () => editor.chain().focus().toggleTaskList().run(),
       isActive: () => editor.isActive("taskList"),
+    },
+    {
+      label: "Blockquote",
+      icon: <Quote className="h-4 w-4" />,
+      action: () => editor.chain().focus().toggleBlockquote().run(),
+      isActive: () => editor.isActive("blockquote"),
+    },
+    {
+      label: "Ordered List",
+      icon: <ListOrdered className="h-4 w-4" />,
+      action: () => editor.chain().focus().toggleOrderedList().run(),
+      isActive: () => editor.isActive("orderedList"),
     },
   ];
 
