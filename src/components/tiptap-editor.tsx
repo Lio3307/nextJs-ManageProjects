@@ -27,10 +27,8 @@ lowlight.register("ts", ts);
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [
-      // Konfigurasi StarterKit untuk menonaktifkan ekstensi yang Anda ganti
       StarterKit.configure({
         heading: { levels: [1, 2, 3] },
-        // Menonaktifkan ekstensi bawaan yang duplikat
         blockquote: false,
         orderedList: false,
         bulletList: false,
@@ -41,9 +39,8 @@ const Tiptap = () => {
         types: ["heading", "paragraph"],
       }),
       Highlight,
-      // Sekarang tambahkan versi ekstensi Anda yang telah dikonfigurasi
-      Blockquote, // Tambahkan kembali Blockquote
-      TaskList, // Biarkan TaskList karena ini ekstensi terpisah
+      Blockquote, 
+      TaskList, 
       OrderedList,
       BulletList,
       TaskItem.configure({
