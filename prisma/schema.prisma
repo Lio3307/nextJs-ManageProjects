@@ -23,7 +23,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
-  projects      ProjectData[]
+  projects      Project[]
 
   @@unique([email])
   @@map("user")
@@ -73,7 +73,7 @@ model Verification {
 
   @@map("verification")
 }
-model ProjectData {
+model Project {
   id String @id @default(cuid())
   title String
   description String
