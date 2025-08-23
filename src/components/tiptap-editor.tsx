@@ -2,6 +2,7 @@
 
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import MenuBar from './menu-bar'
 
 const Tiptap = () => {
   const editor = useEditor({
@@ -10,7 +11,12 @@ const Tiptap = () => {
     immediatelyRender: false,
   })
 
-  return <EditorContent editor={editor} />
+  return (
+    <div>
+        <MenuBar editor={editor}/>
+        <EditorContent editor={editor} />
+    </div>
+  )
 }
 
 export default Tiptap
