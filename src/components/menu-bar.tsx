@@ -12,6 +12,7 @@ import {
   AlignJustify,
   Pilcrow,
   Code,
+  CheckSquare,
 } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Editor } from "@tiptap/react";
@@ -97,6 +98,12 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
       icon: <Code className="h-4 w-4" />,
       action: () => editor.chain().focus().toggleCodeBlock().run(),
       isActive: () => editor.isActive("codeBlock"),
+    },
+    {
+      label: "Task List",
+      icon: <CheckSquare className="h-4 w-4" />,
+      action: () => editor.chain().focus().toggleTaskList().run(),
+      isActive: () => editor.isActive("taskList"),
     },
   ];
 

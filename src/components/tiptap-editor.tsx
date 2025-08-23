@@ -6,6 +6,7 @@ import MenuBar from "./menu-bar";
 import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { TaskItem, TaskList } from "@tiptap/extension-list";
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
@@ -24,6 +25,10 @@ const Tiptap = () => {
     extensions: [
       StarterKit,
       Highlight,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
       CodeBlockLowlight.configure({
         lowlight,
       }),
