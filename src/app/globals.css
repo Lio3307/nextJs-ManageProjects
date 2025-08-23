@@ -116,7 +116,74 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
+  .tiptap {
+    @apply leading-relaxed text-base;
+  }
+
+  .tiptap h1 {
+    @apply text-4xl font-bold mt-4 mb-2;
+  }
+  .tiptap h2 {
+    @apply text-3xl font-semibold mt-3 mb-2;
+  }
+  .tiptap h3 {
+    @apply text-2xl font-medium mt-2 mb-1;
+  }
+
+  .tiptap p {
+    @apply mb-2;
+  }
+  .tiptap strong {
+    @apply font-bold;
+  }
+  .tiptap em {
+    @apply italic;
+  }
+  .tiptap s {
+    @apply line-through;
+  }
+
+  .tiptap mark {
+    @apply bg-yellow-200 text-black px-0.5 rounded;
+  }
+
+  .tiptap p[style*="text-align: left"] {
+    @apply text-left;
+  }
+  .tiptap p[style*="text-align: center"] {
+    @apply text-center;
+  }
+  .tiptap p[style*="text-align: right"] {
+    @apply text-right;
+  }
+  .tiptap p[style*="text-align: justify"] {
+    @apply text-justify;
+  }
+
+  .tiptap pre {
+    @apply bg-muted text-sm p-4 rounded-md font-mono overflow-x-auto my-2;
+  }
+  .tiptap code {
+    @apply font-mono text-sm px-1 py-0.5 bg-muted rounded;
+  }
+
+  .tiptap ul {
+    @apply list-disc list-inside pl-4;
+  }
+  .tiptap ol {
+    @apply list-decimal list-inside pl-4;
+  }
+  .tiptap li {
+    @apply my-1;
+  }
+
+  .tiptap blockquote {
+    @apply border-l-4 pl-4 italic text-muted-foreground;
+  }
 }
+

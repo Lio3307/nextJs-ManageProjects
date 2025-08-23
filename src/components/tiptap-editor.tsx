@@ -21,22 +21,31 @@ lowlight.register('ts', ts)
 
 const Tiptap = () => {
   const editor = useEditor({
-    extensions: [StarterKit,
-        Highlight,
-        CodeBlockLowlight.configure({
-            lowlight,
-        }),
-        TextAlign.configure({
-      types: ["heading", "paragraph"],
-    }),
+    extensions: [
+      StarterKit,
+      Highlight,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
     ],
     immediatelyRender: false,
   })
 
   return (
-    <div>
-        <MenuBar editor={editor}/>
-        <EditorContent editor={editor} />
+    <div className="w-full max-w-4xl mx-auto px-4">
+      <div className="sticky top-0 z-10 bg-background border border-border rounded-t-lg p-2 flex flex-wrap gap-1 shadow-sm">
+        <MenuBar editor={editor} />
+      </div>
+
+      <div className="border border-border rounded-b-lg shadow-sm min-h-[300px] bg-background">
+        <EditorContent
+          editor={editor}
+          className="tiptap p-4 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none"
+        />
+      </div>
     </div>
   )
 }
