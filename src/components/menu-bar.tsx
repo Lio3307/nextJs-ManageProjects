@@ -15,6 +15,7 @@ import {
   CheckSquare,
   Quote,
   ListOrdered,
+  List,
 } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 import { Editor } from "@tiptap/react";
@@ -118,6 +119,12 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
       icon: <ListOrdered className="h-4 w-4" />,
       action: () => editor.chain().focus().toggleOrderedList().run(),
       isActive: () => editor.isActive("orderedList"),
+    },
+    {
+      label: "Bullet List", 
+      icon: <List className="h-4 w-4" />,
+      action: () => editor.chain().focus().toggleBulletList().run(),
+      isActive: () => editor.isActive("bulletList"),
     },
   ];
 
