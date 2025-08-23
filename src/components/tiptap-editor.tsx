@@ -6,19 +6,16 @@ import MenuBar from "./menu-bar";
 import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
-import {
-  TaskItem,
-  TaskList,
-  OrderedList,
-  BulletList,
-} from "@tiptap/extension-list";
+import { TaskItem, TaskList } from "@tiptap/extension-list";
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
 import ts from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
 import Blockquote from "@tiptap/extension-blockquote";
-import {TextStyle} from "@tiptap/extension-text-style";
+import { TextStyle } from "@tiptap/extension-text-style";
+import OrderedList from "@tiptap/extension-ordered-list";
+import BulletList from "@tiptap/extension-bullet-list";
 
 const lowlight = createLowlight(all);
 
@@ -30,18 +27,23 @@ lowlight.register("ts", ts);
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [
+      // Konfigurasi StarterKit untuk menonaktifkan ekstensi yang Anda ganti
       StarterKit.configure({
-        heading: {
-          levels: [1, 2, 3],
-        },
+        heading: { levels: [1, 2, 3] },
+        // Menonaktifkan ekstensi bawaan yang duplikat
+        blockquote: false,
+        orderedList: false,
+        bulletList: false,
+        codeBlock: false,
       }),
       TextStyle,
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
       Highlight,
-      Blockquote,
-      TaskList,
+      // Sekarang tambahkan versi ekstensi Anda yang telah dikonfigurasi
+      Blockquote, // Tambahkan kembali Blockquote
+      TaskList, // Biarkan TaskList karena ini ekstensi terpisah
       OrderedList,
       BulletList,
       TaskItem.configure({
