@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 type ProjectProps = {
@@ -10,6 +11,7 @@ type ProjectProps = {
 
 export default function ProjectCard({ data }: { data: ProjectProps }) {
   return (
+    <Link href={`/task/${data.id}`}>
     <Card className="w-full h-full cursor-pointer flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200 border border-border rounded-xl">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg font-semibold line-clamp-2">
@@ -24,6 +26,6 @@ export default function ProjectCard({ data }: { data: ProjectProps }) {
           </p>
         </div>
       </CardContent>
-    </Card>
+    </Card></Link>
   );
 }
