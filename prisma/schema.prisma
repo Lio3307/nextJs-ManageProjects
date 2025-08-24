@@ -71,6 +71,7 @@ model Project {
   id String @id @default(cuid())
   title String
   content String
+  createdBy String
   createdAt DateTime @default(now())
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

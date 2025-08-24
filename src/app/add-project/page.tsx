@@ -9,10 +9,8 @@ export default function AddProject() {
         <p className="text-lg text-muted-foreground mb-8">
           Create your own project note
         </p>
-        <form className="flex flex-col gap-6">
 
           <Tiptap />
-        </form>
       </div>
     </div>
   );
