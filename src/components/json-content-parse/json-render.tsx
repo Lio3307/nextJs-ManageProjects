@@ -1,0 +1,68 @@
+"use client";
+
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import TextAlign from "@tiptap/extension-text-align";
+import Highlight from "@tiptap/extension-highlight";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { TaskItem, TaskList } from "@tiptap/extension-list";
+import { all, createLowlight } from "lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+import Blockquote from "@tiptap/extension-blockquote";
+import { TextStyle } from "@tiptap/extension-text-style";
+import OrderedList from "@tiptap/extension-ordered-list";
+import BulletList from "@tiptap/extension-bullet-list";
+
+const lowlight = createLowlight(all);
+lowlight.register("html", html);
+lowlight.register("css", css);
+lowlight.register("js", js);
+lowlight.register("ts", ts);
+
+const JSONRender = ({ content }: { content: string }) => {
+  const editor = useEditor({
+    editable: false,
+    extensions: [
+      StarterKit.configure({
+        heading: { levels: [1, 2, 3] },
+        blockquote: false,
+        orderedList: false,
+        bulletList: false,
+        codeBlock: false,
+      }),
+      TextStyle,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Highlight,
+      Blockquote,
+      TaskList,
+      OrderedList,
+      BulletList,
+      TaskItem.configure({
+        nested: true,
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+    ],
+    content,
+    editorProps: {
+      attributes: {
+        class:
+          "prose prose-base sm:prose lg:prose-lg xl:prose-xl max-w-none " +
+          "focus:outline-none w-full min-h-[500px] p-6 " +
+          "bg-background",
+
+      },
+    },
+    immediatelyRender: false,
+  });
+
+  return <EditorContent editor={editor} />;
+};
+
+export default JSONRender;

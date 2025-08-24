@@ -59,13 +59,24 @@ const Tiptap = () => {
     editorProps: {
       attributes: {
         class:
-          "prose prose-base sm:prose lg:prose-lg xl:prose-xl max-w-none " +
-          "focus:outline-none w-full min-h-[500px] p-6 " +
-          "bg-background border border-border rounded-b-lg",
+          `
+      prose prose-base sm:prose lg:prose-lg xl:prose-xl max-w-none
+      focus:outline-none w-full min-h-[500px] p-6
+      bg-background border border-border rounded-b-lg
+
+      [&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:bg-gray-900 [&_pre]:text-gray-100
+      [&_code]:font-mono [&_code]:text-sm
+      [&_li]:break-words [&_li]:pl-1
+      [&_ul]:pl-6 [&_ul]:list-disc [&_ol]:pl-6 [&_ol]:list-decimal
+      [&_input[type=checkbox]]:mr-2 [&_input[type=checkbox]]:align-middle
+      [&_table]:w-full [&_table]:max-w-full [&_table]:border-collapse
+      [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1
+      [&_img]:max-w-full [&_img]:h-auto
+    `
       },
     },
     onUpdate: ({ editor }) => {
-      setContent(editor.getHTML());
+      setContent(JSON.stringify(editor.getJSON()));
     },
     immediatelyRender: false,
   });
