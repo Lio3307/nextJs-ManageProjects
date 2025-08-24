@@ -9,6 +9,10 @@ export default async function ProjectList() {
     headers: await headers(),
   });
 
+  if (!session) {
+    return redirect("/login");
+  }
+
   const data = await prisma.project.findMany({
     where: {
       userId: session?.user.id,
@@ -18,16 +22,18 @@ export default async function ProjectList() {
     },
   });
 
-  if (!session) {
-    return redirect("/login");
-  }
-
   return (
-    <div>
+    <div className="px-4 py-6">
       {data.length === 0 ? (
-        <p>You dont have task</p>
+        <p className="text-center text-muted-foreground text-sm">
+          You don&apos;t have any tasks yet.
+        </p>
       ) : (
-        data.map((item) => <ProjectCard key={item.id} data={item} />)
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {data.map((item) => (
+            <ProjectCard key={item.id} data={item} />
+          ))}
+        </div>
       )}
     </div>
   );
