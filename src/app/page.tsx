@@ -8,24 +8,18 @@ export default async function Home() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   return (
-    <>
-      {session ? (
-        <div className="flex ">
-          <p>welcome</p>
-          <Link href="/add-project" className={buttonVariants()}>
-            Add Project
-          </Link>
-          <LogedOut />
-        </div>
-      ) : (
-        <>
-          <p>welcome</p>
-          <Link href="/add-project" className={buttonVariants()}>
-            Add Project
-          </Link>
-        </>
-      )}
-    </>
+    <div className="flex flex-col items-center justify-center min-h-screen space-y-6 bg-gray-50">
+      <h1 className="text-2xl font-semibold">Welcome </h1>
+
+      <div className="flex items-center gap-4">
+        <Link href="/add-project" className={buttonVariants()}>
+          Add Project
+        </Link>
+
+        {session && <LogedOut />}
+      </div>
+    </div>
   );
 }
