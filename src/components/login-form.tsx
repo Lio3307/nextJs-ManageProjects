@@ -30,6 +30,7 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import LogedIn from "./loged-in";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -144,19 +145,10 @@ export function LoginForm({
                                 <FormControl>
                                   <Input placeholder="****" {...field} />
                                 </FormControl>
-                                <FormDescription>
-                                  This is your public display name.
-                                </FormDescription>
                                 <FormMessage />
                               </FormItem>
                             )}
                           />
-                          <a
-                            href="#"
-                            className="ml-auto text-sm underline-offset-4 hover:underline"
-                          >
-                            Forgot your password?
-                          </a>
                         </div>
                       </div>
                       <Button
@@ -173,9 +165,9 @@ export function LoginForm({
                     </div>
                     <div className="text-center text-sm">
                       Don&apos;t have an account?{" "}
-                      <a href="#" className="underline underline-offset-4">
+                      <Link href="/signup" className="underline underline-offset-4">
                         Sign up
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </form>
