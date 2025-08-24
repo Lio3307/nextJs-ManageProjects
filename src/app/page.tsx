@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default async function Home() {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
   return (
     <>
       {session ? (
@@ -16,7 +16,7 @@ export default async function Home() {
           <Link href="/add-project" className={buttonVariants()}>
             Add Project
           </Link>
-          <LogedOut/>
+          <LogedOut />
         </div>
       ) : (
         <>

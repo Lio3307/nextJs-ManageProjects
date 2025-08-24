@@ -1,6 +1,5 @@
 import Tiptap from "@/components/tiptap-editor";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 
 export default function AddProject() {
   return (
@@ -11,10 +10,7 @@ export default function AddProject() {
           Create your own project note
         </p>
         <form className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <Label className="text-lg">Title</Label>
-            <Input name="title" required type="text" className="h-12 text-lg" />
-          </div>
+
           <Tiptap />
         </form>
       </div>
