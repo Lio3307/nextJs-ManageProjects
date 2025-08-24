@@ -19,6 +19,7 @@ export default async function Home() {
         </Link>
 
         {session && <LogedOut />}
+        {session && <Link href="/project-list">Project list</Link>}
       </div>
     </div>
   );

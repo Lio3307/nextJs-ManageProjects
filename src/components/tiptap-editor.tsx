@@ -21,6 +21,7 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "./ui/input";
 import handleAddProjects from "@/app/actions";
 import { useState } from "react";
+import SubmitForm from "./submit-form";
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
 lowlight.register("css", css);
@@ -85,7 +86,7 @@ const Tiptap = () => {
 
         <input type="hidden" name="content" value={content} />
 
-        <Button type="submit">Submit</Button>
+        <SubmitForm/>
       </form>
     </div>
   );
