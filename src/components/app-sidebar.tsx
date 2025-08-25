@@ -14,6 +14,7 @@ import {
   ChevronUp,
   CircleUser,
   Folder,
+  House,
   LogOutIcon,
   NotepadText,
 } from "lucide-react";
@@ -28,8 +29,9 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 const menuItems = [
-  { id: 1, title: "Project", url: "/project-list", icon: <Folder /> },
-  { id: 2, title: "Task", url: "/task-List", icon: <NotepadText /> },
+  { id: 1, title: "Overview", url: "/", icon: <House /> },
+  { id: 2, title: "Project", url: "/project-list", icon: <Folder /> },
+  { id: 3, title: "Task", url: "/task-List", icon: <NotepadText /> },
 ];
 
 export async function AppSidebar() {
