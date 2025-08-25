@@ -1,6 +1,9 @@
 import JSONRender from "@/components/json-content-parse/json-render";
 import prisma from "@/lib/prisma";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { buttonVariants } from "@/components/ui/button";
+import { ArrowLeftFromLine } from "lucide-react";
 
 export default async function Task({
   params,
@@ -21,7 +24,8 @@ export default async function Task({
 
   return (
     <div className="w-full min-h-screen bg-white px-4 md:px-12 lg:px-24 py-8">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-sm text-gray-600 mb-6">
+        <Link className={buttonVariants({variant: "secondary"})} href="/"><ArrowLeftFromLine/> Back</Link>
+      <div className="flex mt-4 flex-col md:flex-row md:items-center md:justify-between gap-2 text-sm text-gray-600 mb-6">
         <p>
           By <span className="font-medium text-gray-800">{data.createdBy}</span>
         </p>
