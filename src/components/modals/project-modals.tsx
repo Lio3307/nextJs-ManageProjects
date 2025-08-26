@@ -3,7 +3,9 @@
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { createPortal } from "react-dom";
 import { useParams } from "next/navigation";
-import Tiptap from "../tiptap-editor";
+import { handleAddProjects } from "@/app/actions";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 
 export default function ProjectModal() {
   const portals = document.querySelector("#portals");
@@ -17,7 +19,10 @@ export default function ProjectModal() {
     <Card>
       <CardHeader>Create task</CardHeader>
       <CardContent>
-        <Tiptap idProject={idProject} />
+        <form action={handleAddProjects}>
+            <Label>Project Name</Label>
+            <Input type="text" name="title"/>
+        </form>
       </CardContent>
     </Card>,
     portals

@@ -28,7 +28,7 @@ lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
 
-const Tiptap = ({idProject}) => {
+const Tiptap = ({idTask}: {idTask: string | string[]}) => {
   const [content, setContent] = useState<string>("");
 
   const editor = useEditor({
@@ -96,7 +96,7 @@ const Tiptap = ({idProject}) => {
         <EditorContent editor={editor} />
 
         <input type="hidden" name="content" value={content} />
-        <input type="hidden" name="projectId" value={idProject} />
+        <input type="hidden" name="projectId" value={idTask} />
 
         <SubmitForm/>
       </form>

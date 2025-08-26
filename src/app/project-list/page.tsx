@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import ProjectCard from "@/components/project-task/project-card";
+import ProjectCard from "@/components/project-card";
 
 export default async function ProjectList() {
   const session = await auth.api.getSession({
