@@ -13,12 +13,12 @@ type ProjectData = {
 };
 
 type TaskTypes = {
-  title: string
-  content: string
-  createdBy: string
-  userId: string
-  projectId: string
-}
+  title: string;
+  content: string;
+  createdBy: string;
+  userId: string;
+  projectId: string;
+};
 
 export async function handleAddProjects(formData: FormData) {
   const session = await auth.api.getSession({
@@ -32,7 +32,7 @@ export async function handleAddProjects(formData: FormData) {
 
   if (!title) {
     throw new Error("Title are required");
-     }
+  }
 
   await prisma.project.create({
     data: {
@@ -42,26 +42,25 @@ export async function handleAddProjects(formData: FormData) {
     } as ProjectData,
   });
   revalidatePath("/project-list");
-  return redirect("/project-list");
+  revalidatePath("/");
+  return redirect("/");
 }
 
-
-export async function handleAddTask(formData: FormData){
+export async function handleAddTask(formData: FormData) {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
-  if(!session){
-    return redirect("/login")
+  if (!session) {
+    return redirect("/login");
   }
 
-  const title = formData.get("title")
-  const content = formData.get("content")
-  const projectId = formData.get("projectId")
+  const title = formData.get("title");
+  const content = formData.get("content");
+  const projectId = formData.get("projectId");
 
-  if(!title || !content){
+  if (!title || !content) {
     throw new Error("Title and content are required");
-    
   }
 
   await prisma.task.create({
@@ -70,7 +69,7 @@ export async function handleAddTask(formData: FormData){
       content: content,
       createdBy: session.user.name,
       userId: session.user.id,
-      projectId: projectId
-    } as TaskTypes
-  })
+      projectId: projectId,
+    } as TaskTypes,
+  });
 }

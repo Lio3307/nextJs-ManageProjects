@@ -1,13 +1,15 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import {  useState, cloneElement, isValidElement, ReactElement } from "react";
 import { Button } from "../ui/button";
+
+type WithOnClose = { onClose?: () => void };
 
 export default function ModalTrigger({
   compo,
   buttonName,
 }: {
-  compo: ReactNode;
+  compo: ReactElement<WithOnClose>;
   buttonName: string;
 }) {
   const [showModal, setShowModal] = useState(false);
@@ -18,13 +20,15 @@ export default function ModalTrigger({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          setShowModal((prev) => !prev);
+          setShowModal(true);
         }}
       >
         {buttonName}
       </Button>
 
-      {showModal ? compo : null}
+      {showModal && isValidElement(compo)
+        ? cloneElement(compo, { onClose: () => setShowModal(false) })
+        : null}
     </>
   );
 }

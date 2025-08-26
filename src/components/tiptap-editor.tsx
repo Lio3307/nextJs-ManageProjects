@@ -98,7 +98,7 @@ const Tiptap = ({idTask}: {idTask: string | string[]}) => {
         <input type="hidden" name="content" value={content} />
         <input type="hidden" name="projectId" value={idTask} />
 
-        <SubmitForm/>
+        <SubmitForm buttonName="Add Task"/>
       </form>
     </div>
   );

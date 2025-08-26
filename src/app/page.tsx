@@ -72,9 +72,7 @@ export default async function Home() {
           <div className="">
             <div className="mt-6 flex justify-between">
               <h1 className="text-[1.6rem] font-bold">Projects</h1>
-              <Link href="/add-project">
-                <ArrowRight size="2.2rem" />
-              </Link>
+            <ModalTrigger compo={<ProjectModal/>} buttonName="Create Project"/>
             </div>
             <div className="h-[0.1rem] bg-black"></div>
 
