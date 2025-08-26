@@ -1,4 +1,3 @@
-import JSONRender from "@/components/json-content-parse/json-render";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -42,8 +41,6 @@ export default async function Task({
       </div>
 
       <h1 className="text-3xl font-bold text-gray-900 mb-8">{data.title}</h1>
-
-      <JSONRender content={JSON.parse(data.content)} />
     </div>
   );
 }

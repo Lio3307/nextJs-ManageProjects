@@ -36,6 +36,7 @@ export default function RootLayout({
             <SidebarTrigger />
             {children}
           </main>
+          <div id="portals"></div>
         </SidebarProvider>
         <Toaster />
       </body>

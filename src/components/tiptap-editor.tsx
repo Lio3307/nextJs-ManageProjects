@@ -19,7 +19,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import BulletList from "@tiptap/extension-bullet-list";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "./ui/input";
-import handleAddProjects from "@/app/actions";
+import {handleAddProjects} from "@/app/actions";
 import { useState } from "react";
 import SubmitForm from "./submit-form";
 const lowlight = createLowlight(all);
@@ -28,7 +28,7 @@ lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
 
-const Tiptap = () => {
+const Tiptap = ({idProject}) => {
   const [content, setContent] = useState<string>("");
 
   const editor = useEditor({
@@ -96,6 +96,7 @@ const Tiptap = () => {
         <EditorContent editor={editor} />
 
         <input type="hidden" name="content" value={content} />
+        <input type="hidden" name="projectId" value={idProject} />
 
         <SubmitForm/>
       </form>
