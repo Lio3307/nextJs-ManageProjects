@@ -17,6 +17,7 @@ export default function ModalTrigger({
   return (
     <>
       <Button
+      className="cursor-pointer"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

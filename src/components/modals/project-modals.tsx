@@ -30,15 +30,15 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
           onClick={onClose}
           className="absolute right-3 top-3 text-gray-500 hover:text-gray-800"
         >
-          <X size={20} />
+          <X className="cursor-pointer" size={20} />
         </button>
 
         <CardHeader className="text-lg font-semibold">Create Project</CardHeader>
 
         <CardContent>
-          <form action={handleAddProjects} className="space-y-4">
+          <form action={handleAddProjects} className=" space-y-4">
             <div>
-              <Label htmlFor="title">Project Name</Label>
+              <Label className="my-2 text-gray-600" htmlFor="title">Project Name</Label>
               <Input type="text" id="title" name="title" required />
             </div>
             <SubmitForm buttonName="Create Project" />
