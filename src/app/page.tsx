@@ -1,9 +1,11 @@
+import ModalTrigger from "@/components/modals/modal-trigger";
 import ProjectCard from "@/components/project-card";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { headers } from "next/headers";
+import ProjectModal from "@/components/modals/project-modals";
 import Link from "next/link";
 
 export default async function Home() {
@@ -52,9 +54,7 @@ export default async function Home() {
           </h1>
           <div className="flex items-center justify-between">
             <p>You dont have a project yet</p>
-            <Link href="/add-project">
-              <Plus /> Create One
-            </Link>
+            <ModalTrigger compo={<ProjectModal/>} buttonName="Create Project"/>
           </div>
         </div>
       ) : (

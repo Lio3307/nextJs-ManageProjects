@@ -41,8 +41,8 @@ export async function handleAddProjects(formData: FormData) {
       createdBy: session.user.name,
     } as ProjectData,
   });
-  revalidatePath("/");
-  return redirect("/");
+  revalidatePath("/project-list");
+  return redirect("/project-list");
 }
 
 
