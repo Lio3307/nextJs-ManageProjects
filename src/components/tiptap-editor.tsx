@@ -1,7 +1,6 @@
 "use client";
 
 import { useEditor, EditorContent } from "@tiptap/react";
-import { Button } from "./ui/button";
 import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "./menu-bar";
 import TextAlign from "@tiptap/extension-text-align";
@@ -22,13 +21,16 @@ import { Input } from "./ui/input";
 import {handleAddProjects} from "@/app/actions";
 import { useState } from "react";
 import SubmitForm from "./submit-form";
+import clsx from "clsx";
+
+
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
 lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
 
-const Tiptap = ({idTask}: {idTask: string | string[]}) => {
+const Tiptap = ({idProject}: {idProject: string | string[]}) => {
   const [content, setContent] = useState<string>("");
 
   const editor = useEditor({
@@ -58,22 +60,19 @@ const Tiptap = ({idTask}: {idTask: string | string[]}) => {
     ],
     editorProps: {
       attributes: {
-        class:
-          `
-      prose prose-base sm:prose lg:prose-lg xl:prose-xl max-w-none
-      focus:outline-none w-full min-h-[500px] p-6
-      bg-background border border-border rounded-b-lg
-
-      [&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:bg-gray-900 [&_pre]:text-gray-100
-      [&_code]:font-mono [&_code]:text-sm
-      [&_li]:break-words [&_li]:pl-1
-      [&_ul]:pl-6 [&_ul]:list-disc [&_ol]:pl-6 [&_ol]:list-decimal
-      [&_input[type=checkbox]]:mr-2 [&_input[type=checkbox]]:align-middle
-      [&_table]:w-full [&_table]:max-w-full [&_table]:border-collapse
-      [&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1
-      [&_img]:max-w-full [&_img]:h-auto
-    `
-      },
+        class:clsx(
+      "prose prose-base sm:prose lg:prose-lg xl:prose-xl max-w-none",
+      "focus:outline-none w-full min-h-[500px] p-6",
+      "bg-background border border-border rounded-b-lg",
+      "[&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:bg-gray-900 [&_pre]:text-gray-100",
+      "[&_code]:font-mono [&_code]:text-sm",
+      "[&_li]:break-words [&_li]:pl-1",
+      "[&_ul]:pl-6 [&_ul]:list-disc [&_ol]:pl-6 [&_ol]:list-decimal",
+      "[&_input[type=checkbox]]:mr-2 [&_input[type=checkbox]]:align-middle",
+      "[&_table]:w-full [&_table]:max-w-full [&_table]:border-collapse",
+      "[&_td]:border [&_td]:px-2 [&_td]:py-1 [&_th]:border [&_th]:px-2 [&_th]:py-1",
+      "[&_img]:max-w-full [&_img]:h-auto"
+    ),},
     },
     onUpdate: ({ editor }) => {
       setContent(JSON.stringify(editor.getJSON()));
@@ -96,7 +95,7 @@ const Tiptap = ({idTask}: {idTask: string | string[]}) => {
         <EditorContent editor={editor} />
 
         <input type="hidden" name="content" value={content} />
-        <input type="hidden" name="projectId" value={idTask} />
+        <input type="hidden" name="projectId" value={idProject} />
 
         <SubmitForm buttonName="Add Task"/>
       </form>
