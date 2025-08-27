@@ -70,7 +70,7 @@ export default async function DetailProject({
           <p className="text-xs text-fray-600 my-3">Task List : </p>
           <div className="flex flex-wrap">
           {dataTask.map((item) => (
-            <TaskCard key={item.id} data={item} />
+            <TaskCard  projectId={idProject} key={item.id} data={item} />
           ))}</div>
         </div>
       )}
