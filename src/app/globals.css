@@ -181,7 +181,7 @@
     @apply bg-muted text-sm p-4 rounded-md font-mono overflow-x-auto my-4;
   }
   .tiptap code {
-    @apply font-mono text-sm px-1 py-0.5 bg-muted rounded;
+    @apply font-mono text-sm px-1 py-0.5  rounded;
   }
 
   /* Lists */
