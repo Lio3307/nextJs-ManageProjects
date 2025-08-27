@@ -8,6 +8,7 @@ import prisma from "@/lib/prisma";
 
 type ProjectData = {
   title: string;
+  description: string
   userId: string;
   createdBy: string;
 };
@@ -29,14 +30,16 @@ export async function handleAddProjects(formData: FormData) {
     return redirect("/login");
   }
   const title = formData.get("title");
+  const description = formData.get("description")
 
-  if (!title) {
-    throw new Error("Title are required");
+  if (!title || !description) {
+    throw new Error("Title and description are required");
   }
 
   await prisma.project.create({
     data: {
       title: title,
+      description: description,
       userId: session.user.id,
       createdBy: session.user.name,
     } as ProjectData,

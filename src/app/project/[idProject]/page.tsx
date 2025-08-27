@@ -45,6 +45,7 @@ export default async function DetailProject({
         </div>
         <p className="text-xs text-gray-600 mt-2">Project : </p>
         <p className="text-2xl font-bold my-2">{dataProject.title}</p>
+        <p className="text-2xl font-bold my-2">{dataProject.description}</p>
       </div>
 
       {dataTask.length === 0 || !dataTask ? (

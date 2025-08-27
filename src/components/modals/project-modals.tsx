@@ -41,6 +41,10 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
               <Label className="my-2 text-gray-600" htmlFor="title">Project Name</Label>
               <Input type="text" id="title" name="title" required />
             </div>
+            <div>
+              <Label className="my-2 text-gray-600" htmlFor="title">Project Description</Label>
+              <textarea id="description" name="description" required />
+            </div>
             <SubmitForm buttonName="Create Project" />
           </form>
         </CardContent>
