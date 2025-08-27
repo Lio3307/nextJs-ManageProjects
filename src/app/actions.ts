@@ -75,4 +75,6 @@ export async function handleAddTask(formData: FormData) {
       projectId: projectId,
     } as TaskTypes,
   });
+  revalidatePath(`/project/${projectId}`)
+  return redirect(`/project/${projectId}`)
 }
