@@ -113,32 +113,28 @@
 }
 
 @layer base {
-  /* Global Resets: Menggunakan border dan outline yang konsisten di seluruh elemen. */
+  /* Global Resets */
   * {
     @apply border-border outline-ring/50;
   }
 
-  /* Body Styling: Mengatur latar belakang dan warna teks dasar. */
   body {
     @apply bg-background text-foreground;
   }
 
-  /* Tiptap Base Styling: Menentukan gaya dasar untuk seluruh editor. */
+  /* Base editor wrapper */
   .tiptap {
     @apply leading-relaxed text-base;
   }
 
-  /* Heading Styles: Menyesuaikan ukuran, tebal, dan margin untuk hierarki yang jelas. */
+  /* Headings */
   .tiptap h1 {
-    /* Konsisten dengan skala tipografi (text-4xl, font-bold). */
     @apply text-4xl font-bold mt-8 mb-4;
   }
   .tiptap h2 {
-    /* Konsisten dengan skala tipografi (text-3xl, font-semibold). */
     @apply text-3xl font-semibold mt-6 mb-3;
   }
   .tiptap h3 {
-    /* Konsisten dengan skala tipografi (text-2xl, font-medium). */
     @apply text-2xl font-medium mt-4 mb-2;
   }
   .tiptap h4,
@@ -147,12 +143,12 @@
     @apply font-medium mt-2 mb-1;
   }
 
-  /* Paragraph Styling: Memberi margin yang konsisten antar paragraf. */
+  /* Paragraphs */
   .tiptap p {
     @apply mb-4;
   }
 
-  /* Text Decorations: Membuat gaya yang jelas untuk bold, italic, dan strikethrough. */
+  /* Inline text styles */
   .tiptap strong {
     @apply font-bold;
   }
@@ -166,7 +162,7 @@
     @apply bg-yellow-200 text-black px-1 rounded;
   }
 
-  /* Text Alignment: Menggunakan `[data-align]` untuk konsistensi. */
+  /* Alignment */
   .tiptap p[data-align="left"] {
     @apply text-left;
   }
@@ -180,7 +176,7 @@
     @apply text-justify;
   }
 
-  /* Code Block & Inline Code: Menyesuaikan gaya untuk kode agar mudah dibaca. */
+  /* Code block */
   .tiptap pre {
     @apply bg-muted text-sm p-4 rounded-md font-mono overflow-x-auto my-4;
   }
@@ -188,7 +184,7 @@
     @apply font-mono text-sm px-1 py-0.5 bg-muted rounded;
   }
 
-  /* List Styling: Membuat gaya yang konsisten untuk daftar. */
+  /* Lists */
   .tiptap ul,
   .tiptap ol {
     @apply list-outside pl-6 my-4 space-y-2;
@@ -203,7 +199,7 @@
     @apply leading-relaxed;
   }
 
-  /* Task List Styling: Mengatur gaya untuk task list agar terlihat rapi. */
+  /* Task list */
   .tiptap ul[data-type="taskList"] {
     @apply list-none pl-0 my-4 space-y-2;
   }
@@ -220,9 +216,27 @@
     @apply m-0;
   }
 
-  /* Blockquote Styling: Membuat gaya yang jelas untuk kutipan. */
+  /* Blockquote */
   .tiptap blockquote {
     @apply border-l-4 border-muted-foreground pl-4 my-4 italic text-muted-foreground bg-muted/30 rounded-md py-2;
   }
+
+  /* Syntax highlighting (lowlight + highlight.js) */
+  .tiptap pre code {
+    color: #f8f8f2;
+  }
+  .tiptap pre .hljs-keyword {
+    color: #ff79c6;
+  }
+  .tiptap pre .hljs-string {
+    color: #f1fa8c;
+  }
+  .tiptap pre .hljs-number {
+    color: #bd93f9;
+  }
+  .tiptap pre .hljs-comment {
+    color: #6272a4;
+  }
 }
+
 
