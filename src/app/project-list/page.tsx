@@ -33,18 +33,21 @@ export default async function ProjectList() {
       ) : (
         <div className="p-2">
           <div className="flex justify-between my-4">
-
             <p className="text-2xl font-bold">Your Project List</p>
 
-            <ModalTrigger compo={<ProjectModal/>} buttonName="Create Project"/>
-
+            <ModalTrigger
+              compo={<ProjectModal />}
+              buttonName="Create Project"
+            />
           </div>
-        <div className="flex flex-wrap gap-4">
-
-          {data.map((item) => (
-            <ProjectCard key={item.id} data={item} />
-          ))}
-        </div>
+          <p className="my-2 text-xs text-gray-600">
+            You have {data.length} project
+          </p>
+          <div className="flex flex-wrap gap-4 mt-2">
+            {data.map((item) => (
+              <ProjectCard key={item.id} data={item} />
+            ))}
+          </div>
         </div>
       )}
     </div>
