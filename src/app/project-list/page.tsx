@@ -3,6 +3,8 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import ProjectCard from "@/components/project-card";
+import ModalTrigger from "@/components/modals/modal-trigger";
+import ProjectModal from "@/components/modals/project-modals";
 
 export default async function ProjectList() {
   const session = await auth.api.getSession({
@@ -29,10 +31,20 @@ export default async function ProjectList() {
           You don&apos;t have any tasks yet.
         </p>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="p-2">
+          <div className="flex justify-between my-4">
+
+            <p className="text-2xl font-bold">Your Project List</p>
+
+            <ModalTrigger compo={<ProjectModal/>} buttonName="Create Project"/>
+
+          </div>
+        <div className="flex flex-wrap gap-4">
+
           {data.map((item) => (
             <ProjectCard key={item.id} data={item} />
           ))}
+        </div>
         </div>
       )}
     </div>
