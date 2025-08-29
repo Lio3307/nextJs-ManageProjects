@@ -77,8 +77,8 @@ export async function AppSidebar() {
                 >
                   <DropdownMenuItem>
                     <span>
-                      <LogOutIcon />
                       Sign Out
+                      <LogOutIcon />
                     </span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
