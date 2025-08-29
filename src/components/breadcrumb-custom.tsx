@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 
 import {
   Breadcrumb,
@@ -7,9 +7,15 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 
-export function BreadcrumbWithCustomSeparator({name, link}: {name:string, link:string}) {
+export function BreadcrumbWithCustomSeparator({
+  name,
+  link,
+}: {
+  name: string;
+  link: string;
+}) {
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -20,11 +26,9 @@ export function BreadcrumbWithCustomSeparator({name, link}: {name:string, link:s
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbItem>
-            <BreadcrumbPage>Task</BreadcrumbPage>
-          </BreadcrumbItem>
+          <BreadcrumbPage>Task</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
-  )
+  );
 }
