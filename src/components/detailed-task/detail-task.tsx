@@ -1,17 +1,9 @@
-import prisma from "@/lib/prisma";
+"use client";
+
 import JSONRender from "../json-content-parse/json-render";
+import type { Task } from "@prisma/client";
 
-export default async function DetailedTask({ idTask }: { idTask: string }) {
-  const detailedTask = await prisma.task.findUnique({
-    where: {
-      id: idTask,
-    },
-  });
-
-  if (!detailedTask) {
-    return <p className="text-sm text-gray-600 text-center">Task not found</p>;
-  }
-
+export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
   return (
     <>
       <div className="p-4">
@@ -34,7 +26,7 @@ export default async function DetailedTask({ idTask }: { idTask: string }) {
           </p>
         </div>
 
-        <JSONRender content={JSON.parse(detailedTask.content)}/>
+        <JSONRender content={JSON.parse(detailedTask.content)} />
       </div>
     </>
   );

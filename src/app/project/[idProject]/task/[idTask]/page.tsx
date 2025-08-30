@@ -10,19 +10,19 @@ export default async function DetailTask({
 }) {
   const { idTask, idProject } = await params;
   const projectName = await prisma.project.findUnique({
-    where: {
-      id: idProject,
-    },
+    where: { id: idProject },
   });
 
-  if (!projectName) {
-    return;
-  }
+  if (!projectName) return null;
 
   const taskData = await prisma.task.findUnique({
-    where: {
-      id: idTask,
-    },
+    where: { id: idTask },
+  });
+
+  if (!taskData) throw new Error("Unknown Task");
+
+  const reportData = await prisma.report.findMany({
+    where: { taskId: idTask },
   });
 
   if (!taskData) {
@@ -37,7 +37,11 @@ export default async function DetailTask({
           link={`/project/${idProject}`}
         />
 
-        <TaskNav idTask={idTask} />
+        <TaskNav
+        idTask={idTask}
+        taskData={taskData}
+        reportData={reportData}
+      />
         <div className="flex justify-between mt-4">
           <p className="text-xs txet-gray-600">
             Task by:{" "}

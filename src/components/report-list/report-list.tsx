@@ -1,14 +1,10 @@
-import prisma from "@/lib/prisma";
+"use client";
+
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import type { Report } from "@prisma/client";
 
-export default async function ReportList({ idTask }: { idTask: string }) {
-  const reportData = await prisma.report.findMany({
-    where: {
-      taskId: idTask,
-    },
-  });
-
+export default function ReportList({ reportData }: { reportData: Report[] }) {
   return (
     <>
       <div className="p-4">
@@ -47,8 +43,10 @@ export default async function ReportList({ idTask }: { idTask: string }) {
                 </div>
 
                 <div className="my-2">
-                      <h1 className="text-2xl my-2">{data.title}</h1>
-                      <p className="text-gray-600 text-xs my-2">{data.description}</p>
+                  <h1 className="text-2xl my-2">{data.title}</h1>
+                  <p className="text-gray-600 text-xs my-2">
+                    {data.description}
+                  </p>
                 </div>
               </div>
             ))

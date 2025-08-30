@@ -3,8 +3,17 @@
 import { useState } from "react";
 import DetailedTask from "../detailed-task/detail-task";
 import ReportList from "../report-list/report-list";
+import type { Task, Report } from "@prisma/client";
 
-export default function TaskNav({ idTask }: { idTask: string }) {
+export default function TaskNav({
+  idTask,
+  taskData,
+  reportData,
+}: {
+  idTask: string;
+  taskData: Task;
+  reportData: Report[];
+}){
   const [currentNav, setCurrentNav] = useState<string>("Task");
 
   const navItems = [
@@ -33,10 +42,10 @@ export default function TaskNav({ idTask }: { idTask: string }) {
         ))}
       </div>
 
-      {currentNav === "Task" ? (
-        <DetailedTask idTask={idTask} />
+       {currentNav === "Task" ? (
+        <DetailedTask detailedTask={taskData} />
       ) : (
-        <ReportList idTask={idTask} />
+        <ReportList reportData={reportData} />
       )}
     </>
   );
