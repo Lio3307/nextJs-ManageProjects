@@ -98,7 +98,7 @@ model Report {
   title String
   description String
   createdBy String
-  createdAt String
+  createdAt DateTime @default(now())
   taskId String
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

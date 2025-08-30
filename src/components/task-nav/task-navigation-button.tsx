@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import DetailedTask from "../detailed-task/detail-task";
+import ReportList from "../report-list/report-list";
 
-export default function TaskNav({idTask}: {idTask: string}) {
+export default function TaskNav({ idTask }: { idTask: string }) {
   const [currentNav, setCurrentNav] = useState<string>("Task");
 
   const navItems = [
@@ -32,7 +33,11 @@ export default function TaskNav({idTask}: {idTask: string}) {
         ))}
       </div>
 
-      {currentNav === "Task" ? (<DetailedTask idTask={idTask}/>): ()}
+      {currentNav === "Task" ? (
+        <DetailedTask idTask={idTask} />
+      ) : (
+        <ReportList idTask={idTask} />
+      )}
     </>
   );
 }
