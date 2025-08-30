@@ -32,12 +32,12 @@ export default async function DetailTask({
   return (
     <>
       <div className="p-4">
-          <BreadcrumbWithCustomSeparator
-            name={projectName.title}
-            link={`/project/${idProject}`}
-          />
+        <BreadcrumbWithCustomSeparator
+          name={projectName.title}
+          link={`/project/${idProject}`}
+        />
 
-          <TaskNav />
+        <TaskNav idTask={idTask} />
         <div className="flex justify-between mt-4">
           <p className="text-xs txet-gray-600">
             Task by:{" "}
