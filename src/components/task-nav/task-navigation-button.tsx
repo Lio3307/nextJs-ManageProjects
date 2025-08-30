@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import DetailedTask from "../detailed-task/detail-task";
 
-export default function TaskNav() {
+export default function TaskNav({idTask}: {idTask: string}) {
   const [currentNav, setCurrentNav] = useState<string>("Task");
 
   const navItems = [
@@ -12,7 +13,7 @@ export default function TaskNav() {
 
   return (
     <>
-      <div className="fle my-2 rounded-xl">
+      <div className="flex my-2 rounded-xl">
         {navItems.map((item) => (
           <button
             className={`border border-black ${
@@ -30,6 +31,8 @@ export default function TaskNav() {
           </button>
         ))}
       </div>
+
+      {currentNav === "Task" ? (<DetailedTask idTask={idTask}/>): ()}
     </>
   );
 }
