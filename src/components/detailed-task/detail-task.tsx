@@ -6,7 +6,6 @@ import type { Task } from "@prisma/client";
 export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
   return (
     <>
-      <div className="p-4">
         <div className="flex justify-between mt-4">
           <p className="text-xs txet-gray-600">
             Task by:{" "}
@@ -27,7 +26,6 @@ export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
         </div>
 
         <JSONRender content={JSON.parse(detailedTask.content)} />
-      </div>
     </>
   );
 }
