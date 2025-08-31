@@ -93,6 +93,8 @@ export async function handleReport(formData: FormData){
     headers: await headers()
   })
 
+  const referer = (await headers()).get("referer")
+
   if(!session){
     return redirect("/login")
   }
@@ -115,4 +117,13 @@ export async function handleReport(formData: FormData){
       taskId: idTask,
     } as ReportType
   })
+
+    if (referer) {
+    const url = new URL(referer)
+    revalidatePath(url.pathname)
+    return redirect(url.pathname)
+  }
+
+  revalidatePath("/")
+  return redirect("/")
 }
