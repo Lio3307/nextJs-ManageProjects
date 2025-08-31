@@ -97,11 +97,11 @@ export async function handleReport(formData: FormData){
     return redirect("/login")
   }
 
-  const title = formData.get("title")
-  const description = formData.get("description")
+  const title = formData.get("title") as string
+  const description = formData.get("description") as string
   const idTask = formData.get("idTask")
 
-  if(!title || !description){
+  if(!title.trim() || !description.trim()){
     throw new Error("Title and description cannot empty");
     
   }
