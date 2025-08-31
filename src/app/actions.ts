@@ -21,6 +21,14 @@ type TaskTypes = {
   projectId: string;
 };
 
+type ReportType = {
+        title: string
+      description: string
+      createdBy: string
+      userId: string
+      taskId: string
+}
+
 export async function handleAddProjects(formData: FormData) {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -77,4 +85,34 @@ export async function handleAddTask(formData: FormData) {
   });
   revalidatePath(`/project/${projectId}`)
   return redirect(`/project/${projectId}`)
+}
+
+
+export async function handleReport(formData: FormData){
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if(!session){
+    return redirect("/login")
+  }
+
+  const title = formData.get("title")
+  const description = formData.get("description")
+  const idTask = formData.get("idPrisma")
+
+  if(!title || !description){
+    throw new Error("Title and description cannot empty");
+    
+  }
+
+  await prisma.report.create({
+    data: {
+      title: title,
+      description: description,
+      createdBy: session.user.name,
+      userId: session.user.id,
+      taskId: idTask,
+    } as ReportType
+  })
 }

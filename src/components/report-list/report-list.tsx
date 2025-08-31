@@ -4,23 +4,27 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import type { Report } from "@prisma/client";
 import SubmitForm from "../submit-form";
+import { handleReport } from "@/app/actions";
 
-export default function ReportList({ reportData }: { reportData: Report[] }) {
+export default function ReportList({ reportData, idTask }: { reportData: Report[], idTask: string }) {
+
+
   return (
     <>
       <div className="p-6 mb-4">
         <div className="shadow-md px-4 py-2">
-          <form action="">
+          <form action={handleReport}>
             <div className="my-2 flex justify-end">
             <SubmitForm buttonName="Report"/>
             </div>
             <div className=" flex flex-col">
               <Label className="text-xs my-2 text-gray-600">Title</Label>
-              <Input type="text" required />
+              <Input name="title" type="text" required />
             </div>
             <div className=" flex flex-col">
               <Label className="text-xs my-2 text-gray-600">Report</Label>
-              <textarea required />
+              <textarea name="description" required />
+              <input  name="idTask" value={idTask} type="hidden" />
             </div>
             
           </form>

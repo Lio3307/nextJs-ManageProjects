@@ -45,7 +45,7 @@ export default function TaskNav({
        {currentNav === "Task" ? (
         <DetailedTask detailedTask={taskData} />
       ) : (
-        <ReportList reportData={reportData} />
+        <ReportList idTask={idTask} reportData={reportData} />
       )}
     </>
   );
