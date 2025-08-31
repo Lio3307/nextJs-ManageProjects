@@ -99,7 +99,7 @@ export async function handleReport(formData: FormData){
 
   const title = formData.get("title")
   const description = formData.get("description")
-  const idTask = formData.get("idPrisma")
+  const idTask = formData.get("idTask")
 
   if(!title || !description){
     throw new Error("Title and description cannot empty");
