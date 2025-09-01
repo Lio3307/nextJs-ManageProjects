@@ -15,19 +15,28 @@ export default function ReportList({
 }) {
   return (
     <>
-      <div className="p-6 mb-4">
-        <div className="shadow-md px-4 py-2">
-          <form action={handleReport}>
-            <div className="my-2 flex justify-end">
+      <div className="p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200 px-6 py-6">
+          <form action={handleReport} className="space-y-6">
+            <div className="flex justify-end">
               <SubmitForm buttonName="Report" />
             </div>
-            <div className=" flex flex-col">
-              <Label className="text-xs my-2 text-gray-600">Title</Label>
+
+            <div className="flex flex-col space-y-2">
+              <Label className="text-sm font-medium text-gray-700">Title</Label>
               <Input name="title" type="text" required />
             </div>
-            <div className=" flex flex-col">
-              <Label className="text-xs my-2 text-gray-600">Report</Label>
-              <textarea className="border-1" name="description" required />
+
+            <div className="flex flex-col space-y-2">
+              <Label className="text-sm font-medium text-gray-700">
+                Report
+              </Label>
+              <textarea
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 resize-vertical text-sm transition-colors duration-200"
+                name="description"
+                required
+                placeholder="Enter your report description..."
+              />
               <input name="idTask" value={idTask} type="hidden" />
             </div>
           </form>
