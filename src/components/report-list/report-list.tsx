@@ -6,16 +6,20 @@ import type { Report } from "@prisma/client";
 import SubmitForm from "../submit-form";
 import { handleReport } from "@/app/actions";
 
-export default function ReportList({ reportData, idTask }: { reportData: Report[], idTask: string }) {
-
-
+export default function ReportList({
+  reportData,
+  idTask,
+}: {
+  reportData: Report[];
+  idTask: string;
+}) {
   return (
     <>
       <div className="p-6 mb-4">
         <div className="shadow-md px-4 py-2">
           <form action={handleReport}>
             <div className="my-2 flex justify-end">
-            <SubmitForm buttonName="Report"/>
+              <SubmitForm buttonName="Report" />
             </div>
             <div className=" flex flex-col">
               <Label className="text-xs my-2 text-gray-600">Title</Label>
@@ -23,10 +27,9 @@ export default function ReportList({ reportData, idTask }: { reportData: Report[
             </div>
             <div className=" flex flex-col">
               <Label className="text-xs my-2 text-gray-600">Report</Label>
-              <textarea name="description" required />
-              <input  name="idTask" value={idTask} type="hidden" />
+              <textarea className="border-1" name="description" required />
+              <input name="idTask" value={idTask} type="hidden" />
             </div>
-            
           </form>
         </div>
         <div className="my-4">
@@ -36,26 +39,34 @@ export default function ReportList({ reportData, idTask }: { reportData: Report[
             </p>
           ) : (
             reportData.map((data) => (
-              <div key={data.id} className="m-4 shadow-md">
-                <div className="flex justify-between">
-                  <p className="text-xs text-gray-600">
-                    Report By: <span className="text-xs">{data.createdBy}</span>{" "}
+              <div
+                key={data.id}
+                className="m-4 rounded-lg p-4 bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-200"
+              >
+                <div className="flex justify-between items-start mb-3">
+                  <p className="text-xs text-gray-500 font-medium">
+                    Report By:{" "}
+                    <span className="text-gray-700 font-semibold">
+                      {data.createdBy}
+                    </span>
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-500 font-medium">
                     Created At:{" "}
-                    <span className="text-xs">
+                    <span className="text-gray-700 font-semibold">
                       {new Intl.DateTimeFormat("en-US", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                       }).format(data.createdAt)}
-                    </span>{" "}
+                    </span>
                   </p>
                 </div>
 
-                <div className="my-2">
-                  <h1 className="text-2xl my-2">{data.title}</h1>
-                  <p className="text-gray-600 text-xs my-2">
+                <div className="border-t border-gray-100 pt-3">
+                  <h1 className="text-2xl font-bold text-gray-800 mb-2 leading-tight">
+                    {data.title}
+                  </h1>
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {data.description}
                   </p>
                 </div>
