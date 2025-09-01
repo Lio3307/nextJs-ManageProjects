@@ -13,7 +13,7 @@ export default function TaskNav({
   idTask: string;
   taskData: Task;
   reportData: Report[];
-}){
+}) {
   const [currentNav, setCurrentNav] = useState<string>("Task");
 
   const navItems = [
@@ -23,14 +23,14 @@ export default function TaskNav({
 
   return (
     <>
-      <div className="flex my-2 rounded-xl">
+      <div className="flex my-4 bg-gray-100 dark:bg-gray-800 rounded-xl p-1 shadow-inner">
         {navItems.map((item) => (
           <button
-            className={`border border-black ${
+            className={`flex-1 py-2 px-4 text-sm font-semibold transition-all duration-200 ease-in-out first:rounded-l-lg last:rounded-r-lg ${
               currentNav === item.name
-                ? "bg-black dark:bg-white text-white font-bold dark:text-black"
-                : ""
-            } py-1 px-4 cursor-pointer font-bold  text-sm`}
+                ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-md border-0 transform scale-[0.98]"
+                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-700/50"
+            }`}
             onClick={(e) => {
               e.stopPropagation();
               setCurrentNav(item.name);
@@ -42,11 +42,13 @@ export default function TaskNav({
         ))}
       </div>
 
-       {currentNav === "Task" ? (
-        <DetailedTask detailedTask={taskData} />
-      ) : (
-        <ReportList idTask={idTask} reportData={reportData} />
-      )}
+      <div className="mt-6">
+        {currentNav === "Task" ? (
+          <DetailedTask detailedTask={taskData} />
+        ) : (
+          <ReportList idTask={idTask} reportData={reportData} />
+        )}
+      </div>
     </>
   );
 }
