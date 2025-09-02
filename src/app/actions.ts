@@ -37,10 +37,10 @@ export async function handleAddProjects(formData: FormData) {
   if (!session) {
     return redirect("/login");
   }
-  const title = formData.get("title");
-  const description = formData.get("description")
+  const title = formData.get("title") as string;
+  const description = formData.get("description") as string
 
-  if (!title || !description) {
+  if (!title.trim() || !description.trim()) {
     throw new Error("Title and description are required");
   }
 
@@ -66,11 +66,11 @@ export async function handleAddTask(formData: FormData) {
     return redirect("/login");
   }
 
-  const title = formData.get("title");
-  const content = formData.get("content");
-  const projectId = formData.get("projectId");
+  const title = formData.get("title") as string;
+  const content = formData.get("content") as string;
+  const projectId = formData.get("projectId") as string;
 
-  if (!title || !content) {
+  if (!title.trim() || !content.trim()) {
     throw new Error("Title and content are required");
   }
 
@@ -101,7 +101,7 @@ export async function handleReport(formData: FormData){
 
   const title = formData.get("title") as string
   const description = formData.get("description") as string
-  const idTask = formData.get("idTask")
+  const idTask = formData.get("idTask") as string
 
   if(!title.trim() || !description.trim()){
     throw new Error("Title and description cannot empty");
