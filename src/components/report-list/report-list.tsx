@@ -5,6 +5,7 @@ import { Input } from "../ui/input";
 import type { Report } from "@prisma/client";
 import SubmitForm from "../submit-form";
 import { handleReport } from "@/app/actions";
+import Link from "next/link";
 
 export default function ReportList({
   reportData,
@@ -48,38 +49,37 @@ export default function ReportList({
             </p>
           ) : (
             reportData.map((data) => (
-              <div
-                key={data.id}
-                className="m-4 rounded-lg p-4 bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-200"
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <p className="text-xs text-gray-500 font-medium">
-                    Report By:{" "}
-                    <span className="text-gray-700 font-semibold">
-                      {data.createdBy}
-                    </span>
-                  </p>
-                  <p className="text-xs text-gray-500 font-medium">
-                    Created At:{" "}
-                    <span className="text-gray-700 font-semibold">
-                      {new Intl.DateTimeFormat("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      }).format(data.createdAt)}
-                    </span>
-                  </p>
-                </div>
+              <Link key={data.id} href={`/report/${data.id}`}>
+                <div className="m-4 rounded-lg p-4 bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-200">
+                  <div className="flex justify-between items-start mb-3">
+                    <p className="text-xs text-gray-500 font-medium">
+                      Report By:{" "}
+                      <span className="text-gray-700 font-semibold">
+                        {data.createdBy}
+                      </span>
+                    </p>
+                    <p className="text-xs text-gray-500 font-medium">
+                      Created At:{" "}
+                      <span className="text-gray-700 font-semibold">
+                        {new Intl.DateTimeFormat("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }).format(data.createdAt)}
+                      </span>
+                    </p>
+                  </div>
 
-                <div className="border-t border-gray-100 pt-3">
-                  <h1 className="text-2xl font-bold text-gray-800 mb-2 leading-tight">
-                    {data.title}
-                  </h1>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {data.description}
-                  </p>
+                  <div className="border-t border-gray-100 pt-3">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-2 leading-tight">
+                      {data.title}
+                    </h1>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {data.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
