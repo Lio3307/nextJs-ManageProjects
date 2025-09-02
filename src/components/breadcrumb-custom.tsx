@@ -12,9 +12,11 @@ import {
 export function BreadcrumbWithCustomSeparator({
   name,
   link,
+  currentPageName
 }: {
   name: string;
   link: string;
+  currentPageName: string;
 }) {
   return (
     <Breadcrumb>
@@ -26,7 +28,7 @@ export function BreadcrumbWithCustomSeparator({
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>Task</BreadcrumbPage>
+          <BreadcrumbPage>{currentPageName}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

@@ -1,5 +1,4 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
-import JSONRender from "@/components/json-content-parse/json-render";
 import TaskNav from "@/components/task-nav/task-navigation-button";
 import prisma from "@/lib/prisma";
 
@@ -35,13 +34,10 @@ export default async function DetailTask({
         <BreadcrumbWithCustomSeparator
           name={projectName.title}
           link={`/project/${idProject}`}
+          currentPageName="Task"
         />
 
-        <TaskNav
-        idTask={idTask}
-        taskData={taskData}
-        reportData={reportData}
-      />
+        <TaskNav idTask={idTask} taskData={taskData} reportData={reportData} />
       </div>
     </>
   );
