@@ -20,6 +20,7 @@ model User {
   projects      Project[]
   task          Task[]
   report        Report[]
+  comment       Comment[]
 
   @@unique([email])
   @@map("user")
@@ -103,4 +104,16 @@ model Report {
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  comment Comment[]
+}
+
+model Comment {
+  id String @id @default(cuid())
+  comment String
+  commentBy String
+  createdAt DateTime @default(now())
+  reportId String
+  userId String
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
