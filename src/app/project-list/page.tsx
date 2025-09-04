@@ -3,8 +3,8 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import ProjectCard from "@/components/project-card";
-import ModalTrigger from "@/components/modals/modal-trigger";
-import ProjectModal from "@/components/modals/project-modals";
+import ModalTrigger from "@/components/add-project-modal/modal-trigger";
+import ProjectModal from "@/components/add-project-modal/project-modals";
 
 export default async function ProjectList() {
   const session = await auth.api.getSession({

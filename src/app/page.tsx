@@ -1,11 +1,11 @@
-import ModalTrigger from "@/components/modals/modal-trigger";
+import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectCard from "@/components/project-card";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { ArrowRight } from "lucide-react";
 import { headers } from "next/headers";
-import ProjectModal from "@/components/modals/project-modals";
+import ProjectModal from "@/components/add-project-modal/project-modals";
 import Link from "next/link";
 
 export default async function Home() {
@@ -54,7 +54,10 @@ export default async function Home() {
           </h1>
           <div className="flex items-center justify-between">
             <p>You dont have a project yet</p>
-            <ModalTrigger compo={<ProjectModal/>} buttonName="Create Project"/>
+            <ModalTrigger
+              compo={<ProjectModal />}
+              buttonName="Create Project"
+            />
           </div>
         </div>
       ) : (
@@ -72,7 +75,10 @@ export default async function Home() {
           <div className="">
             <div className="mt-6 flex justify-between">
               <h1 className="text-[1.6rem] font-bold">Projects</h1>
-            <ModalTrigger compo={<ProjectModal/>} buttonName="Create Project"/>
+              <ModalTrigger
+                compo={<ProjectModal />}
+                buttonName="Create Project"
+              />
             </div>
             <div className="h-[0.1rem] bg-black"></div>
 
