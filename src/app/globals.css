@@ -113,7 +113,6 @@
 }
 
 @layer base {
-  /* Global Resets */
   * {
     @apply border-border outline-ring/50;
   }
@@ -122,12 +121,10 @@
     @apply bg-background text-foreground;
   }
 
-  /* Base editor wrapper */
   .tiptap {
     @apply leading-relaxed text-base;
   }
 
-  /* Headings */
   .tiptap h1 {
     @apply text-4xl font-bold mt-8 mb-4;
   }
@@ -143,12 +140,10 @@
     @apply font-medium mt-2 mb-1;
   }
 
-  /* Paragraphs */
   .tiptap p {
     @apply mb-4;
   }
 
-  /* Inline text styles */
   .tiptap strong {
     @apply font-bold;
   }
@@ -162,7 +157,6 @@
     @apply bg-yellow-200 text-black px-1 rounded;
   }
 
-  /* Alignment */
   .tiptap p[data-align="left"] {
     @apply text-left;
   }
@@ -176,7 +170,6 @@
     @apply text-justify;
   }
 
-  /* Code block */
   .tiptap pre {
     @apply bg-muted text-sm p-4 rounded-md font-mono overflow-x-auto my-4;
   }
@@ -184,7 +177,6 @@
     @apply font-mono text-sm px-1 py-0.5  rounded;
   }
 
-  /* Lists */
   .tiptap ul,
   .tiptap ol {
     @apply list-outside pl-6 my-4 space-y-2;
@@ -199,7 +191,6 @@
     @apply leading-relaxed;
   }
 
-  /* Task list */
   .tiptap ul[data-type="taskList"] {
     @apply list-none pl-0 my-4 space-y-2;
   }
@@ -216,12 +207,10 @@
     @apply m-0;
   }
 
-  /* Blockquote */
   .tiptap blockquote {
     @apply border-l-4 border-muted-foreground pl-4 my-4 italic text-muted-foreground bg-muted/30 rounded-md py-2;
   }
 
-  /* Syntax highlighting (lowlight + highlight.js) */
   .tiptap pre code {
     color: #f8f8f2;
   }
