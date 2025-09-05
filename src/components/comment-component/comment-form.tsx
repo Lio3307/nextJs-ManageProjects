@@ -1,11 +1,6 @@
 import SubmitForm from "../submit-form";
 
-export default async function CommentForm({
-  params,
-}: {
-  params: Promise<{ idReport: string }>;
-}) {
-  const { idReport } = await params;
+export default async function CommentForm({reportId}: {reportId: string}) {
 
   return (
     <>
@@ -26,7 +21,7 @@ export default async function CommentForm({
             className="w-full rounded-md border border-gray-300 p-2 text-sm text-gray-700 placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
           />
 
-          <input name="idReport" type="hidden" value={idReport} />
+          <input name="idReport" type="hidden" value={reportId} />
 
           <div className="flex justify-end">
             <SubmitForm buttonName="Comment" />

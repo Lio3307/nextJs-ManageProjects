@@ -1,3 +1,4 @@
+import CommentForm from "@/components/comment-component/comment-form";
 import prisma from "@/lib/prisma";
 
 export default async function ReportDetail({
@@ -35,9 +36,15 @@ export default async function ReportDetail({
         </p>
 
         <div className="my-5 p-4">
-            <h2 className="text-3xl font-bold font-sans my-3">{detailReport.title}</h2>
-            <p className="my-2 text-gray-600">{detailReport.description}</p>
+          <h2 className="text-3xl font-bold font-sans my-3">
+            {detailReport.title}
+          </h2>
+          <p className="my-2 text-gray-600">{detailReport.description}</p>
         </div>
+      </div>
+
+      <div>
+        <CommentForm reportId={reportId}/>
       </div>
     </>
   );
