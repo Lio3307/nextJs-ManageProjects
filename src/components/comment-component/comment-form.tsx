@@ -1,30 +1,22 @@
 import SubmitForm from "../submit-form";
 
-export default async function CommentForm({reportId}: {reportId: string}) {
-
+export default async function CommentForm({ reportId }: { reportId: string }) {
   return (
     <>
-      <div className="mt-4 w-full max-w-md rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <form action="" className="space-y-3">
-          <label
-            htmlFor="comment"
-            className="block text-xs font-medium text-gray-700"
-          >
-            Comment
-          </label>
-
-          <textarea
-            id="comment"
-            name="comment"
-            rows={3}
-            placeholder="Write your comment here..."
-            className="w-full rounded-md border border-gray-300 p-2 text-sm text-gray-700 placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
-          />
-
-          <input name="idReport" type="hidden" value={reportId} />
-
-          <div className="flex justify-end">
+      <div className="w-full">
+        <div></div>
+        <form action="">
+          <div className="flex justify-between flex-1">
+            <label className="text-xs py-2 text-gray-600">Comment input</label>
             <SubmitForm buttonName="Comment" />
+          </div>
+          <div className="my-4">
+            <textarea
+              placeholder="Write comments..."
+              className="rounded-md text-sm p-2 border-1 w-full placeholder-gray-400"
+              name="comment"
+            />
+            <input name="reportId" type="hidden" value={reportId} />
           </div>
         </form>
       </div>

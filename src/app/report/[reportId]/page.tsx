@@ -43,7 +43,7 @@ export default async function ReportDetail({
         </div>
       </div>
 
-      <div>
+      <div className="flex justify-center p-5 ">
         <CommentForm reportId={reportId}/>
       </div>
     </>
