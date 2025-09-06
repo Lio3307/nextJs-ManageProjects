@@ -1,25 +1,55 @@
+import prisma from "@/lib/prisma";
 import SubmitForm from "../submit-form";
+import CommentCard from "./comment-card";
 
 export default async function CommentForm({ reportId }: { reportId: string }) {
+  const commentReport = await prisma.comment.findMany({
+    where: {
+      reportId: reportId,
+    },
+  });
   return (
     <>
-      <div className="w-full">
-        <div></div>
-        <form action="">
-          <div className="flex justify-between flex-1">
-            <label className="text-xs py-2 text-gray-600">Comment input</label>
-            <SubmitForm buttonName="Comment" />
-          </div>
-          <div className="my-4">
-            <textarea
-              placeholder="Write comments..."
-              className="rounded-md text-sm p-2 border-1 w-full placeholder-gray-400"
-              name="comment"
-            />
-            <input name="reportId" type="hidden" value={reportId} />
-          </div>
-        </form>
-      </div>
-    </>
+    <div className="w-full">
+ <div className="grid gap-4">
+   <div className="grid grid-cols-1">
+     <div className="flex justify-between">
+       <p className="font-bold text-sm">
+         Comment{" "}
+         <span className="text-xs text-gray-600 mx-2">
+           {commentReport.length > 0 ? commentReport.length : "0"}
+         </span>{" "}
+       </p>
+     </div>
+   </div>
+   
+   <div className="h-px bg-gray-300"></div>
+   
+   <div className="grid grid-cols-1">
+     <form action="">
+       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+         <label className="text-xs text-gray-600">Comment input</label>
+         <div className="justify-self-end">
+           <SubmitForm buttonName="Comment" />
+         </div>
+       </div>
+       <div className="grid grid-cols-1 gap-4 mt-4">
+         <textarea
+           placeholder="Write comments..."
+           className="rounded-md text-sm p-3 border border-gray-300 w-full placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+           name="comment"
+           rows={4}
+         />
+         <input name="reportId" type="hidden" value={reportId} />
+       </div>
+     </form>
+   </div>
+   
+   <div className="grid grid-cols-1">
+     <CommentCard dataComments={commentReport}/>
+   </div>
+ </div>
+ </div>
+</>
   );
 }

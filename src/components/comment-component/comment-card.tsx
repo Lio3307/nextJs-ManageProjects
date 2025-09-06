@@ -1,25 +1,15 @@
-import prisma from "@/lib/prisma";
+import { Comment } from "@prisma/client";
 
-export default async function CommentCard({
-  params,
-}: {
-  params: Promise<{ idReport: string }>;
-}) {
-  const { idReport } = await params;
-  const commentList = await prisma.comment.findMany({
-    where: {
-      reportId: idReport,
-    },
-  });
+export default async function CommentCard({dataComments}: {dataComments: Comment[]}) {
 
   return (
     <>
-      {commentList.length === 0 ? (
+      {dataComments.length === 0 ? (
         <div className="flex justify-center my-4">
           <p className="text-gray-600 text-xs text-center">No Comment Showed</p>
         </div>
       ) : (
-        commentList.map((comment) => (
+        dataComments.map((comment) => (
           <div key={comment.id}>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between">
