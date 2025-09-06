@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import SubmitForm from "../submit-form";
 import CommentCard from "./comment-card";
+import { handleComment } from "@/app/actions";
 
 export default async function CommentForm({ reportId }: { reportId: string }) {
   const commentReport = await prisma.comment.findMany({
@@ -26,7 +27,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
    <div className="h-px bg-gray-300"></div>
    
    <div className="grid grid-cols-1">
-     <form action="">
+     <form action={handleComment}>
        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
          <label className="text-xs text-gray-600">Comment input</label>
          <div className="justify-self-end">

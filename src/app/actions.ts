@@ -29,6 +29,13 @@ type ReportType = {
       taskId: string
 }
 
+type CommentType = {
+  comment: string 
+  commentBy: string
+  userId: string
+  reportId: string
+}
+
 export async function handleAddProjects(formData: FormData) {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -126,4 +133,30 @@ export async function handleReport(formData: FormData){
 
   revalidatePath("/")
   return redirect("/")
+}
+
+export async function handleComment(formData: FormData){
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if(!session) return redirect("/login")
+
+  const comment = formData.get("comment") as string
+  const idReport = formData.get("reportId") as string
+
+  if(!comment.trim()) throw new Error("Comment cannot empty");
+  if(!idReport) throw new Error("Unknown report");
+  
+
+
+  await prisma.comment.create({
+    data: {
+      comment,
+      commentBy: session.user.name,
+      userId: session.user.id,
+      reportId: idReport
+    } as CommentType
+  })
+  revalidatePath(`/report/${idReport}`)
 }
