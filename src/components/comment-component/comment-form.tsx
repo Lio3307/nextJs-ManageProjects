@@ -36,6 +36,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
        </div>
        <div className="grid grid-cols-1 gap-4 mt-4">
          <textarea
+         required
            placeholder="Write comments..."
            className="rounded-md text-sm p-3 border border-gray-300 w-full placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
            name="comment"

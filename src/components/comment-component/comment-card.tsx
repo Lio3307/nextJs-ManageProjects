@@ -10,10 +10,10 @@ export default async function CommentCard({dataComments}: {dataComments: Comment
         </div>
       ) : (
         dataComments.map((comment) => (
-          <div key={comment.id}>
+          <div className="shadow-md my-2 p-3" key={comment.id}>
             <div className="flex flex-col gap-3">
               <div className="flex justify-between">
-                <p className="text-sm text-gray-600">{comment.commentBy}</p>
+                <p className="text-xs text-gray-600">{comment.commentBy}</p>
                 <p className="text-xs text-gray-600">
                   {new Intl.DateTimeFormat("en-US", {
                     year: "numeric",
