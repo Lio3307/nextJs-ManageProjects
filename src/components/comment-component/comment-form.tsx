@@ -29,8 +29,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
    <div className="grid grid-cols-1">
      <form action={handleComment}>
        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
-         <label className="text-xs text-gray-600">Comment input</label>
-         <div className="justify-self-end">
+         <div className="">
            <SubmitForm buttonName="Comment" />
          </div>
        </div>
