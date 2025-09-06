@@ -18,10 +18,19 @@ export default async function ReportDetail({
     return <p>No report matches...</p>;
   }
 
+  const taskName = await prisma.task.findUnique({
+    where : {
+      id: detailReport.taskId
+    }
+  })
+
+  if(!taskName) throw new Error("Unknown Task");
+  
+
   return (
     <>
       <div className="p-4">
-        <BreadcrumbWithCustomSeparator name="Task" link={`/task/${detailReport.taskId}`} currentPageName="Report"/>
+        <BreadcrumbWithCustomSeparator name={taskName.title} link={`/task/${detailReport.taskId}`} currentPageName="Report"/>
         <p className="text-gray-600 my-2 text-xs">
           Posted at :{" "}
           <span className="text-black font-bold">
