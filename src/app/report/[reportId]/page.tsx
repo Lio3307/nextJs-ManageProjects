@@ -1,3 +1,4 @@
+import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
 import CommentForm from "@/components/comment-component/comment-form";
 import prisma from "@/lib/prisma";
 
@@ -20,6 +21,7 @@ export default async function ReportDetail({
   return (
     <>
       <div className="p-4">
+        <BreadcrumbWithCustomSeparator name="Task" link={`/task/${detailReport.taskId}`} currentPageName="Report"/>
         <p className="text-gray-600 my-2 text-xs">
           Posted at :{" "}
           <span className="text-black font-bold">
