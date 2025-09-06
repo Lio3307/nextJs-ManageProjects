@@ -3,8 +3,9 @@
 import { Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { Button } from '@/components/ui/button';
+import { ReactNode } from "react";
 
-export default function SubmitForm({buttonName}: {buttonName: string}){
+export default function SubmitForm({buttonName}: {buttonName: ReactNode}){
     const {pending} = useFormStatus()
 
     return (
