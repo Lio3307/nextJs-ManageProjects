@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import SubmitForm from "../submit-form";
 import CommentCard from "./comment-card";
 import { handleComment } from "@/app/actions";
+import { SendHorizonal } from "lucide-react";
 
 export default async function CommentForm({ reportId }: { reportId: string }) {
   const commentReport = await prisma.comment.findMany({
@@ -30,7 +31,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
      <form action={handleComment}>
        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
          <div className="">
-           <SubmitForm buttonName="Comment" />
+           <SubmitForm buttonName={<SendHorizonal/>} />
          </div>
        </div>
        <div className="grid grid-cols-1 gap-4 mt-4">
