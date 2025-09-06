@@ -7,13 +7,7 @@ type TaskProps = {
   createdBy: string;
 };
 
-export default function TaskCard({
-  data,
-  projectId,
-}: {
-  data: TaskProps;
-  projectId: string;
-}) {
+export default function TaskCard({ data }: { data: TaskProps }) {
   return (
     <Link href={`/task/${data.id}`}>
       <Card className="w-full h-full cursor-pointer flex flex-col shadow-sm hover:shadow-md transition-shadow duration-200 border border-border rounded-xl">

@@ -67,10 +67,12 @@ export default async function DetailProject({
         </div>
       ) : (
         <div className="flex flex-col mt-4">
-          <p className="text-xs text-fray-600 my-3">{dataTask.length} Task  : </p>
+          <p className="text-xs text-fray-600 my-3">
+            {dataTask.length} Task :{" "}
+          </p>
           <div className="flex flex-wrap gap-4">
             {dataTask.map((item) => (
-              <TaskCard projectId={idProject} key={item.id} data={item} />
+              <TaskCard key={item.id} data={item} />
             ))}
           </div>
         </div>

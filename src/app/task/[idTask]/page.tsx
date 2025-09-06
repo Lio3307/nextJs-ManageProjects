@@ -5,20 +5,21 @@ import prisma from "@/lib/prisma";
 export default async function DetailTask({
   params,
 }: {
-  params: Promise<{ idTask: string; idProject: string }>;
+  params: Promise<{ idTask: string }>;
 }) {
-  const { idTask, idProject } = await params;
-  const projectName = await prisma.project.findUnique({
-    where: { id: idProject },
-  });
-
-  if (!projectName) return null;
+  const { idTask } = await params;
 
   const taskData = await prisma.task.findUnique({
     where: { id: idTask },
   });
 
   if (!taskData) throw new Error("Unknown Task");
+
+  const projectName = await prisma.project.findUnique({
+    where: { id: taskData.projectId },
+  });
+
+  if (!projectName) return null;
 
   const reportData = await prisma.report.findMany({
     where: { taskId: idTask },
@@ -33,7 +34,7 @@ export default async function DetailTask({
       <div className="p-4">
         <BreadcrumbWithCustomSeparator
           name={projectName.title}
-          link={`/project/${idProject}`}
+          link={`/project/${taskData.projectId}`}
           currentPageName="Task"
         />
 
