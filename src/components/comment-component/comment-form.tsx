@@ -37,7 +37,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
          <textarea
          required
            placeholder="Write comments..."
-           className="rounded-md text-sm p-3 border border-gray-300 w-full placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+           className="rounded-md text-sm p-3 border border-gray-300 w-full placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent resize-none"
            name="comment"
            rows={4}
          />
