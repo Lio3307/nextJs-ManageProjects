@@ -23,6 +23,7 @@ export default function ReportList({
               <SubmitForm buttonName="Report" />
             </div>
 
+            <p className="text-xs text-red-600">*After you submit the report, you cannot edit or update it*</p>
             <div className="flex flex-col space-y-2">
               <Label className="text-sm font-medium text-gray-700">Title</Label>
               <Input name="title" type="text" required />
