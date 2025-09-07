@@ -18,6 +18,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   projects      Project[]
+  ownedProjects Project[] @relation("OwnerProject")
   task          Task[]
   report        Report[]
   comment       Comment[]
@@ -77,6 +78,8 @@ model Project {
   createdBy String
   createdAt DateTime @default(now())
   userId String
+  ownerId String
+  owner User @relation("OwnerProject", fields: [ownerId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   task Task[]
 }
