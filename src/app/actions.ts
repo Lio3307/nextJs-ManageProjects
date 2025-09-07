@@ -160,3 +160,13 @@ export async function handleComment(formData: FormData){
   })
   revalidatePath(`/report/${idReport}`)
 }
+
+export async function handleDeleteProject(idProject: string){
+  await prisma.project.delete({
+    where: {
+      id: idProject
+    }
+  })
+
+  return redirect('/')
+}
