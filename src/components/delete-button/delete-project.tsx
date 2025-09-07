@@ -1,0 +1,41 @@
+"use client";
+
+import { handleDeleteProject } from "@/app/actions";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { EllipsisVertical, Trash2 } from "lucide-react";
+
+export default function DeleteProject({ idProject }: { idProject: string }) {
+  const handleDelete = async () => {
+    const confirmDelete = confirm("Are you sure want to delete this project?");
+    if (!confirmDelete) return;
+    await handleDeleteProject(idProject);
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="p-2 rounded-md hover:bg-muted transition">
+          <EllipsisVertical className="h-5 w-5" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-40">
+        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={handleDelete}
+          className="text-red-600 focus:text-red-600"
+        >
+          <Trash2 className="text-red-600 mr-2 h-4 w-4" />
+          Delete Project
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

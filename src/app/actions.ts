@@ -170,6 +170,5 @@ export async function handleDeleteProject(idProject: string){
   })
   
   revalidatePath('/')
-
   return redirect('/')
 }
