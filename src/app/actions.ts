@@ -172,3 +172,16 @@ export async function handleDeleteProject(idProject: string){
   revalidatePath('/')
   return redirect('/')
 }
+
+
+export async function handleDeleteTask(idTask: string){
+  
+  await prisma.task.delete({
+    where: {
+      id: idTask
+    }
+  })
+  
+  revalidatePath('/')
+  return redirect('/')
+}

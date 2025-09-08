@@ -1,5 +1,7 @@
 "use client";
 
+import { handleDeleteTask } from "@/app/actions";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
