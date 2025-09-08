@@ -175,6 +175,12 @@ export async function handleDeleteProject(idProject: string){
 
 
 export async function handleDeleteTask(idTask: string){
+
+  const getProjectId = await prisma.task.findUnique({
+    where: {
+      id: idTask
+    }
+  })
   
   await prisma.task.delete({
     where: {
@@ -182,6 +188,6 @@ export async function handleDeleteTask(idTask: string){
     }
   })
   
-  revalidatePath('/')
-  return redirect('/')
+  revalidatePath(`/project/${getProjectId?.projectId}`)
+  return redirect(`/project/${getProjectId?.projectId}`)
 }
