@@ -1,7 +1,10 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
 import DeleteTask from "@/components/delete-button/delete-task";
 import TaskNav from "@/components/task-nav/task-navigation-button";
+import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function DetailTask({
   params,
@@ -9,6 +12,10 @@ export default async function DetailTask({
   params: Promise<{ idTask: string }>;
 }) {
   const { idTask } = await params;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) return redirect("/login");
 
   const taskData = await prisma.task.findUnique({
     where: { id: idTask },
@@ -16,11 +23,11 @@ export default async function DetailTask({
 
   if (!taskData) throw new Error("Unknown Task");
 
-  const projectName = await prisma.project.findUnique({
+  const project = await prisma.project.findUnique({
     where: { id: taskData.projectId },
   });
 
-  if (!projectName) return null;
+  if (!project) return null;
 
   const reportData = await prisma.report.findMany({
     where: { taskId: idTask },
@@ -35,11 +42,16 @@ export default async function DetailTask({
       <div className="p-4">
         <div className="flex justify-between">
           <BreadcrumbWithCustomSeparator
-            name={projectName.title}
+            name={project.title}
             link={`/project/${taskData.projectId}`}
             currentPageName="Task"
           />
-          <DeleteTask idTask={idTask} />
+          {session.user.id === taskData.userId ||
+          session.user.id === project.userId ? (
+            <DeleteTask idTask={idTask} />
+          ) : (
+            ""
+          )}
         </div>
 
         <TaskNav idTask={idTask} taskData={taskData} reportData={reportData} />
