@@ -191,3 +191,20 @@ export async function handleDeleteTask(idTask: string){
   revalidatePath(`/project/${getProjectId?.projectId}`)
   return redirect(`/project/${getProjectId?.projectId}`)
 }
+
+export async function handleDeleteReport(idReport: string){
+  const currentReport = await prisma.report.findUnique({
+    where : {
+      id: idReport
+    }
+  })
+
+  await prisma.report.delete({
+    where: {
+      id: idReport
+    }
+  })
+
+  revalidatePath(`/task/${currentReport?.taskId}`)
+  return redirect(`/task/${currentReport?.taskId}`)
+}
