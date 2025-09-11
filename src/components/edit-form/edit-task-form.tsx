@@ -109,12 +109,13 @@ export default function EditTaskForm({
   return (
     <div className="w-full">
       <form className="flex flex-col gap-4" action={updateTaskHandler}>
+        <div className="flex justify-between">
         <Link
           href={`/task/${taskId}`}
           className={buttonVariants({ variant: "secondary" })}
         >
-          <ArrowLeftFromLine className="mr-2 h-4 w-4" />
-        </Link>
+          <ArrowLeftFromLine className="mr-2 h-4 w-4" /> Back
+        </Link></div>
         <div className="flex flex-col gap-2">
           <Label className="text-lg">Title</Label>
           <Input
