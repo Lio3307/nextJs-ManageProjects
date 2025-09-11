@@ -26,12 +26,12 @@ export default async function EditTask({
   if (session.user.id !== selectedTask.userId) return notFound();
 
   return (
-    <>
+    <div className="p-4">
       <EditTaskForm
         contentTask={selectedTask.content}
         titleTask={selectedTask.title}
         taskId={selectedTask.id}
       />
-    </>
+    </div>
   );
 }
