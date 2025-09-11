@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import EditFormProject from "@/components/edit-form/edit-project-form";
 import { Label } from "@/components/ui/label";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -27,23 +27,6 @@ export default async function UpdateProject({
   if (session.user.id !== selectedProject?.userId) return notFound();
 
   return (
-    <>
-    
-    <div className="p-4"> 
-        <form action="">
-            <div className="flex flex-col gap-3">
-            <div>
-                <Label>Title</Label>
-                <Input value={selectedProject.title}/>
-            </div>
-            <div>
-                <Label>Description</Label>
-                <textarea value={selectedProject.description}/>
-            </div>
-            </div>
-        </form>
-    </div>
-
-    </>
+    <EditFormProject selectedData={selectedProject}/>
   )
 }
