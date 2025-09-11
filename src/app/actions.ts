@@ -224,3 +224,19 @@ export async function handleUpdateProject(newTitle: string, newDesc: string, idP
   revalidatePath(`/project/${idProject}`)
   return redirect(`/project/${idProject}`)
 }
+
+export async function handleUpdateTask(newTitle: string, newContent: string, idTask: string){
+
+  await prisma.task.update({
+    where: {
+      id: idTask
+    },
+    data: {
+      title: newTitle,
+      content: newContent
+    }
+  })
+
+  revalidatePath(`/task/${idTask}`)
+  return redirect(`/task/${idTask}`)
+}

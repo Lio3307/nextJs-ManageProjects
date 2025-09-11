@@ -21,6 +21,7 @@ import { Input } from "../ui/input";
 import { useState } from "react";
 import SubmitForm from "../submit-form";
 import clsx from "clsx";
+import { handleUpdateTask } from "@/app/actions";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -87,7 +88,7 @@ export default function EditTask({ contentTask, titleTask, taskId }: { contentTa
     }
 
     try {
-        
+        await handleUpdateTask(newTitle, content, taskId)
     } catch (error) {
         throw new Error(`Cannot update current task ${error}`);
         
@@ -96,7 +97,7 @@ export default function EditTask({ contentTask, titleTask, taskId }: { contentTa
 
   return (
     <div className="w-full">
-      <form className="flex flex-col gap-4" action={}>
+      <form className="flex flex-col gap-4" action={updateTaskHandler}>
         <div className="flex flex-col gap-2">
           <Label className="text-lg">Title</Label>
           <Input value={newTitle} onChange={(e) => setNewTitle(e.target.value)} name="title" required type="text" className="h-12 text-lg" />
