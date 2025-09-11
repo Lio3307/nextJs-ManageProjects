@@ -13,7 +13,7 @@ import { EllipsisVertical, Trash2 } from "lucide-react";
 
 export default function DeleteReport({ idReport }: { idReport: string }) {
   const handleDelete = async () => {
-    const confirmDelete = confirm("Are you sure want to delete this project?");
+    const confirmDelete = confirm("Are you sure want to delete this report?");
     if (!confirmDelete) return;
     await handleDeleteReport(idReport);
   };
