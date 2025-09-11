@@ -8,6 +8,7 @@ import SubmitForm from "../submit-form";
 import { buttonVariants } from "../ui/button";
 import { ArrowLeftFromLine } from "lucide-react";
 import Link from "next/link";
+import { handleUpdateProject } from "@/app/actions";
 
 export default function EditFormProject({
   selectedData,
@@ -16,9 +17,21 @@ export default function EditFormProject({
 }) {
   const [newTitle, setNewTitle] = useState<string>(selectedData.title);
   const [newDesc, setNewDesc] = useState<string>(selectedData.description);
+
+  const handleSubmit = async () => {
+    try {
+        await handleUpdateProject(newTitle, newDesc, selectedData.id)
+    } catch (error) {
+        throw new Error(`Something error ${error}`);
+        
+    } finally {
+        alert('Successfully updated the project')
+    }
+  }
+
   return (
     <div className="p-6 w-full">
-      <form action="" className="space-y-6">
+      <form action={handleSubmit} className="space-y-6">
         <div className="flex justify-end gap-3">
           <Link
             href={`/project/${selectedData.id}`}
