@@ -58,6 +58,7 @@ export default function EditTaskForm({ contentTask, titleTask, taskId }: { conte
         lowlight,
       }),
     ],
+    content: JSON.parse(contentTask),
     editorProps: {
       attributes: {
         class: clsx(
