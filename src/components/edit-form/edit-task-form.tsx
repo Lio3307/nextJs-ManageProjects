@@ -22,6 +22,9 @@ import { useState } from "react";
 import SubmitForm from "../submit-form";
 import clsx from "clsx";
 import { handleUpdateTask } from "@/app/actions";
+import Link from "next/link";
+import { ArrowLeftFromLine } from "lucide-react";
+import { buttonVariants } from "../ui/button";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -29,7 +32,15 @@ lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
 
-export default function EditTaskForm({ contentTask, titleTask, taskId }: { contentTask : string, titleTask: string, taskId: string}) {
+export default function EditTaskForm({
+  contentTask,
+  titleTask,
+  taskId,
+}: {
+  contentTask: string;
+  titleTask: string;
+  taskId: string;
+}) {
   const [content, setContent] = useState<string>(contentTask);
   const [newTitle, setNewTitle] = useState<string>(titleTask);
 
@@ -66,7 +77,7 @@ export default function EditTaskForm({ contentTask, titleTask, taskId }: { conte
           "focus:outline-none w-full min-h-[500px] p-6",
           "bg-background border border-border rounded-b-lg",
           "[&_pre]:overflow-x-auto [&_pre]:max-w-full [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:!bg-gray-200 [&_pre]:!text-black",
-          "[&_code]:font-mono [&_code]:text-sm  [&_code]:!text-black" ,
+          "[&_code]:font-mono [&_code]:text-sm  [&_code]:!text-black",
           "[&_li]:break-words [&_li]:pl-1",
           "[&_ul]:pl-6 [&_ul]:list-disc [&_ol]:pl-6 [&_ol]:list-decimal",
           "[&_input[type=checkbox]]:mr-2 [&_input[type=checkbox]]:align-mi  ddle",
@@ -83,25 +94,37 @@ export default function EditTaskForm({ contentTask, titleTask, taskId }: { conte
   });
 
   const updateTaskHandler = async () => {
-    if(!newTitle.trim() || !newTitle || !content.trim() || !content){
-        alert("Input Field cannot empty")
-        return;
+    if (!newTitle.trim() || !newTitle || !content.trim() || !content) {
+      alert("Input Field cannot empty");
+      return;
     }
 
     try {
-        await handleUpdateTask(newTitle, content, taskId)
+      await handleUpdateTask(newTitle, content, taskId);
     } catch (error) {
-        throw new Error(`Cannot update current task ${error}`);
-        
+      throw new Error(`Cannot update current task ${error}`);
     }
-  }
+  };
 
   return (
     <div className="w-full">
       <form className="flex flex-col gap-4" action={updateTaskHandler}>
+        <Link
+          href={`/task/${taskId}`}
+          className={buttonVariants({ variant: "secondary" })}
+        >
+          <ArrowLeftFromLine className="mr-2 h-4 w-4" />
+        </Link>
         <div className="flex flex-col gap-2">
           <Label className="text-lg">Title</Label>
-          <Input value={newTitle} onChange={(e) => setNewTitle(e.target.value)} name="title" required type="text" className="h-12 text-lg" />
+          <Input
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            name="title"
+            required
+            type="text"
+            className="h-12 text-lg"
+          />
         </div>
 
         <div className="sticky top-0 z-10 bg-background border-b border-border p-3 flex flex-wrap gap-2 shadow-sm rounded-t-lg">
@@ -113,9 +136,8 @@ export default function EditTaskForm({ contentTask, titleTask, taskId }: { conte
         <input type="hidden" name="content" value={content} />
         <input type="hidden" name="projectId" value={taskId} />
 
-        <SubmitForm buttonName="Add Task" />
+        <SubmitForm buttonName="Update Task" />
       </form>
     </div>
   );
-};
-
+}
