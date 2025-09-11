@@ -26,9 +26,9 @@ export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
         </p>
       </div>
 
-        <p className="p-2 text-xs my-2 txet-gray-600">
+        <p className="p-2 text-sm my-2 txet-gray-600">
           Task :{" "}
-          <span className="text-xs txet-black font-bold">
+          <span className="text-sm txet-black font-bold">
             {detailedTask.title}
           </span>
         </p>
