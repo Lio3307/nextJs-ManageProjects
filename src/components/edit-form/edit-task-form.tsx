@@ -29,7 +29,7 @@ lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
 
-export default function EditTask({ contentTask, titleTask, taskId }: { contentTask : string, titleTask: string, taskId: string}) {
+export default function EditTaskForm({ contentTask, titleTask, taskId }: { contentTask : string, titleTask: string, taskId: string}) {
   const [content, setContent] = useState<string>(contentTask);
   const [newTitle, setNewTitle] = useState<string>(titleTask);
 
