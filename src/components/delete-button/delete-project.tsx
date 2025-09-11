@@ -9,9 +9,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical, Trash2 } from "lucide-react";
+import { EllipsisVertical, FilePen, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function DeleteProject({ idProject }: { idProject: string }) {
+  const router = useRouter();
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this project?");
     if (!confirmDelete) return;
@@ -34,6 +36,13 @@ export default function DeleteProject({ idProject }: { idProject: string }) {
         >
           <Trash2 className="text-red-600 mr-2 h-4 w-4" />
           Delete Project
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => router.push(`/edit/project/${idProject}`)}
+          className="text-sky-600 focus:text-sky-600"
+        >
+          <FilePen className="text-sky-600 mr-2 h-4 w-4" />
+          Update Project
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
