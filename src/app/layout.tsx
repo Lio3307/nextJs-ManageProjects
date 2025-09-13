@@ -33,7 +33,9 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <main className="w-full">
-            <SidebarTrigger />
+            <div className="sticky top-0 z-50 bg-white  border-b md:hidden">
+              <SidebarTrigger />
+            </div>
             {children}
           </main>
           <div id="portals"></div>
