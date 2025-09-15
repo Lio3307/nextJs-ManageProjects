@@ -11,7 +11,7 @@ type ProjectData = {
   description: string;
   userId: string;
   createdBy: string;
-  visibility: string
+  visibility: string;
 };
 
 type TaskTypes = {
@@ -66,9 +66,9 @@ export async function handleAddProjects(formData: FormData) {
   await prisma.memberList.create({
     data: {
       memberList: latestProject.userId,
-      projectId: latestProject.id
-    }
-  })
+      projectId: latestProject.id,
+    },
+  });
 
   revalidatePath("/project-list");
   revalidatePath("/");
