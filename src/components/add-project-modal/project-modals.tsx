@@ -19,6 +19,21 @@ import {
 export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   const [portal, setPortal] = useState<Element | null>(null);
   const [selectedVisibility, setSelectedVisibility] = useState<string>("");
+  const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+
+  const handleSubmit = async () => {
+    if(!title.trim() || !description.trim()) {
+      alert("Input field cannot empty")
+      return
+    }
+    try {
+      await handleAddProjects(title, description, selectedVisibility)
+    } catch (error) {
+      throw new Error(`Error adding new data : ${error}`);
+      
+    }
+  }
 
   useEffect(() => {
     setPortal(document.querySelector("#portals"));
@@ -46,12 +61,12 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
         </CardHeader>
 
         <CardContent>
-          <form action={handleAddProjects} className=" space-y-4">
+          <form action={handleSubmit} className=" space-y-4">
             <div>
               <Label className="my-2 text-gray-600" htmlFor="title">
                 Project Name
               </Label>
-              <Input type="text" id="title" name="title" required />
+              <Input value={title} onChange={(e) => setTitle(e.target.value)} type="text" id="title" name="title" required />
             </div>
             <div className="flex justify-between items-center gap-2">
               <p className="text-sm font-medium">Select visibility :</p>
@@ -77,6 +92,8 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                 id="description"
                 name="description"
                 required
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
                 className="w-full min-h-[100px] rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 placeholder="Write a short description..."
               />{" "}

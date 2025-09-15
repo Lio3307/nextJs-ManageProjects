@@ -38,7 +38,7 @@ type CommentType = {
   reportId: string;
 };
 
-export async function handleAddProjects(formData: FormData) {
+export async function handleAddProjects(title: string, description: string, visibility: string) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -46,13 +46,7 @@ export async function handleAddProjects(formData: FormData) {
   if (!session) {
     return redirect("/login");
   }
-  const title = formData.get("title") as string;
-  const description = formData.get("description") as string;
-  const visibility = formData.get("visibility") as string;
 
-  if (!title.trim() || !description.trim()) {
-    throw new Error("Title and description are required");
-  }
 
   const latestProject = await prisma.project.create({
     data: {
