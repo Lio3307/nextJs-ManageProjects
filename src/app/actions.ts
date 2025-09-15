@@ -70,6 +70,11 @@ export async function handleAddProjects(formData: FormData) {
     } as User
   })
 
+  if(!getMemberName){
+    throw new Error("Invalid member name");
+    
+  }
+
   await prisma.memberList.create({
     data: {
       memberList: getMemberName?.name,
