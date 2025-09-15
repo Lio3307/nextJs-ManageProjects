@@ -53,7 +53,7 @@ export async function handleAddProjects(formData: FormData) {
     throw new Error("Title and description are required");
   }
 
-  await prisma.project.create({
+  const latestProject = await prisma.project.create({
     data: {
       title: title,
       description: description,
@@ -62,6 +62,14 @@ export async function handleAddProjects(formData: FormData) {
       visibility,
     } as ProjectData,
   });
+
+  await prisma.memberList.create({
+    data: {
+      memberList: latestProject.userId,
+      projectId: latestProject.id
+    }
+  })
+
   revalidatePath("/project-list");
   revalidatePath("/");
   return redirect("/");
