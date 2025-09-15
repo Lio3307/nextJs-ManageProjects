@@ -8,6 +8,13 @@ import { Input } from "../ui/input";
 import { handleAddProjects } from "@/app/actions";
 import SubmitForm from "../submit-form";
 import { X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   const [portal, setPortal] = useState<Element | null>(null);
@@ -46,19 +53,21 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
               </Label>
               <Input type="text" id="title" name="title" required />
             </div>
-            <div className="flex justify-between gap-2">
-              <p>Select visibility : </p>
-              <select
-                name="visibility"
-                onChange={(e) => setSelectedVisibility(e.target.value)}
+            <div className="flex justify-between items-center gap-2">
+              <p className="text-sm font-medium">Select visibility :</p>
+              <Select
                 value={selectedVisibility}
-                className="py-1 px-4"
+                onValueChange={setSelectedVisibility}
                 required
               >
-                Visibility
-                <option value="Public">Public</option>
-                <option value="Private">Private</option>
-              </select>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Visibility" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Public">Public</SelectItem>
+                  <SelectItem value="Private">Private</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <Label className="my-2 text-gray-600" htmlFor="title">
