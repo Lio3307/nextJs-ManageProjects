@@ -216,7 +216,8 @@ export async function handleDeleteReport(idReport: string) {
 export async function handleUpdateProject(
   newTitle: string,
   newDesc: string,
-  idProject: string
+  idProject: string,
+  newVisibility: string
 ) {
   await prisma.project.update({
     where: {
@@ -225,6 +226,7 @@ export async function handleUpdateProject(
     data: {
       title: newTitle,
       description: newDesc,
+      visibility: newVisibility
     },
   });
 

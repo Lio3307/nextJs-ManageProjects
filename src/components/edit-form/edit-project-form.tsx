@@ -17,17 +17,19 @@ export default function EditFormProject({
 }) {
   const [newTitle, setNewTitle] = useState<string>(selectedData.title);
   const [newDesc, setNewDesc] = useState<string>(selectedData.description);
+  const [newVisibilityType, setNewVisibilityType] = useState<string>(
+    selectedData.visibility
+  );
 
   const handleSubmit = async () => {
     try {
-        await handleUpdateProject(newTitle, newDesc, selectedData.id)
+      await handleUpdateProject(newTitle, newDesc, selectedData.id, newVisibilityType);
     } catch (error) {
-        throw new Error(`Something error ${error}`);
-        
+      throw new Error(`Something error ${error}`);
     } finally {
-        alert('Successfully updated the project')
+      alert("Successfully updated the project");
     }
-  }
+  };
 
   return (
     <div className="p-6 w-full">
@@ -44,9 +46,8 @@ export default function EditFormProject({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="newTitle">Title</Label>
+          <Label>Title</Label>
           <Input
-            id="newTitle"
             name="newTitle"
             onChange={(e) => setNewTitle(e.target.value)}
             value={newTitle}
@@ -55,9 +56,22 @@ export default function EditFormProject({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="newDesc">Description</Label>
+          <Label>Visibility</Label>
+          <select
+            name="newVisibility"
+            onChange={(e) => setNewVisibilityType(e.target.value)}
+            value={newVisibilityType}
+            required
+            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm"
+          >
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
+          </select>
+        </div>
+
+        <div className="space-y-2">
+          <Label>Description</Label>
           <textarea
-            id="newDesc"
             name="newDesc"
             onChange={(e) => setNewDesc(e.target.value)}
             value={newDesc}
