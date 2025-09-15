@@ -75,7 +75,7 @@ model Project {
   title String
   description String
   createdBy String
-  visibility Boolean
+  visibility String
   createdAt DateTime @default(now())
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
