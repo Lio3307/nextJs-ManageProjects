@@ -9,6 +9,7 @@ import { buttonVariants } from "../ui/button";
 import { ArrowLeftFromLine } from "lucide-react";
 import Link from "next/link";
 import { handleUpdateProject } from "@/app/actions";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 export default function EditFormProject({
   selectedData,
@@ -23,7 +24,12 @@ export default function EditFormProject({
 
   const handleSubmit = async () => {
     try {
-      await handleUpdateProject(newTitle, newDesc, selectedData.id, newVisibilityType);
+      await handleUpdateProject(
+        newTitle,
+        newDesc,
+        selectedData.id,
+        newVisibilityType
+      );
     } catch (error) {
       throw new Error(`Something error ${error}`);
     } finally {
@@ -56,17 +62,20 @@ export default function EditFormProject({
         </div>
 
         <div className="space-y-2">
-          <Label>Visibility</Label>
-          <select
-            name="newVisibility"
-            onChange={(e) => setNewVisibilityType(e.target.value)}
+          <Label htmlFor="visibility-select">Visibility</Label>
+          <Select
             value={newVisibilityType}
+            onValueChange={setNewVisibilityType}
             required
-            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm"
           >
-            <option value="Public">Public</option>
-            <option value="Private">Private</option>
-          </select>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select visibility" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Public">Public</SelectItem>
+              <SelectItem value="Private">Private</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">
