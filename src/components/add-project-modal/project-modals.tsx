@@ -18,7 +18,7 @@ import {
 
 export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   const [portal, setPortal] = useState<Element | null>(null);
-  const [selectedVisibility, setSelectedVisibility] = useState<string>("");
+  const [selectedVisibility, setSelectedVisibility] = useState<string>("Public");
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
 
