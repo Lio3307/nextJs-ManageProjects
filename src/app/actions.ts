@@ -5,6 +5,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
+import { User } from "@prisma/client";
 
 type ProjectData = {
   title: string;
@@ -63,9 +64,15 @@ export async function handleAddProjects(formData: FormData) {
     } as ProjectData,
   });
 
+  const getMemberName = await prisma.user.findUnique({
+    where: {
+      id: latestProject.userId
+    } as User
+  })
+
   await prisma.memberList.create({
     data: {
-      memberList: latestProject.userId,
+      memberList: getMemberName?.name,
       projectId: latestProject.id,
     },
   });
