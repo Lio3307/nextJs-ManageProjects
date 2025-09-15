@@ -8,7 +8,7 @@ import prisma from "@/lib/prisma";
 
 type ProjectData = {
   title: string;
-  description: string
+  description: string;
   userId: string;
   createdBy: string;
 };
@@ -22,19 +22,19 @@ type TaskTypes = {
 };
 
 type ReportType = {
-        title: string
-      description: string
-      createdBy: string
-      userId: string
-      taskId: string
-}
+  title: string;
+  description: string;
+  createdBy: string;
+  userId: string;
+  taskId: string;
+};
 
 type CommentType = {
-  comment: string 
-  commentBy: string
-  userId: string
-  reportId: string
-}
+  comment: string;
+  commentBy: string;
+  userId: string;
+  reportId: string;
+};
 
 export async function handleAddProjects(formData: FormData) {
   const session = await auth.api.getSession({
@@ -45,7 +45,8 @@ export async function handleAddProjects(formData: FormData) {
     return redirect("/login");
   }
   const title = formData.get("title") as string;
-  const description = formData.get("description") as string
+  const description = formData.get("description") as string;
+  const visibility = formData.get("visibility") as string;
 
   if (!title.trim() || !description.trim()) {
     throw new Error("Title and description are required");
@@ -57,6 +58,7 @@ export async function handleAddProjects(formData: FormData) {
       description: description,
       userId: session.user.id,
       createdBy: session.user.name,
+      visibility,
     } as ProjectData,
   });
   revalidatePath("/project-list");
@@ -90,29 +92,27 @@ export async function handleAddTask(formData: FormData) {
       projectId: projectId,
     } as TaskTypes,
   });
-  revalidatePath(`/project/${projectId}`)
-  return redirect(`/project/${projectId}`)
+  revalidatePath(`/project/${projectId}`);
+  return redirect(`/project/${projectId}`);
 }
 
-
-export async function handleReport(formData: FormData){
+export async function handleReport(formData: FormData) {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
-  const referer = (await headers()).get("referer")
+  const referer = (await headers()).get("referer");
 
-  if(!session){
-    return redirect("/login")
+  if (!session) {
+    return redirect("/login");
   }
 
-  const title = formData.get("title") as string
-  const description = formData.get("description") as string
-  const idTask = formData.get("idTask") as string
+  const title = formData.get("title") as string;
+  const description = formData.get("description") as string;
+  const idTask = formData.get("idTask") as string;
 
-  if(!title.trim() || !description.trim()){
+  if (!title.trim() || !description.trim()) {
     throw new Error("Title and description cannot empty");
-    
   }
 
   await prisma.report.create({
@@ -122,121 +122,122 @@ export async function handleReport(formData: FormData){
       createdBy: session.user.name,
       userId: session.user.id,
       taskId: idTask,
-    } as ReportType
-  })
+    } as ReportType,
+  });
 
-    if (referer) {
-    const url = new URL(referer)
-    revalidatePath(url.pathname)
-    return redirect(url.pathname)
+  if (referer) {
+    const url = new URL(referer);
+    revalidatePath(url.pathname);
+    return redirect(url.pathname);
   }
 
-  revalidatePath("/")
-  return redirect("/")
+  revalidatePath("/");
+  return redirect("/");
 }
 
-export async function handleComment(formData: FormData){
+export async function handleComment(formData: FormData) {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
-  if(!session) return redirect("/login")
+  if (!session) return redirect("/login");
 
-  const comment = formData.get("comment") as string
-  const idReport = formData.get("reportId") as string
+  const comment = formData.get("comment") as string;
+  const idReport = formData.get("reportId") as string;
 
-  if(!comment.trim()) throw new Error("Comment cannot empty");
-  if(!idReport) throw new Error("Unknown report");
-  
-
+  if (!comment.trim()) throw new Error("Comment cannot empty");
+  if (!idReport) throw new Error("Unknown report");
 
   await prisma.comment.create({
     data: {
       comment,
       commentBy: session.user.name,
       userId: session.user.id,
-      reportId: idReport
-    } as CommentType
-  })
-  revalidatePath(`/report/${idReport}`)
+      reportId: idReport,
+    } as CommentType,
+  });
+  revalidatePath(`/report/${idReport}`);
 }
 
-export async function handleDeleteProject(idProject: string){
-  
+export async function handleDeleteProject(idProject: string) {
   await prisma.project.delete({
     where: {
-      id: idProject
-    }
-  })
-  
-  revalidatePath('/')
-  return redirect('/')
+      id: idProject,
+    },
+  });
+
+  revalidatePath("/");
+  return redirect("/");
 }
 
-
-export async function handleDeleteTask(idTask: string){
-
+export async function handleDeleteTask(idTask: string) {
   const getProjectId = await prisma.task.findUnique({
     where: {
-      id: idTask
-    }
-  })
-  
+      id: idTask,
+    },
+  });
+
   await prisma.task.delete({
     where: {
-      id: idTask
-    }
-  })
-  
-  revalidatePath(`/project/${getProjectId?.projectId}`)
-  return redirect(`/project/${getProjectId?.projectId}`)
+      id: idTask,
+    },
+  });
+
+  revalidatePath(`/project/${getProjectId?.projectId}`);
+  return redirect(`/project/${getProjectId?.projectId}`);
 }
 
-export async function handleDeleteReport(idReport: string){
+export async function handleDeleteReport(idReport: string) {
   const currentReport = await prisma.report.findUnique({
-    where : {
-      id: idReport
-    }
-  })
+    where: {
+      id: idReport,
+    },
+  });
 
   await prisma.report.delete({
     where: {
-      id: idReport
-    }
-  })
+      id: idReport,
+    },
+  });
 
-  revalidatePath(`/task/${currentReport?.taskId}`)
-  return redirect(`/task/${currentReport?.taskId}`)
+  revalidatePath(`/task/${currentReport?.taskId}`);
+  return redirect(`/task/${currentReport?.taskId}`);
 }
 
-export async function handleUpdateProject(newTitle: string, newDesc: string, idProject: string){
-
+export async function handleUpdateProject(
+  newTitle: string,
+  newDesc: string,
+  idProject: string
+) {
   await prisma.project.update({
     where: {
-      id: idProject
+      id: idProject,
     },
     data: {
       title: newTitle,
-      description: newDesc
-    }
-  })
+      description: newDesc,
+    },
+  });
 
-  revalidatePath(`/project/${idProject}`)
-  return redirect(`/project/${idProject}`)
+  revalidatePath(`/project/${idProject}`);
+  return redirect(`/project/${idProject}`);
 }
 
-export async function handleUpdateTask(newTitle: string, newContent: string, idTask: string){
-
+export async function handleUpdateTask(
+  newTitle: string,
+  newContent: string,
+  idTask: string
+) {
   await prisma.task.update({
     where: {
-      id: idTask
+      id: idTask,
     },
     data: {
       title: newTitle,
-      content: newContent
-    }
-  })
+      content: newContent,
+    },
+  });
 
-  revalidatePath(`/task/${idTask}`)
-  return redirect(`/task/${idTask}`)
+  revalidatePath(`/task/${idTask}`);
+  return redirect(`/task/${idTask}`);
 }

@@ -11,6 +11,7 @@ import { X } from "lucide-react";
 
 export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   const [portal, setPortal] = useState<Element | null>(null);
+  const [selectedVisibility, setSelectedVisibility] = useState<string>("");
 
   useEffect(() => {
     setPortal(document.querySelector("#portals"));
@@ -44,6 +45,20 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                 Project Name
               </Label>
               <Input type="text" id="title" name="title" required />
+            </div>
+            <div className="flex justify-between gap-2">
+              <p>Select visibility : </p>
+              <select
+                name="visibility"
+                onChange={(e) => setSelectedVisibility(e.target.value)}
+                value={selectedVisibility}
+                className="py-1 px-4"
+                required
+              >
+                Visibility
+                <option value="Public">Public</option>
+                <option value="Private">Private</option>
+              </select>
             </div>
             <div>
               <Label className="my-2 text-gray-600" htmlFor="title">
