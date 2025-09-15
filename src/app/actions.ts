@@ -11,6 +11,7 @@ type ProjectData = {
   description: string;
   userId: string;
   createdBy: string;
+  visibility: string
 };
 
 type TaskTypes = {
