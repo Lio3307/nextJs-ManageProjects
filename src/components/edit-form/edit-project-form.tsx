@@ -9,7 +9,13 @@ import { buttonVariants } from "../ui/button";
 import { ArrowLeftFromLine } from "lucide-react";
 import Link from "next/link";
 import { handleUpdateProject } from "@/app/actions";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 export default function EditFormProject({
   selectedData,
@@ -38,56 +44,188 @@ export default function EditFormProject({
   };
 
   return (
-    <div className="p-6 w-full">
-      <form action={handleSubmit} className="space-y-6">
-        <div className="flex justify-end gap-3">
-          <Link
-            href={`/project/${selectedData.id}`}
-            className={buttonVariants({ variant: "secondary" })}
+    <div className="p-4 lg:p-8 w-full ">
+      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+          <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
+            Edit Project
+          </h2>
+          <p className="text-sm text-gray-600 mt-1">
+            Update your project details
+          </p>
+        </div>
+
+        <div className="p-6">
+          <form action={handleSubmit} className="space-y-8">
+            <div className="flex flex-col sm:flex-row justify-end gap-3">
+              <Link
+                href={`/project/${selectedData.id}`}
+                className={buttonVariants({ variant: "secondary" })}
+              >
+                <ArrowLeftFromLine className="mr-2 h-4 w-4" />
+                Back
+              </Link>
+              <SubmitForm buttonName="Update" />
+            </div>
+
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <Label className="text-sm font-semibold text-gray-900">
+                    Project Title
+                  </Label>
+                  <span className="text-red-500 text-sm">*</span>
+                </div>
+                <Input
+                  name="newTitle"
+                  onChange={(e) => setNewTitle(e.target.value)}
+                  value={newTitle}
+                  placeholder="Enter project title..."
+                  className="w-full h-12 text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                  required
+                />
+                {newTitle && (
+                  <p className="text-xs text-gray-500">
+                    {newTitle.length}/100 characters
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <Label
+                    htmlFor="visibility-select"
+                    className="text-sm font-semibold text-gray-900"
+                  >
+                    Project Visibility
+                  </Label>
+                  <span className="text-red-500 text-sm">*</span>
+                </div>
+                <Select
+                  value={newVisibilityType}
+                  onValueChange={setNewVisibilityType}
+                  required
+                >
+                  <SelectTrigger className="w-full h-12 text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                    <SelectValue placeholder="Choose project visibility..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Public">
+                      <div className="flex items-center space-x-2">
+                        <svg
+                          className="w-4 h-4 text-green-500"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>Public - Anyone can view</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="Private">
+                      <div className="flex items-center space-x-2">
+                        <svg
+                          className="w-4 h-4 text-gray-500"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>Private - Only members can view</span>
+                      </div>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-gray-500">
+                  {newVisibilityType === "Public"
+                    ? "This project will be visible to everyone"
+                    : "Only project members can access this project"}
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <Label className="text-sm font-semibold text-gray-900">
+                    Project Description
+                  </Label>
+                </div>
+                <div className="relative">
+                  <textarea
+                    name="newDesc"
+                    onChange={(e) => setNewDesc(e.target.value)}
+                    value={newDesc}
+                    placeholder="Describe your project goals, objectives, and key details..."
+                    className="w-full min-h-[140px] lg:min-h-[160px] rounded-lg border border-gray-300 bg-white px-4 py-3 text-base shadow-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y transition-all duration-200"
+                    rows={6}
+                  />
+                  {newDesc && (
+                    <div className="absolute bottom-3 right-3 text-xs text-gray-400 bg-white px-2 py-1 rounded">
+                      {newDesc.length}/500
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-gray-500">
+                  Provide a clear description to help team members understand
+                  the project
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:hidden gap-3 pt-6 border-t border-gray-200">
+              <SubmitForm buttonName="Update Project" />
+              <Link
+                href={`/project/${selectedData.id}`}
+                className={buttonVariants({
+                  variant: "outline",
+                  className: "w-full",
+                })}
+              >
+                <ArrowLeftFromLine className="mr-2 h-4 w-4" />
+                Cancel & Go Back
+              </Link>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <div className="flex items-start space-x-3">
+          <svg
+            className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0"
+            fill="currentColor"
+            viewBox="0 0 20 20"
           >
-            <ArrowLeftFromLine className="mr-2 h-4 w-4" />
-            Back
-          </Link>
-          <SubmitForm buttonName="Update" />
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <div>
+            <h4 className="text-sm font-semibold text-blue-900 mb-1">
+              Tips for better projects
+            </h4>
+            <ul className="text-xs text-blue-700 space-y-1">
+              <li>
+                • Use clear, descriptive titles that explain the project purpose
+              </li>
+              <li>• Set visibility based on your teams collaboration needs</li>
+              <li>• Include key objectives and deadlines in the description</li>
+            </ul>
+          </div>
         </div>
-
-        <div className="space-y-2">
-          <Label>Title</Label>
-          <Input
-            name="newTitle"
-            onChange={(e) => setNewTitle(e.target.value)}
-            value={newTitle}
-            className="w-full"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="visibility-select">Visibility</Label>
-          <Select
-            value={newVisibilityType}
-            onValueChange={setNewVisibilityType}
-            required
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select visibility" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Public">Public</SelectItem>
-              <SelectItem value="Private">Private</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="space-y-2">
-          <Label>Description</Label>
-          <textarea
-            name="newDesc"
-            onChange={(e) => setNewDesc(e.target.value)}
-            value={newDesc}
-            className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y"
-          />
-        </div>
-      </form>
+      </div>
     </div>
   );
 }
