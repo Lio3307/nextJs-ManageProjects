@@ -1,3 +1,4 @@
+import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
@@ -14,11 +15,13 @@ export default async function MemberList({
   if (!session) return redirect("/login");
 
   const { idProject } = await params;
-  const projectOwner = await prisma.project.findUnique({
+  const project = await prisma.project.findUnique({
     where: {
       id: idProject,
     },
   });
+  if (!project) throw new Error("Uknown project");
+
   const memberListData = await prisma.memberList.findMany({
     where: {
       projectId: idProject,
@@ -27,6 +30,11 @@ export default async function MemberList({
 
   return (
     <div className="p-4 lg:p-6 max-w-4xl mx-auto">
+      <BreadcrumbWithCustomSeparator
+        link={`/project/${idProject}`}
+        name={project.title}
+        currentPageName="Member List"
+      />
       <div className="my-6">
         <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
           Member List
@@ -72,7 +80,6 @@ export default async function MemberList({
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      
                       <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white font-semibold text-sm">
                           {list.memberList?.charAt(0)?.toUpperCase() || "U"}
@@ -89,12 +96,12 @@ export default async function MemberList({
                     <div className="flex-shrink-0">
                       <span
                         className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                          session.user.id === projectOwner?.userId
+                          session.user.id === project?.userId
                             ? "bg-amber-100 text-amber-800 border border-amber-200"
                             : "bg-blue-100 text-blue-800 border border-blue-200"
                         }`}
                       >
-                        {session.user.id === projectOwner?.userId ? (
+                        {session.user.id === project?.userId ? (
                           <>
                             <svg
                               className="w-3 h-3 mr-1"
