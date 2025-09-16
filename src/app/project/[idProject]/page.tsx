@@ -74,12 +74,21 @@ export default async function DetailProject({
         </div>
 
         <div className="mt-4">
-          <p className="text-xs text-gray-600">Project:</p>
-          <h2 className="mt-2 text-2xl font-bold">{dataProject.title}</h2>
-          <p className="mt-2 mb-3 text-xs text-gray-600">
-            {dataProject.description}
-          </p>
+            <p className="text-xs text-gray-600">Project:</p>
+            <h2 className="mt-2 text-2xl font-bold">{dataProject.title}</h2>
+            <p className="mt-2 mb-3 text-xs text-gray-600">
+              {dataProject.description}
+            </p>
         </div>
+
+        <div className="flex justify-end my-2">
+            <Link
+              href={`/project/${idProject}/member`}
+              className="text-gray-700 text-xs font-bold"
+            >
+              Check Member List ➔
+            </Link>
+          </div>
 
         <div className="flex justify-end">
           <Link
