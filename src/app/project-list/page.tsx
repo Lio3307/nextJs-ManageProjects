@@ -25,31 +25,131 @@ export default async function ProjectList() {
   });
 
   return (
-    <div className="px-4 py-6">
-      {data.length === 0 ? (
-        <p className="text-center text-muted-foreground text-sm">
-          You don&apos;t have any tasks yet.
-        </p>
-      ) : (
-        <div className="p-2">
-          <div className="flex justify-between my-4">
-            <p className="text-2xl font-bold">Your Project List</p>
+    <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
+  {data.length === 0 ? (
+    <div className="flex flex-col items-center justify-center min-h-[400px] lg:min-h-[500px]">
+      <div className="text-center max-w-md mx-auto">
+        <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg className="w-10 h-10 lg:w-12 lg:h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
 
-            <ModalTrigger
-              compo={<ProjectModal />}
-              buttonName="Create Project"
-            />
-          </div>
-          <p className="my-2 text-xs text-gray-600">
-            You have {data.length} project
-          </p>
-          <div className="flex flex-wrap gap-4 mt-2">
-            {data.map((item) => (
-              <ProjectCard key={item.id} data={item} />
-            ))}
+        <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
+          No projects yet
+        </h3>
+        <p className="text-sm lg:text-base text-gray-600 mb-8 leading-relaxed">
+          Create your first project to start organizing tasks and collaborating with your team.
+        </p>
+
+        <div className="space-y-4">
+          <ModalTrigger
+            compo={<ProjectModal />}
+            buttonName="Create Your First Project"
+          />
+          
+          <div className="flex items-center justify-center space-x-4 text-xs text-gray-400">
+            <div className="flex items-center space-x-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Free to create</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Easy setup</span>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
+  ) : (
+    <div className="space-y-6">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div className="space-y-2">
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
+            Your Project List
+          </h1>
+          <div className="flex items-center space-x-4">
+            <p className="text-sm lg:text-base text-gray-600">
+              You have <span className="font-semibold text-gray-900">{data.length}</span> project{data.length !== 1 ? 's' : ''}
+            </p>
+            <div className="hidden sm:flex items-center space-x-2 text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+              </svg>
+              <span>Recently updated</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-shrink-0">
+          <ModalTrigger
+            compo={<ProjectModal />}
+            buttonName="Create Project"
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
+            </svg>
+            <span className="text-sm font-medium text-gray-700">Filter & Sort</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center space-x-3 text-xs text-gray-500">
+          <button className="hover:text-gray-700 transition-colors">All Projects</button>
+          <span>•</span>
+          <button className="hover:text-gray-700 transition-colors">Recent</button>
+          <span>•</span>
+          <button className="hover:text-gray-700 transition-colors">Favorites</button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+        {data.map((item) => (
+          <div key={item.id} className="w-full">
+            <ProjectCard data={item} />
+          </div>
+        ))}
+      </div>
+
+      {data.length > 8 && (
+        <div className="flex justify-center pt-8">
+          <button className="px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Load More Projects
+          </button>
+        </div>
+      )}
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-gray-200">
+        <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="text-2xl font-bold text-blue-600">{data.length}</div>
+          <div className="text-xs text-blue-600 font-medium">Total Projects</div>
+        </div>
+        
+        <div className="text-center p-4 bg-amber-50 rounded-lg border border-amber-200">
+          <div className="text-2xl font-bold text-amber-600">
+            {data.filter(project => project.visibility === 'Public').length || 0}
+          </div>
+          <div className="text-xs text-amber-600 font-medium">Public</div>
+        </div>
+        
+        <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
+          <div className="text-2xl font-bold text-purple-600">
+            {data.filter(project => project.visibility === 'Private').length || 0}
+          </div>
+          <div className="text-xs text-purple-600 font-medium">Private</div>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
   );
 }
