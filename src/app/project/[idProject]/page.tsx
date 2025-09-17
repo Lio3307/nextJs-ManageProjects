@@ -103,11 +103,13 @@ export default async function DetailProject({
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 pt-4 border-t border-gray-100">
           <Link
             href={`/project/${idProject}/member`}
-            className="inline-flex items-center justify-center sm:justify-start text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors duration-200 group"
+            className="inline-flex items-center justify-end sm:justify-start text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors duration-200 group"
           >
-            <span>Check Member List</span>
-            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">
-              →
+            <span>
+              Check Member List
+              <span className="group-hover:translate-x-1 transition-transform duration-200">
+                →
+              </span>
             </span>
           </Link>
 
