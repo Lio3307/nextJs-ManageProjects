@@ -42,7 +42,7 @@ export default async function DetailProject({
   return (
     <div className="p-4 max-w-7xl mx-auto">
       <div className="flex flex-col p-4 lg:p-6 shadow-lg rounded-xl bg-background border border-gray-100">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-0">
+        <div className="flex  sm:flex-row  justify-between sm:items-start gap-3 sm:gap-0">
           <div className="flex flex-col space-y-2">
             <p className="text-xs sm:text-sm text-gray-600">
               By:{" "}
@@ -88,19 +88,19 @@ export default async function DetailProject({
             <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-2">
               Project
             </p>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+            <h2 className="text-xl font-bold text-gray-900 leading-tight">
               {dataProject.title}
             </h2>
           </div>
 
           <div>
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+            <p className="text-xs  sm:text-sm text-gray-600 leading-relaxed">
               {dataProject.description}
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 pt-4 border-t border-gray-100">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 pt-4 border-t border-gray-300">
           <Link
             href={`/project/${idProject}/member`}
             className="inline-flex items-center justify-end sm:justify-start text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors duration-200 group"
