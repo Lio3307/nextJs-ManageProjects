@@ -9,24 +9,77 @@ type TaskProps = {
 
 export default function TaskCard({ data }: { data: TaskProps }) {
   return (
-    <Link href={`/task/${data.id}`}>
-      <div className="group transition-all duration-300 transform hover:-translate-y-1">
-        <Card className="w-full h-full cursor-pointer flex flex-col rounded-2xl border-none shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-          <div className="h-2 w-full bg-blue-500 rounded-t-2xl"></div>
+    <Link href={`/task/${data.id}`} className="block w-full h-full">
+      <div className="group transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02]">
+        <Card className="w-full h-full cursor-pointer flex flex-col rounded-xl border border-gray-200 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 overflow-hidden bg-white">
+          <div className="h-1.5 w-full bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:from-blue-600 group-hover:to-indigo-600 transition-colors duration-300"></div>
 
-          <CardHeader className="pt-4 pb-2">
-            <CardTitle className="text-lg font-bold line-clamp-2 text-gray-900 leading-tight">
+          <CardHeader className="pt-5 pb-3 px-5">
+            <div className="flex items-start justify-between mb-3">
+              <div className="w-9 h-9 bg-gradient-to-br from-blue-100 to-indigo-100 group-hover:from-blue-200 group-hover:to-indigo-200 rounded-lg flex items-center justify-center transition-colors duration-300">
+                <svg
+                  className="w-4 h-4 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  />
+                </svg>
+              </div>
+
+              <div className="w-2 h-2 bg-amber-400 rounded-full opacity-75"></div>
+            </div>
+
+            <CardTitle className="text-base lg:text-lg font-bold line-clamp-2 text-gray-900 group-hover:text-blue-900 leading-tight transition-colors duration-200">
               {data.title}
             </CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col justify-between flex-1 px-4 py-2">
-            <div className="flex justify-between items-center text-xs text-gray-500 mt-auto pt-2 border-t border-gray-100">
-              <p>
-                By:{" "}
-                <span className="font-medium text-gray-800">
-                  {data.createdBy}
-                </span>
+
+          <CardContent className="flex flex-col justify-between flex-1 px-5 pb-4">
+            <div className="flex-1 mb-4">
+              <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+                Click to view task details and manage progress
               </p>
+            </div>
+
+            <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-semibold text-xs">
+                    {data.createdBy?.charAt(0)?.toUpperCase() || "U"}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500">Created by</p>
+                  <p className="text-xs font-semibold text-gray-800 truncate max-w-[80px]">
+                    {data.createdBy}
+                  </p>
+                </div>
+              </div>
+
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div className="flex items-center space-x-1 text-xs text-blue-600 font-medium">
+                  <span>View</span>
+                  <svg
+                    className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
