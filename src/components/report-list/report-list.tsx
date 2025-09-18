@@ -15,76 +15,216 @@ export default function ReportList({
   idTask: string;
 }) {
   return (
-    <>
-      <div className="p-6 mb-6">
-        <div className="bg-white rounded-lg shadow-lg border border-gray-200 px-6 py-6">
+    <div>
+      <div className="bg-white rounded-sm shadow-lg border border-gray-200 overflow-hidden mb-8">
+        <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+              <svg
+                className="w-4 h-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">
+                Create Report
+              </h2>
+              <p className="text-sm text-gray-600">
+                Submit a detailed progress report
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-6 py-6">
           <form action={handleReport} className="space-y-6">
             <div className="flex justify-end">
-              <SubmitForm buttonName="Report" />
+              <SubmitForm buttonName="Submit Report" />
             </div>
 
-            <p className="text-xs text-red-600">*After you submit the report, you cannot edit or update it*</p>
-            <div className="flex flex-col space-y-2">
-              <Label className="text-sm font-medium text-gray-700">Title</Label>
-              <Input name="title" type="text" required />
+            <div className="flex items-start space-x-3 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <svg
+                className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <div>
+                <h4 className="text-sm font-semibold text-red-800 mb-1">
+                  Important Notice
+                </h4>
+                <p className="text-xs text-red-700">
+                  Once submitted, reports cannot be edited or updated. Please
+                  review carefully before submitting.
+                </p>
+              </div>
             </div>
 
-            <div className="flex flex-col space-y-2">
-              <Label className="text-sm font-medium text-gray-700">
-                Report
-              </Label>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <Label className="text-sm font-semibold text-gray-900">
+                  Report Title
+                </Label>
+                <span className="text-red-500 text-sm">*</span>
+              </div>
+              <Input
+                name="title"
+                type="text"
+                required
+                placeholder="Enter a clear, descriptive title for your report..."
+                className="h-12 text-base border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all duration-200"
+              />
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <Label className="text-sm font-semibold text-gray-900">
+                  Report Content
+                </Label>
+                <span className="text-red-500 text-sm">*</span>
+              </div>
               <textarea
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 resize-vertical text-sm transition-colors duration-200"
+                className="w-full min-h-[150px] lg:min-h-[180px] px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-500 resize-y text-sm transition-all duration-200 bg-white"
                 name="description"
                 required
-                placeholder="Enter your report description..."
+                rows={6}
+                placeholder="Provide detailed information about your progress, achievements, challenges, and next steps..."
               />
+              <p className="text-xs text-gray-500">
+                Include specific details about completed tasks, current status,
+                and any blockers or issues
+              </p>
               <input name="idTask" value={idTask} type="hidden" />
             </div>
           </form>
         </div>
-        <div className="my-4">
-          {!reportData || reportData.length === 0 ? (
-            <p className="text-gray-600 text-sm text-center mt-6">
-              No reports yet
+      </div>
+
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
+              Previous Reports
+            </h3>
+            <p className="text-sm text-gray-600 mt-1">
+              {reportData?.length || 0} report
+              {(reportData?.length || 0) !== 1 ? "s" : ""} submitted
             </p>
-          ) : (
-            reportData.map((data) => (
-              <Link key={data.id} href={`/report/${data.id}`}>
-                <div className="m-4 rounded-lg p-4 bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-200">
-                  <div className="flex justify-between items-start mb-3">
-                    <p className="text-xs text-gray-500 font-medium">
-                      Report By:{" "}
-                      <span className="text-gray-700 font-semibold">
-                        {data.createdBy}
-                      </span>
-                    </p>
-                    <p className="text-xs text-gray-500 font-medium">
-                      Created At:{" "}
-                      <span className="text-gray-700 font-semibold">
-                        {new Intl.DateTimeFormat("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }).format(data.createdAt)}
-                      </span>
-                    </p>
+          </div>
+        </div>
+
+        {!reportData || reportData.length === 0 ? (
+          <div className="flex flex-col items-center justify-center p-8 lg:p-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
+            <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4">
+              <svg
+                className="w-8 h-8 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <h4 className="text-lg font-semibold text-gray-700 mb-2">
+              No reports yet
+            </h4>
+            <p className="text-sm text-gray-500 text-center max-w-md">
+              Start by creating your first report to track progress and document
+              achievements
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {reportData.map((data) => (
+              <Link
+                key={data.id}
+                href={`/report/${data.id}`}
+                className="block group"
+              >
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                  <div className="px-6 py-4 bg-gray-50 border-b border-gray-100">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
+                          <span className="text-white font-semibold text-xs">
+                            {data.createdBy?.charAt(0)?.toUpperCase() || "U"}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-500">Created by</p>
+                          <p className="text-sm font-semibold text-gray-900">
+                            {data.createdBy}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500">Submitted</p>
+                        <p className="text-sm font-semibold text-gray-900">
+                          {new Intl.DateTimeFormat("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          }).format(new Date(data.createdAt))}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="border-t border-gray-100 pt-3">
-                    <h1 className="text-2xl font-bold text-gray-800 mb-2 leading-tight">
+                  <div className="px-6 py-5">
+                    <h4 className="text-lg lg:text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-900 transition-colors duration-200 line-clamp-2">
                       {data.title}
-                    </h1>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    </h4>
+                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
                       {data.description}
                     </p>
+
+                    <div className="flex items-center justify-end mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <div className="flex items-center space-x-1 text-xs text-blue-600 font-medium">
+                        <span>View Full Report</span>
+                        <svg
+                          className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
