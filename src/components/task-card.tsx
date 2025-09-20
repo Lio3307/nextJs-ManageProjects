@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import { NotepadText } from "lucide-react";
 
 type TaskProps = {
   id: string;
@@ -11,31 +12,17 @@ export default function TaskCard({ data }: { data: TaskProps }) {
   return (
     <Link href={`/task/${data.id}`} className="block w-full h-full">
       <div className="group transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02]">
-        <Card className="w-full h-full cursor-pointer flex flex-col rounded-xl border border-gray-200 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 overflow-hidden bg-white">
-          <div className="h-1.5 w-full bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:from-blue-600 group-hover:to-indigo-600 transition-colors duration-300"></div>
+        <Card className="w-full h-full cursor-pointer flex flex-col rounded-xl border border-gray-200 shadow-md hover:shadow-2xl hover:border-gray-300 transition-all duration-300 overflow-hidden bg-white">
+          <div className="h-1.5 w-full bg-gradient-to-r from-gray-500 to-gray-500 group-hover:from-gray-600 group-hover:to-gray-600 transition-colors duration-300"></div>
 
           <CardHeader className="pt-5 pb-3 px-5">
             <div className="flex items-start justify-between mb-3">
-              <div className="w-9 h-9 bg-gradient-to-br from-blue-100 to-indigo-100 group-hover:from-blue-200 group-hover:to-indigo-200 rounded-lg flex items-center justify-center transition-colors duration-300">
-                <svg
-                  className="w-4 h-4 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                  />
-                </svg>
+              <div className="w-9 h-9 bg-gradient-to-br from-gray-100 to-gray-100 group-hover:from-gray-200 group-hover:to-gray-200 rounded-lg flex items-center justify-center transition-colors duration-300">
+                <NotepadText />
               </div>
-
-              <div className="w-2 h-2 bg-amber-400 rounded-full opacity-75"></div>
             </div>
 
-            <CardTitle className="text-base lg:text-lg font-bold line-clamp-2 text-gray-900 group-hover:text-blue-900 leading-tight transition-colors duration-200">
+            <CardTitle className="text-base lg:text-lg font-bold line-clamp-2 text-gray-900 group-hover:text-gray-900 leading-tight transition-colors duration-200">
               {data.title}
             </CardTitle>
           </CardHeader>
@@ -63,7 +50,7 @@ export default function TaskCard({ data }: { data: TaskProps }) {
               </div>
 
               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                <div className="flex items-center space-x-1 text-xs text-blue-600 font-medium">
+                <div className="flex items-center space-x-1 text-xs text-gray-600 font-medium">
                   <span>View</span>
                   <svg
                     className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200"

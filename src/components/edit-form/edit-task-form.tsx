@@ -23,7 +23,7 @@ import SubmitForm from "../submit-form";
 import clsx from "clsx";
 import { handleUpdateTask } from "@/app/actions";
 import Link from "next/link";
-import { ArrowLeftFromLine } from "lucide-react";
+import { ArrowLeftFromLine, Info, SquarePen, X } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 
 const lowlight = createLowlight(all);
@@ -108,37 +108,140 @@ export default function EditTaskForm({
 
   return (
     <div className="w-full">
-      <form className="flex flex-col gap-4" action={updateTaskHandler}>
-        <div className="flex justify-between">
-        <Link
-          href={`/task/${taskId}`}
-          className={buttonVariants({ variant: "secondary" })}
-        >
-          <ArrowLeftFromLine className="mr-2 h-4 w-4" /> Back
-        </Link></div>
-        <div className="flex flex-col gap-2">
-          <Label className="text-lg">Title</Label>
-          <Input
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-            name="title"
-            required
-            type="text"
-            className="h-12 text-lg"
-          />
+      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="px-6 py-4 bg-gradient-to-r from-amber-50 to-orange-50 border-b border-gray-200">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
+             <SquarePen className="h-[0.9rem] w-[1rem] text-white" />
+            </div>
+            <div>
+              <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
+                Edit Task
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">
+                Update task details and content
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="sticky top-0 z-10 bg-background border-b border-border p-3 flex flex-wrap gap-2 shadow-sm rounded-t-lg">
-          <MenuBar editor={editor} />
+        <div className="p-6">
+          <form className="space-y-8" action={updateTaskHandler}>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <Label className="text-sm font-semibold text-gray-900">
+                  Task Title
+                </Label>
+                <span className="text-red-500 text-sm">*</span>
+              </div>
+              <Input
+                value={newTitle}
+                onChange={(e) => setNewTitle(e.target.value)}
+                name="title"
+                required
+                type="text"
+                placeholder="Enter a clear and descriptive task title..."
+                className="h-12 lg:h-14 text-base lg:text-lg font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 border-2"
+              />
+              <p className="text-xs text-gray-500">
+                Use a descriptive title that clearly explains what needs to be
+                done
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <Label className="text-sm font-semibold text-gray-900">
+                    Task Content
+                  </Label>
+                </div>
+                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                  Rich Text Editor
+                </span>
+              </div>
+
+              <div className="border-2 border-gray-200 rounded-lg overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all duration-200">
+                <div className="sticky top-0 z-20 bg-gray-50 border-b border-gray-200 p-3">
+                  <div className="flex flex-wrap gap-2">
+                    <MenuBar editor={editor} />
+                  </div>
+                </div>
+
+                <div className="bg-white">
+                  <EditorContent
+                    className="tiptap min-h-[200px] lg:min-h-[300px] p-4 prose prose-sm lg:prose-base max-w-none focus:outline-none"
+                    editor={editor}
+                  />
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-500">
+                Update the task description with any changes, additional
+                requirements, or progress notes
+              </p>
+            </div>
+
+            <input type="hidden" name="content" value={content} />
+            <input type="hidden" name="projectId" value={taskId} />
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200">
+              <div className="flex-1">
+                <SubmitForm buttonName="Update Task" />
+              </div>
+              <Link
+                href={`/task/${taskId}`}
+                className={buttonVariants({
+                  variant: "outline",
+                  className: "sm:w-auto w-full",
+                })}
+              >
+                <X />
+                Cancel
+              </Link>
+            </div>
+
+            <div className="sm:hidden flex flex-col gap-3 pt-4 border-t border-gray-100">
+              <div className="grid grid-cols-2 gap-3">
+                <Link
+                  href={`/task/${taskId}`}
+                  className={buttonVariants({
+                    variant: "outline",
+                    size: "lg",
+                  })}
+                >
+                  Cancel
+                </Link>
+                <SubmitForm buttonName="Save" />
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <EditorContent className="tiptap" editor={editor} />
-
-        <input type="hidden" name="content" value={content} />
-        <input type="hidden" name="projectId" value={taskId} />
-
-        <SubmitForm buttonName="Update Task" />
-      </form>
+      <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+        <div className="flex items-start space-x-3">
+          <Info className="h-[1rem] w-[1rem] text-amber-400" />
+          <div>
+            <h4 className="text-sm font-semibold text-amber-900 mb-1">
+              Editing Tips
+            </h4>
+            <ul className="text-xs text-amber-700 space-y-1">
+              <li>
+                • Make sure your title clearly describes the task objective
+              </li>
+              <li>
+                • Use the rich text editor to format content and add details
+              </li>
+              <li>
+                • Include any updates on progress or changes in requirements
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
