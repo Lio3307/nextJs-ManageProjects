@@ -9,9 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuAction,
   SidebarRail,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import {
   ChevronUp,
@@ -19,12 +17,6 @@ import {
   Folder,
   House,
   LogOutIcon,
-  NotepadText,
-  Settings,
-  User,
-  Bell,
-  Search,
-  MoreHorizontal,
   Plus,
 } from "lucide-react";
 import Link from "next/link";
@@ -33,15 +25,19 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 const menuItems = [
-  { id: 1, title: "Overview", url: "/", icon: <House />, count: null },
-  { id: 2, title: "Project", url: "/project-list", icon: <Folder />, count: 12 },
-  { id: 3, title: "Task", url: "/task-List", icon: <NotepadText />, count: 3 },
+  { id: 1, title: "Overview", url: "/", icon: <House /> },
+  {
+    id: 2,
+    title: "Project",
+    url: "/project-list",
+    icon: <Folder />,
+
+  },
 ];
 
 export async function AppSidebar() {
@@ -60,7 +56,9 @@ export async function AppSidebar() {
                   <Folder className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Project Manager</span>
+                  <span className="truncate font-semibold">
+                    Project Manager
+                  </span>
                   <span className="truncate text-xs text-muted-foreground">
                     Management System
                   </span>
@@ -84,20 +82,11 @@ export async function AppSidebar() {
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
-                  {item.count && (
-                    <SidebarMenuAction className="peer-data-[size=sm]:hidden">
-                      <div className="flex h-5 min-w-5 items-center justify-center rounded bg-muted px-1.5 text-xs font-medium text-muted-foreground">
-                        {item.count}
-                      </div>
-                    </SidebarMenuAction>
-                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-        <SidebarSeparator />
 
         <SidebarGroup>
           <SidebarGroupLabel>Quick Actions</SidebarGroupLabel>
@@ -106,28 +95,9 @@ export async function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Create Project">
                   <Plus />
+                  
                   <span>New Project</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
-                  <MoreHorizontal />
-                </SidebarMenuAction>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Search">
-                  <Search />
-                  <span>Search</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Notifications">
-                  <Bell />
-                  <span>Notifications</span>
-                </SidebarMenuButton>
-                <SidebarMenuAction>
-                  <div className="flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
-                    5
-                  </div>
-                </SidebarMenuAction>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
@@ -165,15 +135,6 @@ export async function AppSidebar() {
                   sideOffset={4}
                 >
                   <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
                     <LogOutIcon className="mr-2 h-4 w-4" />
                     <span>Sign Out</span>
                   </DropdownMenuItem>
@@ -185,7 +146,7 @@ export async function AppSidebar() {
       ) : (
         <SidebarFooter className="border-t border-sidebar-border" />
       )}
-      
+
       <SidebarRail />
     </Sidebar>
   );
