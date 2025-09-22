@@ -85,9 +85,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
         </CardHeader>
 
         <CardContent className="px-6 pb-6">
-          <form action={handleSubmit} className="space-y-4"> {/* Mengurangi spasi dari `space-y-6` */}
-            
-            {/* Menggabungkan dua form input menjadi satu baris pada layar besar */}
+          <form action={handleSubmit} className="space-y-4"> 
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="space-y-2 w-full">
                 <Label
