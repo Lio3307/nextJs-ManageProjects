@@ -1,6 +1,6 @@
 "use client";
 
-import {  useState, cloneElement, isValidElement, ReactElement } from "react";
+import {  useState, cloneElement, isValidElement, ReactElement, ReactNode } from "react";
 import { Button } from "../ui/button";
 
 type WithOnClose = { onClose?: () => void };
@@ -10,7 +10,7 @@ export default function ModalTrigger({
   buttonName,
 }: {
   compo: ReactElement<WithOnClose>;
-  buttonName: string;
+  buttonName: ReactNode;
 }) {
   const [showModal, setShowModal] = useState(false);
 

@@ -28,6 +28,8 @@ import {
 } from "./ui/dropdown-menu";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import ModalTrigger from "./add-project-modal/modal-trigger";
+import ProjectModal from "./add-project-modal/project-modals";
 
 const menuItems = [
   { id: 1, title: "Overview", url: "/", icon: <House /> },
@@ -93,10 +95,9 @@ export async function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Create Project">
-                  <Plus />
+                <SidebarMenuButton asChild tooltip="Create Project">
                   
-                  <span>New Project</span>
+                  <ModalTrigger compo={<ProjectModal/>} buttonName={<><Plus /> <span>New Project</span> </>}/>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
