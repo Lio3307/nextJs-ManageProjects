@@ -126,3 +126,11 @@ model MemberList {
   projectId String
   project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
+
+model ReplyComment {
+  id String @id @default(cuid())
+  userId String
+  replyToUserId String
+  createdAt DateTime @default(now())
+  replyText String
+}
