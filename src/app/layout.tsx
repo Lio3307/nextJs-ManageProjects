@@ -39,6 +39,7 @@ export default function RootLayout({
             {children}
           </main>
           <div id="portals"></div>
+          <div id="loading-submit"></div>
         </SidebarProvider>
         <Toaster />
       </body>
