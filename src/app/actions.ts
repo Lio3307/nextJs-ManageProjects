@@ -78,7 +78,7 @@ export async function handleAddProjects(title: string, description: string, visi
 
   revalidatePath("/project-list");
   revalidatePath("/");
-  return redirect("/");
+  return redirect(`/project/${latestProject.id}`);
 }
 
 export async function handleAddTask(formData: FormData) {
