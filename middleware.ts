@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSessionCookie } from 'better-auth/cookies';
+import { getSessionCookie } from "better-auth/cookies";
 export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
   if (!sessionCookie) {
@@ -8,4 +8,14 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/add-project", "/project-list"] };
+export const config = {
+  matcher: [
+    "/project/:path*",
+    "/edit/project/:path*",
+    "/edit/task/:path*",
+    "/project/:path*/add-task",
+    "/project/:path*/member",
+    "/report/:path*",
+    "/task/:path*",
+  ],
+};
