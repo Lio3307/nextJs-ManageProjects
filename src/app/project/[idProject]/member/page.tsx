@@ -1,6 +1,7 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { Crown, UserRound } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -80,7 +81,7 @@ export default async function MemberList({
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-white font-semibold text-sm">
                           {list.memberList?.charAt(0)?.toUpperCase() || "U"}
                         </span>
@@ -103,33 +104,12 @@ export default async function MemberList({
                       >
                         {session.user.id === project?.userId ? (
                           <>
-                            <svg
-                              className="w-3 h-3 mr-1"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217z"
-                                clipRule="evenodd"
-                              />
-                              <path
-                                fillRule="evenodd"
-                                d="M12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
+                            <Crown className="h-[0.84rem]" />
                             Owner
                           </>
                         ) : (
                           <>
-                            <svg
-                              className="w-3 h-3 mr-1"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
-                            </svg>
+                            <UserRound className="h-[0.84rem]"/>
                             Member
                           </>
                         )}
