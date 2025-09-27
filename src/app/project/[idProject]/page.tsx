@@ -7,6 +7,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import DeleteProject from "@/components/delete-button/delete-project";
+import { Globe, Lock } from "lucide-react";
 
 export default async function DetailProject({
   params,
@@ -73,13 +74,13 @@ export default async function DetailProject({
           <span
             className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
               dataProject.visibility === "Public"
-                ? "bg-green-100 text-green-800"
+                ? "bg-gray-100 text-gray-800"
                 : "bg-gray-100 text-gray-800"
             }`}
           >
             {dataProject.visibility === "Public"
-              ? "🌐 Public Project"
-              : "🔒 Private Project"}
+              ? <><Globe className="h-[0.86rem]" /> <p>Public Project</p></>
+              : <><Lock className="h-[0.86rem]" /> <p>Private Project</p></>}
           </span>
         </div>
 
