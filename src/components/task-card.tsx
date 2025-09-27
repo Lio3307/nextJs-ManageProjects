@@ -36,7 +36,7 @@ export default function TaskCard({ data }: { data: TaskProps }) {
 
             <div className="flex items-center justify-between pt-3 border-t border-gray-100">
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-xs">
                     {data.createdBy?.charAt(0)?.toUpperCase() || "U"}
                   </span>
