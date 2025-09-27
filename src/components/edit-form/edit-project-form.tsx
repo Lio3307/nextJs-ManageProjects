@@ -57,7 +57,9 @@ export default function EditFormProject({
 
         <div className="p-6">
           <form action={handleSubmit} className="space-y-8">
-            <div className="flex flex-col sm:flex-row justify-end gap-3">
+            <div className="md:flex hidden  md:flex-col sm:flex-row justify-end gap-3">
+              
+              <SubmitForm buttonName="Update" />
               <Link
                 href={`/project/${selectedData.id}`}
                 className={buttonVariants({ variant: "secondary" })}
@@ -65,7 +67,6 @@ export default function EditFormProject({
                 <ArrowLeftFromLine className="mr-2 h-4 w-4" />
                 Back
               </Link>
-              <SubmitForm buttonName="Update" />
             </div>
 
             <div className="space-y-6">
