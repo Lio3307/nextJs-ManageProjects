@@ -29,8 +29,8 @@ export default function TaskCard({ data }: { data: TaskProps }) {
 
           <CardContent className="flex flex-col justify-between flex-1 px-5 pb-4">
             <div className="flex-1 mb-4">
-              <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
-                Click to view task details and manage progress
+              <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Click to view task details
               </p>
             </div>
 
