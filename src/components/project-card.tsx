@@ -11,17 +11,10 @@ type ProjectProps = {
 export default function ProjectCard({ data }: { data: ProjectProps }) {
   return (
     <Link href={`/project/${data.id}`} className="group block w-full h-full">
-      <Card className="w-full h-full cursor-pointer flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 rounded-xl overflow-hidden bg-white group-hover:border-blue-300">
-        <CardHeader className="pb-3 bg-gradient-to-br from-gray-50 to-blue-50 group-hover:from-blue-50 group-hover:to-indigo-50 transition-colors duration-300">
-          <div className="flex items-center justify-between mb-2">
-            <div className="w-10 h-10 bg-gray-600 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-white font-bold text-sm">
-                {data.title?.charAt(0)?.toUpperCase() || "P"}
-              </span>
-            </div>
-          </div>
+      <Card className="w-full h-full cursor-pointer flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 rounded-xl overflow-hidden bg-white group-hover:border-gray-400">
+        <CardHeader className="py-3 bg-gray-600 from-gray-50 to-blue-50 group-hover:from-white-50 group-hover:to-gray-50 transition-colors duration-300">
 
-          <CardTitle className="text-lg font-bold line-clamp-2 text-gray-900 group-hover:text-blue-900 transition-colors duration-200 leading-tight">
+          <CardTitle className="text-lg text-center font-bold line-clamp-2 text-white  transition-colors duration-200 leading-tight">
             {data.title}
           </CardTitle>
         </CardHeader>
@@ -42,7 +35,7 @@ export default function ProjectCard({ data }: { data: ProjectProps }) {
           </div>
         </CardContent>
 
-        <div className="h-1 bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+        <div className="h-1 bg-gray-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
       </Card>
     </Link>
   );
