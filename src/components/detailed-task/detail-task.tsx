@@ -1,5 +1,6 @@
 "use client";
 
+import { Calendar, NotepadText } from "lucide-react";
 import JSONRender from "../json-content-parse/json-render";
 import type { Task } from "@prisma/client";
 
@@ -7,22 +8,10 @@ export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
   return (
     <div className="w-full">
       <div className="bg-white rounded-sm shadow-lg border border-gray-200 overflow-hidden mb-6">
-        <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
           <div className="flex items-center space-x-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-sm">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                />
-              </svg>
+            <div className="w-10 h-10 bg-gray-600 rounded-lg flex items-center justify-center shadow-sm">
+              <NotepadText className="text-white" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">
@@ -36,7 +25,7 @@ export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold text-xs">
                   {detailedTask.createdBy?.charAt(0)?.toUpperCase() || "U"}
                 </span>
@@ -50,18 +39,8 @@ export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
             </div>
 
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-blue-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
+                <Calendar className="text-white h-[0.97rem]" />
               </div>
               <div>
                 <p className="text-xs text-gray-600">Created on</p>
