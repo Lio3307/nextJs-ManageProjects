@@ -18,9 +18,9 @@ export default function ReportList({
   return (
     <div>
       <div className="bg-white rounded-sm shadow-lg border border-gray-200 overflow-hidden mb-8">
-        <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
               <MessageSquareWarning className="text-white h-[0.89rem]" />
             </div>
             <div>
