@@ -1,7 +1,6 @@
-import prisma from "@/lib/prisma";
 import { Comment } from "@prisma/client";
-import { ChevronRight, Reply } from "lucide-react";
 import ReplyButton from "../reply-comment/reply-button";
+import ReplyCommentList from "../reply-comment/reply-comment-list";
 
 export default async function CommentCard({
   dataComments,
@@ -80,12 +79,17 @@ export default async function CommentCard({
                 </div>
 
                 <div className="flex items-center justify-end space-x-4 pl-9">
-                  <ReplyButton idComment={comment.id}/>
+                  <ReplyButton idComment={comment.id} />
                 </div>
+              </div>
+
+              <div className="p-6" id="reply-content"></div>
+
+              <div>
+                <ReplyCommentList commentId={comment.id} />
               </div>
             </div>
           ))}
-          <div className="p-6" id="reply-content"></div>
         </div>
       )}
     </div>

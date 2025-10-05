@@ -180,7 +180,7 @@ export async function handleComment(formData: FormData) {
   revalidatePath(`/report/${idReport}`);
 }
 
-export async function handleAddReplyComment(formData: FormData){
+export async function handleAddReplyComment(idComment: string, replyText: string){
 
   const session = await auth.api.getSession({
     headers: await headers()
@@ -188,14 +188,12 @@ export async function handleAddReplyComment(formData: FormData){
 
   if(!session) return redirect('/login');
 
-  const replyText =  formData.get('reply-text') as string
-  const commentId = formData.get('comment-id') as string
 
-  if(!replyText || !commentId) throw new Error("Cannot reply the comment");
+  if(!replyText || !idComment) throw new Error("Cannot reply the comment");
   
   await prisma.replyComment.create({
     data: {
-      commentId,
+      commentId: idComment,
       userId: session.user.id,
       replyText,
 
@@ -204,7 +202,7 @@ export async function handleAddReplyComment(formData: FormData){
 
   const getComment = await prisma.comment.findUnique({
     where: {
-      id: commentId,
+      id: idComment,
     },
     include: {
       report: true
@@ -212,9 +210,6 @@ export async function handleAddReplyComment(formData: FormData){
   })
 
   revalidatePath(`/report/${getComment?.reportId}`);
-
-  return redirect(`/report/${getComment?.reportId}`)
-
 }
 
 export async function handleDeleteProject(idProject: string) {
