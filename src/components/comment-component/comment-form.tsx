@@ -9,6 +9,14 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
     where: {
       reportId: reportId,
     },
+    include: {
+      user:true,
+      replyComment:{
+        include:{
+          user: true
+        }
+      }
+    }
   });
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">

@@ -78,12 +78,8 @@ export default async function CommentCard({
                   </p>
                 </div>
 
-                <div className="flex items-center justify-end space-x-4 pl-9">
                   <ReplyButton idComment={comment.id} />
-                </div>
               </div>
-
-              <div className="p-6" id="reply-content"></div>
 
               <div>
                 <ReplyCommentList commentId={comment.id} />

@@ -9,17 +9,19 @@ export default function ReplyButton({ idComment }: { idComment: string }) {
 
   return (
     <>
+    <div className="flex justify-end">
       <button
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
           setActiveButton((prev) => !prev);
         }}
-        className="text-xs"
+        className="text-xs "
       >
         {" "}
         <Reply className="h-[0.85rem]" /> Reply
       </button>
+      </div>
 
       {activeButton ? (
         <>{activeButton && <ReplyComment idComment={idComment} />}</>
