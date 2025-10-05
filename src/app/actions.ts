@@ -31,6 +31,12 @@ type ReportType = {
   taskId: string;
 };
 
+type CommentReplyType = {
+  replyText: string;
+  userId: string;
+  commentId: string;
+}
+
 type CommentType = {
   comment: string;
   commentBy: string;
@@ -172,6 +178,43 @@ export async function handleComment(formData: FormData) {
     } as CommentType,
   });
   revalidatePath(`/report/${idReport}`);
+}
+
+export async function handleAddReplyComment(formData: FormData){
+
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if(!session) return redirect('/login');
+
+  const replyText =  formData.get('reply-text') as string
+  const commentId = formData.get('comment-id') as string
+
+  if(!replyText || !commentId) throw new Error("Cannot reply the comment");
+  
+  await prisma.replyComment.create({
+    data: {
+      commentId,
+      userId: session.user.id,
+      replyText,
+
+    } as CommentReplyType
+  })
+
+  const getComment = await prisma.comment.findUnique({
+    where: {
+      id: commentId,
+    },
+    include: {
+      report: true
+    }
+  })
+
+  revalidatePath(`/report/${getComment?.reportId}`);
+
+  return redirect(`/report/${getComment?.reportId}`)
+
 }
 
 export async function handleDeleteProject(idProject: string) {
