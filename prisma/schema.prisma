@@ -21,6 +21,7 @@ model User {
   task          Task[]
   report        Report[]
   comment       Comment[]
+  replyComment  ReplyComment[]
 
   @@unique([email])
   @@map("user")
@@ -118,6 +119,7 @@ model Comment {
   userId String
   report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replyComment ReplyComment[]
 }
 
 model MemberList {
@@ -129,8 +131,11 @@ model MemberList {
 
 model ReplyComment {
   id String @id @default(cuid())
+  commentId String
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
   userId String
-  replyToUserId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   replyText String
+
 }
