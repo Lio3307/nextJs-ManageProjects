@@ -8,14 +8,6 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
   const commentReport = await prisma.comment.findMany({
     where: {
       reportId: reportId,
-    },
-    include: {
-      user:true,
-      replyComment:{
-        include:{
-          user: true
-        }
-      }
     }
   });
   return (
