@@ -65,7 +65,7 @@ export default async function DetailProject({
 
           {session.user.id === dataProject.userId && (
             <div className="flex justify-end sm:justify-start">
-              <DeleteProject idProject={dataProject.id} />
+              <DeleteProject idProject={dataProject.id} inviteCode={dataProject.inviteCode} />
             </div>
           )}
         </div>

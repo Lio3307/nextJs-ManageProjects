@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String
   email         String
   emailVerified Boolean
@@ -72,82 +72,83 @@ model Verification {
 
   @@map("verification")
 }
+
 model Project {
-  id String @id @default(cuid())
-  title String
+  id         String @id @default(cuid())
+  title      String
+  inviteCode String  @default(cuid()) 
   description String
-  createdBy String
-  visibility String
-  createdAt DateTime @default(now())
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  task Task[]
-  memberList MemberList[]
+  createdBy   String
+  visibility  String
+  createdAt   DateTime      @default(now())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task        Task[]
+  memberList  MemberList[]
   requestJoin RequestJoin[]
 }
 
 model Task {
-  id String @id @default(cuid())
-  title String
-  content String
+  id        String   @id @default(cuid())
+  title     String
+  content   String
   createdBy String
   createdAt DateTime @default(now())
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   projectId String
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  report Report[]
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  report    Report[]
 }
 
 model Report {
-  id String @id @default(cuid())
-  title String
+  id          String    @id @default(cuid())
+  title       String
   description String
-  createdBy String
-  createdAt DateTime @default(now())
-  taskId String
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
-  comment Comment[]
+  createdBy   String
+  createdAt   DateTime  @default(now())
+  taskId      String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  task        Task      @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  comment     Comment[]
 }
 
 model Comment {
-  id String @id @default(cuid())
-  comment String
-  commentBy String
-  createdAt DateTime @default(now())
-  reportId String
-  userId String
-  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String         @id @default(cuid())
+  comment      String
+  commentBy    String
+  createdAt    DateTime       @default(now())
+  reportId     String
+  userId       String
+  report       Report         @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   replyComment ReplyComment[]
 }
 
 model MemberList {
-  id String @id @default(cuid())
+  id         String  @id @default(cuid())
   memberList String
-  projectId String
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
 
 model ReplyComment {
-  id String @id @default(cuid())
+  id        String   @id @default(cuid())
   commentId String
-  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   replyText String
-
 }
 
 model RequestJoin {
-  id String @id @default(cuid())
-  projectId String
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  id          String  @id @default(cuid())
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectCode String
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  status Boolean
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status      Boolean
 }

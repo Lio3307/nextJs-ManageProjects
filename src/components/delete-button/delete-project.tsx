@@ -9,16 +9,25 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical, FilePen, Trash2 } from "lucide-react";
+import { EllipsisVertical, FilePen, Paperclip, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function DeleteProject({ idProject }: { idProject: string }) {
+export default function DeleteProject({ idProject, inviteCode }: { idProject: string, inviteCode: string }) {
   const router = useRouter();
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this project?");
     if (!confirmDelete) return;
     await handleDeleteProject(idProject);
   };
+
+  const handleCopyInviteCode = () => {
+    try {
+      navigator.clipboard.writeText(inviteCode)
+      alert("Invite code copied to clipboard")
+    } catch (error) {
+      console.error("Failed to copy the  invite code", error)
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -43,6 +52,13 @@ export default function DeleteProject({ idProject }: { idProject: string }) {
         >
           <FilePen className="text-sky-600 mr-2 h-4 w-4" />
           Update Project
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={handleCopyInviteCode}
+          className="text-sky-600 focus:text-sky-600"
+        >
+          <Paperclip className="text-sky-600 mr-2 h-4 w-4" />
+          Copy invite code
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
