@@ -76,7 +76,7 @@ model Verification {
 model Project {
   id         String @id @default(cuid())
   title      String
-  inviteCode String  @default(cuid()) 
+  inviteCode  String  @default(cuid())
   description String
   createdBy   String
   visibility  String

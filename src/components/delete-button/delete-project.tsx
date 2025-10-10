@@ -57,8 +57,8 @@ export default function DeleteProject({ idProject, inviteCode }: { idProject: st
           onClick={handleCopyInviteCode}
           className="text-sky-600 focus:text-sky-600"
         >
-          <Paperclip className="text-sky-600 mr-2 h-4 w-4" />
-          Copy invite code
+          <Paperclip className="text-gray-600 mr-1 h-2 w-2" />
+          <span className="text-xs text-gray-600"> Copy invite code</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
