@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   ChevronUp,
+  CirclePlus,
   CircleUser,
   Folder,
   House,
@@ -39,8 +40,8 @@ const menuItems = [
     title: "Project",
     url: "/project-list",
     icon: <Folder />,
-
   },
+  { id: 3, title: "Join Project", url: "/join-project", icon: <CirclePlus /> },
 ];
 
 export async function AppSidebar() {
@@ -97,8 +98,14 @@ export async function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip="Create Project">
-                  
-                  <ModalTrigger compo={<ProjectModal/>} buttonName={<><Plus /> <span>New Project</span> </>}/>
+                  <ModalTrigger
+                    compo={<ProjectModal />}
+                    buttonName={
+                      <>
+                        <Plus /> <span>New Project</span>{" "}
+                      </>
+                    }
+                  />
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -138,7 +145,7 @@ export async function AppSidebar() {
                 >
                   <DropdownMenuItem>
                     <LogOutIcon className="mr-2 h-4 w-4" />
-                    <LogedOut/>
+                    <LogedOut />
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

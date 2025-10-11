@@ -296,3 +296,18 @@ export async function handleUpdateTask(
   revalidatePath(`/task/${idTask}`);
   return redirect(`/task/${idTask}`);
 }
+
+export async function searchProject(idCode: string){
+
+  const project = await prisma.project.findFirst({
+    where: {
+      inviteCode: {
+        contains: idCode,
+        mode: "insensitive",
+      }
+    }
+  })
+
+  return project
+
+}
