@@ -302,7 +302,7 @@ export async function searchProject(idCode: string){
   const project = await prisma.project.findFirst({
     where: {
       inviteCode: {
-        contains: idCode,
+        equals: idCode,
         mode: "insensitive",
       }
     }
