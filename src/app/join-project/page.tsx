@@ -2,7 +2,7 @@
 
 import { Project } from "@prisma/client";
 import { useState } from "react";
-import { searchProject } from "../actions";
+import { joinProjectButton, searchProject } from "../actions";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
@@ -66,6 +66,7 @@ export default function JoinProject() {
 
         {project && (
           <div className="mt-6 border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+            <form action={joinProjectButton}>
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
               <h3
                 id="project-title"
@@ -92,7 +93,10 @@ export default function JoinProject() {
 
             {session.user.id !== project.userId && (
               <div className="p-6 bg-white">
+                <input type="hidden" name="join-id-project" value={project.id}/>
+                <input type="hidden" name="project-invite-code" value={project.inviteCode}/>
                 <button
+                name="join-button"
                   type="button"
                   className="w-full bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition font-semibold shadow-sm hover:shadow-md"
                 >
@@ -100,6 +104,7 @@ export default function JoinProject() {
                 </button>
               </div>
             )}
+            </form>
           </div>
         )}
       </div>

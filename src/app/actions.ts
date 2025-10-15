@@ -311,3 +311,27 @@ export async function searchProject(idCode: string){
   return project
 
 }
+
+export async function joinProjectButton(formData: FormData){
+
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if(!session) return redirect('/login');
+
+   const joinIdProject = formData.get('join-id-project') as string
+   const projectInviteCode = formData.get('project-invite-code') as string
+
+   if( !joinIdProject || !projectInviteCode) throw new Error("Somethinng wrong when joinning");
+
+   await prisma.requestJoin.create({
+    data: {
+      projectId: joinIdProject,
+      projectCode: projectInviteCode,
+      userId: session.user.id,
+    }
+   })
+
+   return redirect('/join-project')
+}

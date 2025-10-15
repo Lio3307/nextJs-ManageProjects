@@ -150,5 +150,4 @@ model RequestJoin {
   projectCode String
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  status      Boolean
 }
