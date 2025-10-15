@@ -330,8 +330,10 @@ export async function joinProjectButton(formData: FormData){
       projectId: joinIdProject,
       projectCode: projectInviteCode,
       userId: session.user.id,
+      userName: session.user.name,
     }
    })
 
-   return redirect('/join-project')
+   revalidatePath(`/project/${joinIdProject}/request`);
+   return redirect('/join-project');
 }

@@ -4,19 +4,14 @@ import { Project } from "@prisma/client";
 import { useState } from "react";
 import { joinProjectButton, searchProject } from "../actions";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import SubmitForm from "@/components/submit-form";
 
 export default function JoinProject() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [project, setProject] = useState<Project | null>(null);
   const [message, setMessage] = useState<string>("");
   const { data: session } = authClient.useSession();
-  const router = useRouter();
 
-  if (!session) {
-    router.replace("/login");
-    return;
-  }
 
   const handleSearch = async () => {
     if (!searchValue.trim()) return;
@@ -33,13 +28,14 @@ export default function JoinProject() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="full-w p-6">
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Join a Project
         </h2>
 
         <div className="flex gap-3 mb-4">
+          <form className="full-w" action={handleSearch}>
           <input
             type="text"
             value={searchValue}
@@ -49,13 +45,9 @@ export default function JoinProject() {
           />
 
           {searchValue.trim() !== "" && (
-            <button
-              onClick={handleSearch}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition font-medium shadow-sm hover:shadow-md"
-            >
-              Search
-            </button>
+            <SubmitForm buttonName="Search"/>
           )}
+          </form>
         </div>
 
         {message && (
@@ -91,17 +83,11 @@ export default function JoinProject() {
               </p>
             </div>
 
-            {session.user.id !== project.userId && (
+            {session?.user.id !== project.userId && (
               <div className="p-6 bg-white">
                 <input type="hidden" name="join-id-project" value={project.id}/>
                 <input type="hidden" name="project-invite-code" value={project.inviteCode}/>
-                <button
-                name="join-button"
-                  type="button"
-                  className="w-full bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition font-semibold shadow-sm hover:shadow-md"
-                >
-                  Join Project
-                </button>
+                <SubmitForm buttonName="Join Project" />
               </div>
             )}
             </form>

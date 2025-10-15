@@ -149,5 +149,6 @@ model RequestJoin {
   project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectCode String
   userId      String
+  userName    String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
