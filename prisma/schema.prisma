@@ -129,6 +129,7 @@ model Comment {
 model MemberList {
   id         String  @id @default(cuid())
   memberList String
+  memberIdList String
   projectId  String
   project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }

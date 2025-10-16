@@ -78,6 +78,7 @@ export async function handleAddProjects(title: string, description: string, visi
   await prisma.memberList.create({
     data: {
       memberList: getMemberName?.name,
+      memberIdList: getMemberName?.id,
       projectId: latestProject.id,
     },
   });
@@ -308,7 +309,13 @@ export async function searchProject(idCode: string){
     }
   })
 
-  return project
+  const memberList = await prisma.memberList.findFirst({
+    where: {
+      projectId: project?.id,
+    }
+  })
+
+  return {project, memberList}
 
 }
 
