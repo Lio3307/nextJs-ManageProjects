@@ -14,10 +14,10 @@ export default function InviteProject({userId}: {userId: string}) {
   const handleSearch = async () => {
     if (!searchValue.trim()) return;
 
-    const {project, memberList}= await searchProject(searchValue);
+    const {project: projectData, memberList}= await searchProject(searchValue);
 
-    if (project && memberList) {
-      setProject(project);
+    if (projectData && memberList) {
+      setProject(projectData);
       setMember(memberList)
       setMessage("");
     } else {
