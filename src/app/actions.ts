@@ -344,7 +344,7 @@ export async function joinProjectButton(formData: FormData){
    await prisma.joinStatus.create({
     data: {
       idProject: joinIdProject,
-      requestJoinId:request.id,
+      requestJoinId: request.id,
       userId: session.user.id,
       status: "Pending",
     }
