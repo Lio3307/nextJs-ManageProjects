@@ -153,15 +153,12 @@ model RequestJoin {
   userId      String
   userName    String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  joinStatus JoinStatus[]
 }
 
 model JoinStatus {
   id String @id @default(cuid())
-  requestJoinId String
   userId String
   idProject String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  requestJoin RequestJoin @relation(fields: [requestJoinId], references: [id], onDelete: Cascade)
   status String
 }

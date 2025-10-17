@@ -74,29 +74,40 @@ export default async function RequestJoinList({
                   key={request.id}
                   className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition duration-300"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg shadow-md">
-                        {request.userName.charAt(0).toUpperCase()}
+                  <form action="">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg shadow-md">
+                          {request.userName.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500 font-medium mb-1">
+                            Request #{index + 1}
+                          </p>
+                          <p className="text-lg font-semibold text-gray-900">
+                            {request.userName}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm text-gray-500 font-medium mb-1">
-                          Request #{index + 1}
-                        </p>
-                        <p className="text-lg font-semibold text-gray-900">
-                          {request.userName}
-                        </p>
+                      <div className="flex gap-3">
+                        <input type="hidden" name="id-project" value={idProject}/>
+                        <input type="hidden" name="user-id" value={request.userId} />
+                        <input type="hidden" name="id-req" value={request.id} />
+                        <button
+                        name="action"
+                        value="accept"
+                        className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md">
+                          Accept
+                        </button>
+                        <button 
+                        name="action"
+                        value="reject"
+                        className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md">
+                          Reject
+                        </button>
                       </div>
                     </div>
-                    <div className="flex gap-3">
-                      <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md">
-                        Accept
-                      </button>
-                      <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md">
-                        Reject
-                      </button>
-                    </div>
-                  </div>
+                  </form>
                 </div>
               ))}
             </div>

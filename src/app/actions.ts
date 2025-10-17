@@ -35,7 +35,7 @@ type CommentReplyType = {
   replyText: string;
   userId: string;
   commentId: string;
-}
+};
 
 type CommentType = {
   comment: string;
@@ -44,7 +44,11 @@ type CommentType = {
   reportId: string;
 };
 
-export async function handleAddProjects(title: string, description: string, visibility: string) {
+export async function handleAddProjects(
+  title: string,
+  description: string,
+  visibility: string
+) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -52,7 +56,6 @@ export async function handleAddProjects(title: string, description: string, visi
   if (!session) {
     return redirect("/login");
   }
-
 
   const latestProject = await prisma.project.create({
     data: {
@@ -66,13 +69,12 @@ export async function handleAddProjects(title: string, description: string, visi
 
   const getMemberName = await prisma.user.findUnique({
     where: {
-      id: latestProject.userId
-    } as User
-  })
+      id: latestProject.userId,
+    } as User,
+  });
 
-  if(!getMemberName){
+  if (!getMemberName) {
     throw new Error("Invalid member name");
-    
   }
 
   await prisma.memberList.create({
@@ -181,34 +183,34 @@ export async function handleComment(formData: FormData) {
   revalidatePath(`/report/${idReport}`);
 }
 
-export async function handleAddReplyComment(idComment: string, replyText: string){
-
+export async function handleAddReplyComment(
+  idComment: string,
+  replyText: string
+) {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
-  if(!session) return redirect('/login');
+  if (!session) return redirect("/login");
 
+  if (!replyText || !idComment) throw new Error("Cannot reply the comment");
 
-  if(!replyText || !idComment) throw new Error("Cannot reply the comment");
-  
   await prisma.replyComment.create({
     data: {
       commentId: idComment,
       userId: session.user.id,
       replyText,
-
-    } as CommentReplyType
-  })
+    } as CommentReplyType,
+  });
 
   const getComment = await prisma.comment.findUnique({
     where: {
       id: idComment,
     },
     include: {
-      report: true
-    }
-  })
+      report: true,
+    },
+  });
 
   revalidatePath(`/report/${getComment?.reportId}`);
 }
@@ -271,7 +273,7 @@ export async function handleUpdateProject(
     data: {
       title: newTitle,
       description: newDesc,
-      visibility: newVisibility
+      visibility: newVisibility,
     },
   });
 
@@ -298,59 +300,109 @@ export async function handleUpdateTask(
   return redirect(`/task/${idTask}`);
 }
 
-export async function searchProject(idCode: string){
-
+export async function searchProject(idCode: string) {
   const project = await prisma.project.findFirst({
     where: {
       inviteCode: {
         equals: idCode,
         mode: "insensitive",
-      }
-    }
-  })
+      },
+    },
+  });
 
   const memberList = await prisma.memberList.findFirst({
     where: {
       projectId: project?.id,
-    }
-  })
+    },
+  });
 
-  return {project, memberList}
-
+  return { project, memberList };
 }
 
-export async function joinProjectButton(formData: FormData){
-
+export async function joinProjectButton(formData: FormData) {
   const session = await auth.api.getSession({
-    headers: await headers()
-  })
+    headers: await headers(),
+  });
 
-  if(!session) return redirect('/login');
+  if (!session) return redirect("/login");
 
-   const joinIdProject = formData.get('join-id-project') as string
-   const projectInviteCode = formData.get('project-invite-code') as string
+  const joinIdProject = formData.get("join-id-project") as string;
+  const projectInviteCode = formData.get("project-invite-code") as string;
 
-   if( !joinIdProject || !projectInviteCode) throw new Error("Somethinng wrong when joinning");
+  if (!joinIdProject || !projectInviteCode)
+    throw new Error("Somethinng wrong when joinning");
 
-   const request = await prisma.requestJoin.create({
+  const request = await prisma.requestJoin.create({
     data: {
       projectId: joinIdProject,
       projectCode: projectInviteCode,
       userId: session.user.id,
       userName: session.user.name,
-    }
-   })
+    },
+  });
 
-   await prisma.joinStatus.create({
+  await prisma.joinStatus.create({
     data: {
       idProject: joinIdProject,
-      requestJoinId: request.id,
       userId: session.user.id,
       status: "Pending",
-    }
-   })
+    },
+  });
 
+  revalidatePath(`/project/${joinIdProject}/request`);
+  return redirect("/join-project");
+}
 
-   revalidatePath(`/project/${joinIdProject}/request`);
-   return redirect('/join-project');
+export async function updateRequest(formData: FormData) {
+  const idRequest = formData.get("id-req") as string;
+  const idProject = formData.get("id-project") as string;
+  const userId = formData.get("user-id") as string;
+  const action = formData.get("action");
+
+  if (!idProject || !userId || !idRequest) return;
+
+  if (action === "accept") {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    await prisma.memberList.create({
+      data: {
+        projectId: idProject,
+        memberIdList: userId,
+        memberList: user!.name,
+      },
+    });
+
+    await prisma.joinStatus.create({
+      data: {
+        idProject,
+        userId,
+        status: "Accepted",
+      },
+    });
+
+    await prisma.requestJoin.delete({
+      where: {
+        id: idRequest,
+      },
+    });
+  } else {
+    await prisma.joinStatus.create({
+      data: {
+        idProject,
+        userId,
+        status: "Rejected",
+      },
+    });
+
+    await prisma.requestJoin.delete({
+      where: {
+        id: idRequest,
+      },
+    });
+  }
+
+  
 }
