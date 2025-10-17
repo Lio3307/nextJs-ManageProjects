@@ -1,24 +1,31 @@
 "use client";
 
-import { MemberList, Project } from "@prisma/client";
+import { MemberList, Project, RequestJoin } from "@prisma/client";
 import { useState } from "react";
 import { joinProjectButton, searchProject } from "@/app/actions";
 import SubmitForm from "@/components/submit-form";
 
-export default function InviteProject({userId}: {userId: string}) {
+export default function InviteProject({ userId }: { userId: string }) {
   const [searchValue, setSearchValue] = useState<string>("");
   const [project, setProject] = useState<Project | null>(null);
   const [message, setMessage] = useState<string>("");
-  const [member, setMember] = useState<MemberList | null>(null)
+  const [member, setMember] = useState<MemberList | null>(null);
+  const [alreadySendRequest, setAlreadySendRequest] =
+    useState<RequestJoin | null>(null);
 
   const handleSearch = async () => {
     if (!searchValue.trim()) return;
 
-    const {project: projectData, memberList}= await searchProject(searchValue);
+    const {
+      project: projectData,
+      memberList,
+      requestJoin,
+    } = await searchProject(searchValue);
 
-    if (projectData && memberList) {
+    if (projectData && memberList && requestJoin) {
       setProject(projectData);
-      setMember(memberList)
+      setMember(memberList);
+      setAlreadySendRequest(requestJoin);
       setMessage("");
     } else {
       setProject(null);
@@ -119,7 +126,8 @@ export default function InviteProject({userId}: {userId: string}) {
                   </div>
                 </div>
 
-                {userId !== member?.memberIdList && (
+                {userId !== member?.memberIdList &&
+                userId !== alreadySendRequest?.userId ? (
                   <div className="p-8 bg-white border-t-2 border-gray-100">
                     <input
                       type="hidden"
@@ -133,7 +141,7 @@ export default function InviteProject({userId}: {userId: string}) {
                     />
                     <SubmitForm buttonName="Join Project" />
                   </div>
-                )}
+                ) : null}
               </form>
             </div>
           )}

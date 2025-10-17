@@ -9,7 +9,7 @@ export default async function JoinProject() {
     headers: await headers()
   })
 
-  if(!session) return redirect('/login')
+  if(!session) return redirect('/login');
 
     return (
       <InviteProject userId={session.user.id}/>

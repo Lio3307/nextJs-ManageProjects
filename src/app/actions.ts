@@ -316,7 +316,13 @@ export async function searchProject(idCode: string) {
     },
   });
 
-  return { project, memberList };
+  const requestJoin = await prisma.requestJoin.findFirst({
+    where: {
+      userId: memberList?.memberIdList
+    }
+  })
+
+  return { project, memberList, requestJoin};
 }
 
 export async function joinProjectButton(formData: FormData) {
@@ -353,7 +359,7 @@ export async function joinProjectButton(formData: FormData) {
   return redirect("/join-project");
 }
 
-export async function updateRequest(formData: FormData) {
+export async function actionRequest(formData: FormData) {
   const idRequest = formData.get("id-req") as string;
   const idProject = formData.get("id-project") as string;
   const userId = formData.get("user-id") as string;
@@ -404,5 +410,5 @@ export async function updateRequest(formData: FormData) {
     });
   }
 
-  
+
 }
