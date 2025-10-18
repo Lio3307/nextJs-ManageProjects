@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import ProjectCard from "@/components/project-card";
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectModal from "@/components/add-project-modal/project-modals";
+import { Inbox } from "lucide-react";
 
 export default async function ProjectList() {
   const session = await auth.api.getSession({
@@ -23,6 +24,15 @@ export default async function ProjectList() {
       createdAt: "desc",
     },
   });
+
+  const memberOfProject = await prisma.memberList.findMany({
+    where: {
+      memberIdList: session?.user.id
+    },
+    include: {
+      project: true
+    }
+  })
 
   return (
     <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
@@ -173,12 +183,44 @@ export default async function ProjectList() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-            {data.map((item) => (
-              <div key={item.id} className="w-full">
-                <ProjectCard data={item} />
+          <div className="space-y-6 mt-8">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">Projects You Own</h2>
+              <span className="text-sm text-gray-500">{data.length} project{data.length !== 1 ? 's' : ''}</span>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+              {data.map((item) => (
+                <div key={item.id} className="w-full">
+                  <ProjectCard data={item} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-6 mt-12 pt-8 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-gray-900">Projects You Joined</h2>
+              <span className="text-sm text-gray-500">{memberOfProject?.length || 0} project{memberOfProject?.length !== 1 ? 's' : ''}</span>
+            </div>
+            
+            {memberOfProject && memberOfProject.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+                {memberOfProject.map((item) => (
+                  <div key={item.id} className="w-full">
+                    <ProjectCard data={item.project} />
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : (
+              <div className="bg-white rounded-lg shadow-md p-12 text-center">
+                <div className="flex justify-center text-gray-400 mb-4">
+                  <Inbox className="h-16 w-16" />
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
+                <p className="text-gray-500">You havent joined any projects yet.</p>
+              </div>
+            )}
           </div>
 
           {data.length > 8 && (
