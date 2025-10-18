@@ -36,7 +36,7 @@ export default async function ProjectList() {
 
   return (
     <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
-      {data.length === 0 ? (
+      {data.length === 0 && memberOfProject.length === 0 ? (
         <div className="flex flex-col items-center justify-center min-h-[400px] lg:min-h-[500px]">
           <div className="text-center max-w-md mx-auto">
             <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -190,7 +190,7 @@ export default async function ProjectList() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-              {data.map((item) => (
+              {data.length > 0 && data.map((item) => (
                 <div key={item.id} className="w-full">
                   <ProjectCard data={item} />
                 </div>
