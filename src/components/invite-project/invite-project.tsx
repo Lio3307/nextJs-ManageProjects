@@ -20,9 +20,9 @@ export default function InviteProject({ userId }: { userId: string }) {
       project: projectData,
       memberList,
       requestJoin,
-    } = await searchProject(searchValue);
+    } = await searchProject(searchValue, userId);
 
-    if (projectData && memberList && requestJoin) {
+    if (projectData) {
       setProject(projectData);
       setMember(memberList);
       setAlreadySendRequest(requestJoin);

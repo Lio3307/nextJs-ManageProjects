@@ -300,7 +300,7 @@ export async function handleUpdateTask(
   return redirect(`/task/${idTask}`);
 }
 
-export async function searchProject(idCode: string) {
+export async function searchProject(idCode: string, userId: string) {
   const project = await prisma.project.findFirst({
     where: {
       inviteCode: {
@@ -310,19 +310,22 @@ export async function searchProject(idCode: string) {
     },
   });
 
-  const memberList = await prisma.memberList.findFirst({
-    where: {
-      projectId: project?.id,
-    },
-  });
+  const memberList = project
+    ? await prisma.memberList.findFirst({
+        where: { projectId: project.id },
+      })
+    : null;
 
-  const requestJoin = await prisma.requestJoin.findFirst({
-    where: {
-      userId: memberList?.memberIdList
-    }
-  })
+  const requestJoin = project
+    ? await prisma.requestJoin.findFirst({
+        where: {
+          projectId: project.id,
+          userId: userId, 
+        },
+      })
+    : null;
 
-  return { project, memberList, requestJoin};
+  return { project, memberList, requestJoin };
 }
 
 export async function joinProjectButton(formData: FormData) {
