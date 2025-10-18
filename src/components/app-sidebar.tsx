@@ -16,6 +16,7 @@ import {
   CirclePlus,
   CircleUser,
   Folder,
+  History,
   House,
   LogOutIcon,
   Plus,
@@ -42,6 +43,7 @@ const menuItems = [
     icon: <Folder />,
   },
   { id: 3, title: "Join Project", url: "/join-project", icon: <CirclePlus /> },
+  { id: 4, title: "Join History", url: "/join-status", icon: <History /> },
 ];
 
 export async function AppSidebar() {

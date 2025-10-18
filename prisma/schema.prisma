@@ -87,6 +87,7 @@ model Project {
   task        Task[]
   memberList  MemberList[]
   requestJoin RequestJoin[]
+  joinStatus  JoinStatus[]
 }
 
 model Task {
@@ -159,6 +160,7 @@ model JoinStatus {
   id String @id @default(cuid())
   userId String
   idProject String
+  project Project @relation(fields: [idProject], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   status String
 }
