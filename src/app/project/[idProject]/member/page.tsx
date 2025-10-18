@@ -97,12 +97,12 @@ export default async function MemberList({
                     <div className="flex-shrink-0">
                       <span
                         className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                          session.user.id === project?.userId
+                          project.userId === list.memberIdList
                             ? "bg-amber-100 text-amber-800 border border-amber-200"
                             : "bg-blue-100 text-blue-800 border border-blue-200"
                         }`}
                       >
-                        {session.user.id === project?.userId ? (
+                        {project.userId === list.memberIdList ? (
                           <>
                             <Crown className="h-[0.84rem]" />
                             Owner

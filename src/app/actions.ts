@@ -341,7 +341,7 @@ export async function joinProjectButton(formData: FormData) {
   if (!joinIdProject || !projectInviteCode)
     throw new Error("Somethinng wrong when joinning");
 
-  const request = await prisma.requestJoin.create({
+   await prisma.requestJoin.create({
     data: {
       projectId: joinIdProject,
       projectCode: projectInviteCode,
@@ -415,5 +415,7 @@ export async function actionRequest(formData: FormData) {
     });
   }
 
+  revalidatePath(`/project/${idProject}/request`)
+  revalidatePath("/join-status")
 
 }

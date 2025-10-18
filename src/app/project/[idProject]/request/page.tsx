@@ -37,7 +37,7 @@ export default async function RequestJoinList({
     },
   });
 
-  if (!joinStatus) throw new Error("Somthing wrong when load the request");
+  if (!joinStatus) throw new Error("Something wrong when load the request");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">

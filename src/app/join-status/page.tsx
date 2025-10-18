@@ -52,9 +52,9 @@ export default async function JoinStatus() {
                   <div className="ml-4">
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                        history.status === "accept"
+                        history.status === "Accepted"
                           ? "bg-green-100 text-green-800"
-                          : history.status === "pending"
+                          : history.status === "Pending"
                           ? "bg-yellow-100 text-yellow-800"
                           : "bg-red-100 text-red-800"
                       }`}
