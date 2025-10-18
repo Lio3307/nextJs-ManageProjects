@@ -1,3 +1,4 @@
+import { actionRequest } from "@/app/actions";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
@@ -29,6 +30,14 @@ export default async function RequestJoinList({
       projectId: idProject,
     },
   });
+
+  const joinStatus = await prisma.joinStatus.findFirst({
+    where: {
+      idProject,
+    },
+  });
+
+  if (!joinStatus) throw new Error("Somthing wrong when load the request");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
@@ -74,7 +83,7 @@ export default async function RequestJoinList({
                   key={request.id}
                   className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition duration-300"
                 >
-                  <form action="">
+                  <form action={actionRequest}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <div className="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg shadow-md">
@@ -90,19 +99,34 @@ export default async function RequestJoinList({
                         </div>
                       </div>
                       <div className="flex gap-3">
-                        <input type="hidden" name="id-project" value={idProject}/>
-                        <input type="hidden" name="user-id" value={request.userId} />
+                        <input
+                          type="hidden"
+                          name="id-project"
+                          value={idProject}
+                        />
+                        <input
+                          type="hidden"
+                          name="user-id"
+                          value={request.userId}
+                        />
                         <input type="hidden" name="id-req" value={request.id} />
+                        <input
+                          type="hidden"
+                          name="join-status-id"
+                          value={joinStatus.id}
+                        />
                         <button
-                        name="action"
-                        value="accept"
-                        className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md">
+                          name="action"
+                          value="accept"
+                          className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md"
+                        >
                           Accept
                         </button>
-                        <button 
-                        name="action"
-                        value="reject"
-                        className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md">
+                        <button
+                          name="action"
+                          value="reject"
+                          className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition duration-200 shadow-sm hover:shadow-md"
+                        >
                           Reject
                         </button>
                       </div>
