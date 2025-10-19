@@ -62,7 +62,7 @@ export default function DeleteProject({ idProject, inviteCode }: { idProject: st
           <span className="text-xs text-gray-600"> Copy invite code</span>
         </DropdownMenuItem>
         <DropdownMenuItem
-        onClick={() => router.replace(`/project/${idProject}/request`)}
+        onClick={() => router.push(`/project/${idProject}/request`)}
           className="text-sky-600 focus:text-sky-600"
         >
           <Clock className="text-gray-600 mr-1 h-2 w-2" />
