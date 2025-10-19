@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import ProjectCard from "@/components/project-card";
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectModal from "@/components/add-project-modal/project-modals";
-import { Inbox } from "lucide-react";
+import { CircleCheck, Filter, FolderPlus, Inbox } from "lucide-react";
 
 export default async function ProjectList() {
   const session = await auth.api.getSession({
@@ -27,12 +27,12 @@ export default async function ProjectList() {
 
   const memberOfProject = await prisma.memberList.findMany({
     where: {
-      memberIdList: session?.user.id
+      memberIdList: session?.user.id,
     },
     include: {
-      project: true
-    }
-  })
+      project: true,
+    },
+  });
 
   return (
     <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
@@ -40,19 +40,7 @@ export default async function ProjectList() {
         <div className="flex flex-col items-center justify-center min-h-[400px] lg:min-h-[500px]">
           <div className="text-center max-w-md mx-auto">
             <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-10 h-10 lg:w-12 lg:h-12 text-blue-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
+              <FolderPlus className="w-10 h-10 lg:w-12 lg:h-12 text-blue-500" />
             </div>
 
             <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
@@ -71,31 +59,11 @@ export default async function ProjectList() {
 
               <div className="flex items-center justify-center space-x-4 text-xs text-gray-400">
                 <div className="flex items-center space-x-1">
-                  <svg
-                    className="w-3 h-3"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <CircleCheck className="w-3 h-3" />
                   <span>Free to create</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <svg
-                    className="w-3 h-3"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <CircleCheck className="w-3 h-3" />
                   <span>Easy setup</span>
                 </div>
               </div>
@@ -149,19 +117,7 @@ export default async function ProjectList() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <svg
-                  className="w-4 h-4 text-gray-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z"
-                  />
-                </svg>
+                <Filter className="w-4 h-4 text-gray-500" />
                 <span className="text-sm font-medium text-gray-700">
                   Filter & Sort
                 </span>
@@ -185,25 +141,35 @@ export default async function ProjectList() {
 
           <div className="space-y-6 mt-8">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">Projects You Own</h2>
-              <span className="text-sm text-gray-500">{data.length} project{data.length !== 1 ? 's' : ''}</span>
+              <h2 className="text-2xl font-bold text-gray-900">
+                Projects You Own
+              </h2>
+              <span className="text-sm text-gray-500">
+                {data.length} project{data.length !== 1 ? "s" : ""}
+              </span>
             </div>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-              {data.length > 0 && data.map((item) => (
-                <div key={item.id} className="w-full">
-                  <ProjectCard data={item} />
-                </div>
-              ))}
+              {data.length > 0 &&
+                data.map((item) => (
+                  <div key={item.id} className="w-full">
+                    <ProjectCard data={item} />
+                  </div>
+                ))}
             </div>
           </div>
 
           <div className="space-y-6 mt-12 pt-8 border-t border-gray-200">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-gray-900">Projects You Joined</h2>
-              <span className="text-sm text-gray-500">{memberOfProject?.length || 0} project{memberOfProject?.length !== 1 ? 's' : ''}</span>
+              <h2 className="text-2xl font-bold text-gray-900">
+                Projects You Joined
+              </h2>
+              <span className="text-sm text-gray-500">
+                {memberOfProject?.length || 0} project
+                {memberOfProject?.length !== 1 ? "s" : ""}
+              </span>
             </div>
-            
+
             {memberOfProject && memberOfProject.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
                 {memberOfProject.map((item) => (
@@ -217,8 +183,12 @@ export default async function ProjectList() {
                 <div className="flex justify-center text-gray-400 mb-4">
                   <Inbox className="h-16 w-16" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No projects yet</h3>
-                <p className="text-gray-500">You havent joined any projects yet.</p>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  No projects yet
+                </h3>
+                <p className="text-gray-500">
+                  You havent joined any projects yet.
+                </p>
               </div>
             )}
           </div>
