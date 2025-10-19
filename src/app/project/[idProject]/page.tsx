@@ -65,7 +65,10 @@ export default async function DetailProject({
 
           {session.user.id === dataProject.userId && (
             <div className="flex justify-end sm:justify-start">
-              <DeleteProject idProject={dataProject.id} inviteCode={dataProject.inviteCode} />
+              <DeleteProject
+                idProject={dataProject.id}
+                inviteCode={dataProject.inviteCode}
+              />
             </div>
           )}
         </div>
@@ -78,9 +81,15 @@ export default async function DetailProject({
                 : "bg-gray-100 text-gray-800"
             }`}
           >
-            {dataProject.visibility === "Public"
-              ? <><Globe className="h-[0.86rem]" /> <p>Public Project</p></>
-              : <><Lock className="h-[0.86rem]" /> <p>Private Project</p></>}
+            {dataProject.visibility === "Public" ? (
+              <>
+                <Globe className="h-[0.86rem]" /> <p>Public Project</p>
+              </>
+            ) : (
+              <>
+                <Lock className="h-[0.86rem]" /> <p>Private Project</p>
+              </>
+            )}
           </span>
         </div>
 
@@ -114,14 +123,16 @@ export default async function DetailProject({
             </span>
           </Link>
 
-          <div className="flex justify-end">
-            <Link
-              href={`/project/${idProject}/add-task`}
-              className={buttonVariants()}
-            >
-              Add Task
-            </Link>
-          </div>
+          {session.user.id === dataProject.userId && (
+            <div className="flex justify-end">
+              <Link
+                href={`/project/${idProject}/add-task`}
+                className={buttonVariants()}
+              >
+                Add Task
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
