@@ -247,10 +247,10 @@ export default async function Home() {
                 </div>
                 <Link
                   href="/projects"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center"
+                  className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-1"
                 >
-                  View all projects
-                  <ChevronRight className="w-4 h-4 ml-1" />
+                  View all
+                  <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
 
@@ -261,16 +261,19 @@ export default async function Home() {
                   </div>
                 ))}
               </div>
+            </div>
 
-              <h3 className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center">
-                Public Project
-              </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-                <div className="max-w-full">
-                <PublicProject/>
-                </div>
+            <div className="space-y-6 pt-8 border-t border-gray-200">
+              <div>
+                <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
+                  Explore Public Projects
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  Discover projects shared by the community
+                </p>
               </div>
+
+              <PublicProject />
             </div>
           </div>
         )}

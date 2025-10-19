@@ -1,8 +1,9 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { getProjects } from "@/app/actions";
 import { Project } from "@prisma/client";
+import ProjectCard from "../project-card";
+import { Archive, Loader2 } from "lucide-react";
 
 export default function PublicProject() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -22,23 +23,46 @@ export default function PublicProject() {
     }
   };
 
-  return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map((project) => (
-          <div key={project.id} className="p-4 border rounded">
-            {project.title}
-          </div>
-        ))}
-      </div>
+  useEffect(() => {
+    loadProjects();
+  }, []);
 
-      <div className="mt-4 text-center">
+  return (
+    <div className="space-y-6">
+      {projects.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+          {projects.map((project) => (
+            <div key={project.id} className="w-full">
+              <ProjectCard data={project} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="bg-white rounded-lg shadow-md p-12 text-center">
+          <div className="flex justify-center text-gray-400 mb-4">
+            <Archive className="h-16 w-16" />
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">
+            No public projects yet
+          </h3>
+          <p className="text-gray-500">
+            Click the button below to load public projects from the community
+          </p>
+        </div>
+      )}
+
+      <div className="flex justify-center">
         <button
           onClick={loadProjects}
           disabled={loading}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 hover:bg-gray-700 disabled:bg-gray-400 text-white font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md disabled:cursor-not-allowed"
         >
-          {loading ? "Loading..." : "Load More"}
+          {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+          {loading
+            ? "Loading..."
+            : projects.length === 0
+            ? "Load Public Projects"
+            : "Load More"}
         </button>
       </div>
     </div>
