@@ -419,3 +419,14 @@ export async function actionRequest(formData: FormData) {
   revalidatePath("/join-status")
 
 }
+
+
+export async function getProjects(skip: number = 0, take: number = 15){
+  const projects = await prisma.project.findMany({
+    skip,
+    take,
+    orderBy: { createdAt: "desc" }
+  })
+
+  return projects
+}

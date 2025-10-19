@@ -6,7 +6,17 @@ import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import ProjectModal from "@/components/add-project-modal/project-modals";
 import Link from "next/link";
-import { Archive, Calendar, ChevronRight, ClipboardList, LogIn, Table, UserPlus, Users } from "lucide-react";
+import {
+  Archive,
+  Calendar,
+  ChevronRight,
+  ClipboardList,
+  LogIn,
+  Table,
+  UserPlus,
+  Users,
+} from "lucide-react";
+import PublicProject from "@/components/load-public-project/public-project";
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -30,7 +40,7 @@ export default async function Home() {
           <div className="w-full max-w-lg mx-auto text-center">
             <div className="mb-8">
               <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-<Archive className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
+                <Archive className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
               </div>
 
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -250,6 +260,16 @@ export default async function Home() {
                     <ProjectCard data={item} />
                   </div>
                 ))}
+              </div>
+
+              <h3 className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center">
+                Public Project
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+                <div className="max-w-full">
+                <PublicProject/>
+                </div>
               </div>
             </div>
           </div>
