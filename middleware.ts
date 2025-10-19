@@ -15,7 +15,10 @@ export const config = {
     "/edit/task/:path*",
     "/project/:path*/add-task",
     "/project/:path*/member",
+    "/project/:path*/request",
     "/report/:path*",
     "/task/:path*",
+    "/join-project",
+    "/join-status",
   ],
 };
