@@ -15,16 +15,26 @@ export default function PublicProject() {
     try {
       setLoading(true);
       const newProject = await getProjects(skip, take);
-      setProjects((prev) => [...prev, ...newProject]);
+
+      setProjects((prev) => {
+        const ids = new Set(prev.map((p) => p.id));
+        const filtered = newProject.filter((p) => !ids.has(p.id));
+        return [...prev, ...filtered];
+      });
+
       setSkip((prev) => prev + take);
+    } finally {
       setLoading(false);
-    } catch (error) {
-      throw new Error(`Something error : ${error}`);
     }
   };
 
   useEffect(() => {
     loadProjects();
+
+    return () => {
+      setProjects([]);
+      setSkip(0);
+    };
   }, []);
 
   return (
