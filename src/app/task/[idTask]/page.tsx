@@ -4,7 +4,7 @@ import TaskNav from "@/components/task-nav/task-navigation-button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export default async function DetailTask({
   params,
@@ -30,10 +30,20 @@ export default async function DetailTask({
     where: { taskId: idTask },
   });
 
+  const memberList = await prisma.memberList.findFirst({
+    where: {
+      projectId: taskData.projectId,
+      memberIdList: session.user.id
+    }
+  })
+
   if (!taskData) {
     throw new Error("Unknown Task");
   }
-  
+
+  if(!memberList) return notFound()
+
+
   return (
     <>
       <div className="p-4">
