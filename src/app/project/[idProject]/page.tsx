@@ -8,6 +8,8 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import DeleteProject from "@/components/delete-button/delete-project";
 import { Globe, Lock } from "lucide-react";
+import SubmitForm from "@/components/submit-form";
+import { joinPublicProject } from "@/app/actions";
 
 export default async function DetailProject({
   params,
@@ -29,6 +31,12 @@ export default async function DetailProject({
       id: idProject,
     },
   });
+
+  const memberList = await prisma.memberList.findFirst({
+    where: {
+    memberIdList: session.user.id
+    }
+  })
 
   const dataTask = await prisma.task.findMany({
     where: {
@@ -133,6 +141,14 @@ export default async function DetailProject({
               </Link>
             </div>
           )}
+
+          {memberList?.memberIdList && dataProject.visibility === "Public" ?  (
+            <form action={joinPublicProject}>
+              <input type="hidden" name="user-id" value={session.user.id}/>
+              <input type="hidden" name="id-project" value={idProject}/>
+              <SubmitForm buttonName="Join Project"/>
+            </form>
+          ) : null}
         </div>
       </div>
 
