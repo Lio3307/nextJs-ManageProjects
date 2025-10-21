@@ -19,15 +19,12 @@ export default async function DetailTask({
 
   const taskData = await prisma.task.findUnique({
     where: { id: idTask },
+    include: {
+      project: true
+    }
   });
 
   if (!taskData) throw new Error("Unknown Task");
-
-  const project = await prisma.project.findUnique({
-    where: { id: taskData.projectId },
-  });
-
-  if (!project) return null;
 
   const reportData = await prisma.report.findMany({
     where: { taskId: idTask },
@@ -36,18 +33,18 @@ export default async function DetailTask({
   if (!taskData) {
     throw new Error("Unknown Task");
   }
-
+  
   return (
     <>
       <div className="p-4">
         <div className="flex justify-between">
           <BreadcrumbWithCustomSeparator
-            name={project.title}
+            name={taskData.project.title}
             link={`/project/${taskData.projectId}`}
             currentPageName="Task"
           />
           {session.user.id === taskData.userId ||
-          session.user.id === project.userId ? (
+          session.user.id === taskData.project.userId ? (
             <DeleteTask idTask={idTask} />
           ) : (
             ""
