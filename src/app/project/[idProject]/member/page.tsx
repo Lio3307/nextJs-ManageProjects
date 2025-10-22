@@ -112,8 +112,7 @@ export default async function MemberList({
                           <>
                             <UserRound className="h-[0.84rem]" />
                             Member
-                            {list.memberIdList !== project.userId &&
-                            session.user.id === project.userId ? (
+                            {session.user.id === project.userId ? (
                               <>
                                 <KickMember
                                   idUser={list.memberIdList}
