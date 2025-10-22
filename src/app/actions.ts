@@ -320,7 +320,7 @@ export async function searchProject(idCode: string, userId: string) {
     ? await prisma.requestJoin.findFirst({
         where: {
           projectId: project.id,
-          userId: userId, 
+          userId: userId,
         },
       })
     : null;
@@ -341,7 +341,7 @@ export async function joinProjectButton(formData: FormData) {
   if (!joinIdProject || !projectInviteCode)
     throw new Error("Somethinng wrong when joinning");
 
-   await prisma.requestJoin.create({
+  await prisma.requestJoin.create({
     data: {
       projectId: joinIdProject,
       projectCode: projectInviteCode,
@@ -366,7 +366,7 @@ export async function actionRequest(formData: FormData) {
   const idRequest = formData.get("id-req") as string;
   const idProject = formData.get("id-project") as string;
   const userId = formData.get("user-id") as string;
-  const joinStatusId = formData.get("join-status-id") as string
+  const joinStatusId = formData.get("join-status-id") as string;
   const action = formData.get("action");
 
   if (!idProject || !userId || !idRequest || !joinStatusId) return;
@@ -387,7 +387,7 @@ export async function actionRequest(formData: FormData) {
 
     await prisma.joinStatus.update({
       where: {
-        id:joinStatusId
+        id: joinStatusId,
       },
       data: {
         status: "Accepted",
@@ -415,52 +415,54 @@ export async function actionRequest(formData: FormData) {
     });
   }
 
-  revalidatePath(`/project/${idProject}/request`)
-  revalidatePath("/join-status")
-
+  revalidatePath(`/project/${idProject}/request`);
+  revalidatePath("/join-status");
 }
 
-
-export async function getProjects(skip: number = 0, take: number = 15){
+export async function getProjects(skip: number = 0, take: number = 15) {
   const projects = await prisma.project.findMany({
     skip,
     take,
     orderBy: { createdAt: "desc" },
     where: {
-      visibility: "Public"
-    }
-  })
+      visibility: "Public",
+    },
+  });
 
-  return projects
+  return projects;
 }
 
-export async function joinPublicProject(formData: FormData){
-  const idProject = formData.get("id-project") as string
-  const userId = formData.get("user-id") as string
+export async function joinPublicProject(formData: FormData) {
+  const idProject = formData.get("id-project") as string;
+  const userId = formData.get("user-id") as string;
 
   const getUserName = await prisma.user.findUnique({
     where: {
-      id: userId
-    }
-  })
+      id: userId,
+    },
+  });
 
   await prisma.memberList.create({
     data: {
       projectId: idProject,
       memberIdList: userId,
-      memberList: getUserName!.name
-    }
-  })
-  revalidatePath(`/project/${idProject}`)
+      memberList: getUserName!.name,
+    },
+  });
+  revalidatePath(`/project/${idProject}`);
 }
 
-export async function kickUser(idMember: string, idMemberList: string, idProject: string){
+export async function kickUser(
+  idMember: string,
+  idMemberList: string,
+  idProject: string
+) {
   await prisma.memberList.delete({
     where: {
       id: idMemberList,
-      memberIdList: idMember
-    }
-  })
+      memberIdList: idMember,
+    },
+  });
 
-  revalidatePath(`/project/${idProject}/member`)
+  revalidatePath(`/project/${idProject}/member`);
 }

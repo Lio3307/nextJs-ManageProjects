@@ -145,10 +145,12 @@ export async function AppSidebar() {
                   align="end"
                   sideOffset={4}
                 >
-                  <DropdownMenuItem>
-                    <LogOutIcon className="mr-2 h-4 w-4" />
-                    <LogedOut />
-                  </DropdownMenuItem>
+                  <LogedOut>
+                    <DropdownMenuItem>
+                      <LogOutIcon className="mr-2 h-4 w-4" />
+                      <span>Log Out</span>
+                    </DropdownMenuItem>
+                  </LogedOut>
                 </DropdownMenuContent>
               </DropdownMenu>
             </SidebarMenuItem>
