@@ -453,3 +453,14 @@ export async function joinPublicProject(formData: FormData){
   })
   revalidatePath(`/project/${idProject}`)
 }
+
+export async function kickUser(idMember: string, idMemberList: string, idProject: string){
+  await prisma.memberList.delete({
+    where: {
+      id: idMemberList,
+      memberIdList: idMember
+    }
+  })
+
+  revalidatePath(`/project/${idProject}/member`)
+}

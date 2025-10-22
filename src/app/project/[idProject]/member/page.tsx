@@ -1,4 +1,5 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
+import KickMember from "@/components/delete-button/kick-user";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { Crown, UserRound } from "lucide-react";
@@ -109,11 +110,22 @@ export default async function MemberList({
                           </>
                         ) : (
                           <>
-                            <UserRound className="h-[0.84rem]"/>
+                            <UserRound className="h-[0.84rem]" />
                             Member
+                            {list.memberIdList !== project.userId &&
+                            session.user.id === project.userId ? (
+                              <>
+                                <KickMember
+                                  idUser={list.memberIdList}
+                                  idMemberList={list.id}
+                                  idProject={project.id}
+                                />
+                              </>
+                            ) : null}
                           </>
                         )}
                       </span>
+                      {}
                     </div>
                   </div>
                 </div>
