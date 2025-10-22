@@ -34,6 +34,7 @@ export default async function DetailProject({
 
   const memberList = await prisma.memberList.findFirst({
     where: {
+    projectId: idProject,
     memberIdList: session.user.id
     }
   })
@@ -142,7 +143,7 @@ export default async function DetailProject({
             </div>
           )}
 
-          {memberList?.memberIdList && dataProject.visibility === "Public" ?  (
+          {session.user.id !== memberList?.memberIdList && dataProject.visibility === "Public" ?  (
             <form action={joinPublicProject}>
               <input type="hidden" name="user-id" value={session.user.id}/>
               <input type="hidden" name="id-project" value={idProject}/>
