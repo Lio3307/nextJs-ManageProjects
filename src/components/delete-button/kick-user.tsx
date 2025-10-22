@@ -1,3 +1,5 @@
+"use client"
+
 import { kickUser } from "@/app/actions";
 import {
   DropdownMenu,
