@@ -1,5 +1,5 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
-import KickMember from "@/components/delete-button/kick-user";
+import KickMember from "@/components/action-button/kick-user";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { Crown, UserRound } from "lucide-react";

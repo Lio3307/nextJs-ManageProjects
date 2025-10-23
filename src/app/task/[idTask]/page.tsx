@@ -1,5 +1,5 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
-import DeleteTask from "@/components/delete-button/delete-task";
+import DeleteTask from "@/components/action-button/delete-task";
 import TaskNav from "@/components/task-nav/task-navigation-button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -20,8 +20,8 @@ export default async function DetailTask({
   const taskData = await prisma.task.findUnique({
     where: { id: idTask },
     include: {
-      project: true
-    }
+      project: true,
+    },
   });
 
   if (!taskData) throw new Error("Unknown Task");
@@ -33,16 +33,15 @@ export default async function DetailTask({
   const memberList = await prisma.memberList.findFirst({
     where: {
       projectId: taskData.projectId,
-      memberIdList: session.user.id
-    }
-  })
+      memberIdList: session.user.id,
+    },
+  });
 
   if (!taskData) {
     throw new Error("Unknown Task");
   }
 
-  if(!memberList) return notFound()
-
+  if (!memberList) return notFound();
 
   return (
     <>
