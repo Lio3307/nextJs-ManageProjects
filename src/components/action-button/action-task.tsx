@@ -1,6 +1,6 @@
 "use client";
 
-import { handleDeleteTask } from "@/app/actions";
+import { handleDeleteTask } from "@/app/actions/handle-delete-task";
 
 import {
   DropdownMenu,

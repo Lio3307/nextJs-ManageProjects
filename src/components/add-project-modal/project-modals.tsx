@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { handleAddProjects } from "@/app/actions";
+import { handleAddProject } from "@/app/actions/handle-add-project"; 
 import SubmitForm from "../submit-form";
 import { X } from "lucide-react";
 import {
@@ -29,7 +29,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
       return;
     }
     try {
-      await handleAddProjects(title, description, selectedVisibility);
+      await handleAddProject(title, description, selectedVisibility);
     } catch (error) {
       throw new Error(`Error adding new data : ${error}`);
     }

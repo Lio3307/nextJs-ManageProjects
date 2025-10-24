@@ -21,10 +21,10 @@ import { Input } from "../ui/input";
 import { useState } from "react";
 import SubmitForm from "../submit-form";
 import clsx from "clsx";
-import { handleUpdateTask } from "@/app/actions";
 import Link from "next/link";
-import { ArrowLeftFromLine, Info, SquarePen, X } from "lucide-react";
+import { Info, SquarePen, X } from "lucide-react";
 import { buttonVariants } from "../ui/button";
+import { handleUpdateTask } from "@/app/actions/handle-update-task";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);

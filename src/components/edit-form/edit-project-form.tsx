@@ -8,7 +8,7 @@ import SubmitForm from "../submit-form";
 import { buttonVariants } from "../ui/button";
 import { ArrowLeftFromLine, Eye, Lock } from "lucide-react";
 import Link from "next/link";
-import { handleUpdateProject } from "@/app/actions";
+import { handleUpdateProject } from "@/app/actions/handle-update-project"; 
 import {
   Select,
   SelectContent,

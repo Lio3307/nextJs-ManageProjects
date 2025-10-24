@@ -1,6 +1,6 @@
 "use client";
 
-import { handleDeleteProject } from "@/app/actions";
+import { handleDeleteProject } from "@/app/actions/handle-delete-project"; 
 import {
   DropdownMenu,
   DropdownMenuContent,

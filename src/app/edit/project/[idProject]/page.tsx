@@ -1,5 +1,4 @@
 import EditFormProject from "@/components/edit-form/edit-project-form";
-import { Label } from "@/components/ui/label";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";

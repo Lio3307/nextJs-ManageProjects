@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 import ActionProject from "@/components/action-button/action-project";
 import { Globe, Lock } from "lucide-react";
 import SubmitForm from "@/components/submit-form";
-import { joinPublicProject } from "@/app/actions";
+import { joinPublicProject } from "@/app/actions/handle-join-public-project"; 
 
 export default async function DetailProject({
   params,

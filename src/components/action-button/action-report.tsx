@@ -1,6 +1,6 @@
 "use client";
 
-import { handleDeleteReport } from "@/app/actions";
+import { handleDeleteReport } from "@/app/actions/handle-delete-report";
 import {
   DropdownMenu,
   DropdownMenuContent,

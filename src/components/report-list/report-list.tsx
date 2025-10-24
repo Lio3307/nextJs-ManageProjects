@@ -4,7 +4,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import type { Report } from "@prisma/client";
 import SubmitForm from "../submit-form";
-import { handleReport } from "@/app/actions";
+import { handleAddReport } from "@/app/actions/handle-add-report"; 
 import Link from "next/link";
 import { MessageSquareWarning } from "lucide-react";
 
@@ -35,7 +35,7 @@ export default function ReportList({
         </div>
 
         <div className="px-6 py-6">
-          <form action={handleReport} className="space-y-6">
+          <form action={handleAddReport} className="space-y-6">
             <div className="flex justify-end">
               <SubmitForm buttonName="Submit Report" />
             </div>

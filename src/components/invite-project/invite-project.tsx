@@ -2,7 +2,8 @@
 
 import { MemberList, Project, RequestJoin } from "@prisma/client";
 import { useState } from "react";
-import { joinProjectButton, searchProject } from "@/app/actions";
+import { joinProjectButton } from "@/app/actions/handle-join-project";
+import { searchProject } from "@/app/actions/handle-search-project";
 import SubmitForm from "@/components/submit-form";
 import { User, XCircle } from "lucide-react";
 

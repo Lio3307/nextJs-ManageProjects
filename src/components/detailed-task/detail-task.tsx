@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar, NotepadText } from "lucide-react";
-import JSONRender from "../json-content-parse/json-render";
+import JSONRender from "../json-content-parse-richeditor/json-render";
 import type { Task } from "@prisma/client";
 
 export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {

@@ -1,6 +1,6 @@
 "use client"
 
-import { kickUser } from "@/app/actions";
+import { kickUser } from "@/app/actions/handle-kick-user"; 
 import {
   DropdownMenu,
   DropdownMenuContent,
