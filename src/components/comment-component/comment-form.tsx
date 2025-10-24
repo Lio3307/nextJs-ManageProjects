@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import SubmitForm from "../submit-form";
 import CommentCard from "./comment-card";
-import { handleComment } from "@/app/actions";
+import { handleAddComment } from "@/app/actions/handle-add-comment";
 import { SendHorizonal } from "lucide-react";
 
 export default async function CommentForm({ reportId }: { reportId: string }) {
@@ -35,7 +35,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
       <div className="border-t border-gray-200"></div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-        <form action={handleComment} className="space-y-4">
+        <form action={handleAddComment} className="space-y-4">
           <div className="flex items-center space-x-2 mb-4">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
             <h4 className="text-sm font-semibold text-gray-700">

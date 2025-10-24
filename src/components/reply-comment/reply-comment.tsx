@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import SubmitForm from "../submit-form";
-import { handleAddReplyComment } from "@/app/actions";
+import { handleAddReplyComment } from "@/app/actions/handle-reply-comment"; 
 
 export default function ReplyComment({ idComment }: { idComment: string }) {
   const [replyText, setReplyText] = useState<string>("");
