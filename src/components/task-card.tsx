@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { NotepadText } from "lucide-react";
+import { ChevronRight, NotepadText } from "lucide-react";
 
 type TaskProps = {
   id: string;
@@ -52,19 +52,7 @@ export default function TaskCard({ data }: { data: TaskProps }) {
               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <div className="flex items-center space-x-1 text-xs text-gray-600 font-medium">
                   <span>View</span>
-                  <svg
-                    className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <ChevronRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200" />
                 </div>
               </div>
             </div>

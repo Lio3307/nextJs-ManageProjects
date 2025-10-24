@@ -24,6 +24,7 @@ import SubmitForm from "./submit-form";
 import clsx from "clsx";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
+import { ArrowLeft, Calendar, LayoutGrid, Plus } from "lucide-react";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -88,19 +89,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
         <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-              <svg
-                className="w-4 h-4 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
+              <Plus className="w-4 h-4 text-white" />
             </div>
             <div>
               <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
@@ -184,19 +173,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
                   className: "sm:w-auto w-full",
                 })}
               >
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                  />
-                </svg>
+                <ArrowLeft className="w-4 h-4 mr-2" />
                 Cancel
               </Link>
             </div>
@@ -222,17 +199,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
           <div className="flex items-start space-x-3">
-            <svg
-              className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h6a1 1 0 011 1v2a1 1 0 01-1 1h-6a1 1 0 01-1-1V8zm0 4a1 1 0 011-1h6a1 1 0 011 1v2a1 1 0 01-1 1h-6a1 1 0 01-1-1v-2z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <LayoutGrid className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
             <div>
               <h4 className="text-sm font-semibold text-blue-900 mb-2">
                 Writing Tips
@@ -248,17 +215,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
 
         <div className="p-4 bg-green-50 rounded-lg border border-green-200">
           <div className="flex items-start space-x-3">
-            <svg
-              className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <Calendar className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
             <div>
               <h4 className="text-sm font-semibold text-green-900 mb-2">
                 Rich Editor Features

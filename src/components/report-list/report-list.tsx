@@ -4,9 +4,9 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import type { Report } from "@prisma/client";
 import SubmitForm from "../submit-form";
-import { handleAddReport } from "@/app/actions/handle-add-report"; 
+import { handleAddReport } from "@/app/actions/handle-add-report";
 import Link from "next/link";
-import { MessageSquareWarning } from "lucide-react";
+import { AlertTriangle, ChevronRight, File, MessageSquareWarning } from "lucide-react";
 
 export default function ReportList({
   reportData,
@@ -24,9 +24,7 @@ export default function ReportList({
               <MessageSquareWarning className="text-white h-[0.89rem]" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-gray-900">
-                Create Report
-              </h2>
+              <h2 className="text-lg font-bold text-gray-900">Create Report</h2>
               <p className="text-sm text-gray-600">
                 Submit a detailed progress report
               </p>
@@ -41,17 +39,7 @@ export default function ReportList({
             </div>
 
             <div className="flex items-start space-x-3 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <svg
-                className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
               <div>
                 <h4 className="text-sm font-semibold text-red-800 mb-1">
                   Important Notice
@@ -121,19 +109,7 @@ export default function ReportList({
         {!reportData || reportData.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-8 lg:p-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
             <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4">
-              <svg
-                className="w-8 h-8 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+              <File className="w-8 h-8 text-gray-400" />
             </div>
             <h4 className="text-lg font-semibold text-gray-700 mb-2">
               No reports yet
@@ -192,19 +168,7 @@ export default function ReportList({
                     <div className="flex items-center justify-end mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       <div className="flex items-center space-x-1 text-xs text-blue-600 font-medium">
                         <span>View Full Report</span>
-                        <svg
-                          className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
+                        <ChevronRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-200" />
                       </div>
                     </div>
                   </div>

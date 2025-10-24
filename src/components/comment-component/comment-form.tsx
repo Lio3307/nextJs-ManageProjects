@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import SubmitForm from "../submit-form";
 import CommentCard from "./comment-card";
 import { handleAddComment } from "@/app/actions/handle-add-comment";
-import { SendHorizonal } from "lucide-react";
+import { Eye, MessageCircle, SendHorizonal } from "lucide-react";
 
 export default async function CommentForm({ reportId }: { reportId: string }) {
   const commentReport = await prisma.comment.findMany({
@@ -16,17 +16,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
         <div className="flex items-center space-x-3">
           <h3 className="text-lg font-bold text-gray-900">Comments</h3>
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
-            <svg
-              className="w-3 h-3 mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <Eye className="w-3 h-3 mr-1" />
             <span>{commentReport.length > 0 ? commentReport.length : "0"}</span>
           </div>
         </div>
@@ -74,19 +64,7 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
         {commentReport.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
             <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mb-3">
-              <svg
-                className="w-6 h-6 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
+              <MessageCircle className="w-6 h-6 text-gray-400" />
             </div>
             <h5 className="text-sm font-medium text-gray-700 mb-1">
               No comments yet

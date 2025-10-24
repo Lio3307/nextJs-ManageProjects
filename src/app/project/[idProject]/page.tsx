@@ -7,9 +7,9 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import ActionProject from "@/components/action-button/action-project";
-import { Globe, Lock } from "lucide-react";
+import { Clipboard, Globe, Lock } from "lucide-react";
 import SubmitForm from "@/components/submit-form";
-import { joinPublicProject } from "@/app/actions/handle-join-public-project"; 
+import { joinPublicProject } from "@/app/actions/handle-join-public-project";
 
 export default async function DetailProject({
   params,
@@ -158,19 +158,7 @@ export default async function DetailProject({
         <div className="flex flex-col items-center justify-center mt-8 p-8 bg-gray-50 rounded-xl border border-gray-200">
           <div className="text-center">
             <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                />
-              </svg>
+              <Clipboard className="w-8 h-8 text-gray-400" />
             </div>
             <p className="text-sm text-gray-600 font-medium">No tasks yet</p>
             <p className="text-xs text-gray-500 mt-1">
