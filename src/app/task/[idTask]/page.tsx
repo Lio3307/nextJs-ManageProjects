@@ -1,5 +1,5 @@
 import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
-import DeleteTask from "@/components/action-button/delete-task";
+import ActionTask from "@/components/action-button/action-task";
 import TaskNav from "@/components/task-nav/task-navigation-button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -54,7 +54,7 @@ export default async function DetailTask({
           />
           {session.user.id === taskData.userId ||
           session.user.id === taskData.project.userId ? (
-            <DeleteTask idTask={idTask} />
+            <ActionTask idTask={idTask} />
           ) : (
             ""
           )}

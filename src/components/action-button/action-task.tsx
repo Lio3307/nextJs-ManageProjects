@@ -1,6 +1,7 @@
 "use client";
 
-import { handleDeleteReport } from "@/app/actions";
+import { handleDeleteTask } from "@/app/actions";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +10,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical, Trash2 } from "lucide-react";
+import { EllipsisVertical, FilePen, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export default function DeleteReport({ idReport }: { idReport: string }) {
+export default function ActionTask({ idTask }: { idTask: string }) {
+  const router = useRouter();
+
   const handleDelete = async () => {
-    const confirmDelete = confirm("Are you sure want to delete this report?");
+    const confirmDelete = confirm("Are you sure want to delete this Task?");
     if (!confirmDelete) return;
-    await handleDeleteReport(idReport);
+    await handleDeleteTask(idTask);
   };
 
   return (
@@ -33,7 +37,14 @@ export default function DeleteReport({ idReport }: { idReport: string }) {
           className="text-red-600 focus:text-red-600"
         >
           <Trash2 className="text-red-600 mr-2 h-4 w-4" />
-          Delete Report
+          Delete Task
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => router.push(`/edit/task/${idTask}`)}
+          className="text-sky-600 focus:text-sky-600"
+        >
+          <FilePen className="text-sky-600 mr-2 h-4 w-4" />
+          Edit Task
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

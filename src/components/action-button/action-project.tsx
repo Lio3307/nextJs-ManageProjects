@@ -12,7 +12,7 @@ import {
 import { Clock, EllipsisVertical, FilePen, Paperclip, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function DeleteProject({ idProject, inviteCode }: { idProject: string, inviteCode: string }) {
+export default function ActionProject({ idProject, inviteCode }: { idProject: string, inviteCode: string }) {
   const router = useRouter();
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this project?");

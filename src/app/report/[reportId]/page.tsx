@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import DeleteReport from "@/components/action-button/delete-report";
+import ActionReport from "@/components/action-button/action-report";
 
 export default async function ReportDetail({
   params,
@@ -60,7 +60,7 @@ export default async function ReportDetail({
             {(session.user.id === detailReport.userId ||
               session.user.id === getProjectOwnerId.userId) && (
               <div className="flex-shrink-0">
-                <DeleteReport idReport={reportId} />
+                <ActionReport idReport={reportId} />
               </div>
             )}
           </div>

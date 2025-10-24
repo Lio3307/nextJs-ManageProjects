@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import DeleteProject from "@/components/action-button/delete-project";
+import ActionProject from "@/components/action-button/action-project";
 import { Globe, Lock } from "lucide-react";
 import SubmitForm from "@/components/submit-form";
 import { joinPublicProject } from "@/app/actions";
@@ -74,7 +74,7 @@ export default async function DetailProject({
 
           {session.user.id === dataProject.userId && (
             <div className="flex justify-end sm:justify-start">
-              <DeleteProject
+              <ActionProject
                 idProject={dataProject.id}
                 inviteCode={dataProject.inviteCode}
               />
