@@ -165,7 +165,10 @@ export function LoginForm({
                     </div>
                     <div className="text-center text-sm">
                       Don&apos;t have an account?{" "}
-                      <Link href="/signup" className="underline underline-offset-4">
+                      <Link
+                        href="/signup"
+                        className="underline underline-offset-4"
+                      >
                         Sign up
                       </Link>
                     </div>
@@ -174,10 +177,6 @@ export function LoginForm({
               </Form>
             </CardContent>
           </Card>
-          <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-            By clicking continue, you agree to our{" "}
-            <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-          </div>
         </div>
       )}
     </>

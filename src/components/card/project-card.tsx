@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 type ProjectProps = {
   id: string;
@@ -13,7 +13,6 @@ export default function ProjectCard({ data }: { data: ProjectProps }) {
     <Link href={`/project/${data.id}`} className="group block w-full h-full">
       <Card className="w-full h-full cursor-pointer flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 rounded-xl overflow-hidden bg-white group-hover:border-gray-400">
         <CardHeader className="py-3 bg-gray-600 from-gray-50 to-blue-50 group-hover:from-white-50 group-hover:to-gray-50 transition-colors duration-300">
-
           <CardTitle className="text-lg text-center font-bold line-clamp-2 text-white  transition-colors duration-200 leading-tight">
             {data.title}
           </CardTitle>

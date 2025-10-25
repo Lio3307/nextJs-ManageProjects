@@ -1,5 +1,5 @@
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
-import ProjectCard from "@/components/project-card";
+import ProjectCard from "@/components/card/project-card";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -190,8 +190,7 @@ export default async function Home() {
                 <div>
                   <h1 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">
                     Welcome back,{" "}
-                    <span className="text-blue-600">{session.user.name}</span>
-                    !
+                    <span className="text-blue-600">{session.user.name}</span>!
                   </h1>
                   <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
                     Stay organized and keep your projects moving forward. Heres
