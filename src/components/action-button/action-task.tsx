@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { EllipsisVertical, FilePen, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function ActionTask({ idTask }: { idTask: string }) {
   const router = useRouter();
@@ -19,7 +20,12 @@ export default function ActionTask({ idTask }: { idTask: string }) {
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this Task?");
     if (!confirmDelete) return;
-    await handleDeleteTask(idTask);
+    const { success, massage } = await handleDeleteTask(idTask);
+    if (success) {
+      toast.success(massage as string);
+    } else {
+      toast.error(massage as string);
+    }
   };
 
   return (

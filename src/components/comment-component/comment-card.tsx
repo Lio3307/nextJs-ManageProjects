@@ -3,7 +3,7 @@ import ReplyButton from "../reply-comment/reply-button";
 import ReplyCommentList from "../reply-comment/reply-comment-list";
 import { MessageCircle } from "lucide-react";
 
-export default async function CommentCard({
+export default function CommentCard({
   dataComments,
 }: {
   dataComments: Comment[];

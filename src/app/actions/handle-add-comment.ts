@@ -13,19 +13,28 @@ export async function handleAddComment(formData: FormData) {
 
   if (!session) return redirect("/login");
 
-  const comment = formData.get("comment") as string;
-  const idReport = formData.get("reportId") as string;
+  try {
+    const comment = formData.get("comment") as string;
+    const idReport = formData.get("reportId") as string;
 
-  if (!comment.trim()) throw new Error("Comment cannot empty");
-  if (!idReport) throw new Error("Unknown report");
+    if (!comment.trim())
+      return { success: false, massage: "Comment cannot empty!" };
+    if (!idReport)
+      return { success: false, massage: "Something wrong, please try again" };
 
-  await prisma.comment.create({
-    data: {
-      comment,
-      commentBy: session.user.name,
-      userId: session.user.id,
-      reportId: idReport,
-    }
-  });
-  revalidatePath(`/report/${idReport}`);
+    await prisma.comment.create({
+      data: {
+        comment,
+        commentBy: session.user.name,
+        userId: session.user.id,
+        reportId: idReport,
+      },
+    });
+
+    revalidatePath(`/report/${idReport}`);
+    return { success: true, massage: "Successfully create comment" };
+  } catch (error) {
+    console.error(`Cannot create comment : ${error}`);
+    return { success: false, massage: "Cannot create comment, try again" };
+  }
 }

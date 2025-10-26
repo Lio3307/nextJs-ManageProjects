@@ -1,23 +1,26 @@
-import prisma from "@/lib/prisma";
-import SubmitForm from "../submit-form";
-import CommentCard from "./comment-card";
-import { handleAddComment } from "@/app/actions/handle-add-comment";
-import { Eye, MessageCircle, SendHorizonal } from "lucide-react";
+"use client";
 
-export default async function CommentForm({ reportId }: { reportId: string }) {
-  const commentReport = await prisma.comment.findMany({
-    where: {
-      reportId: reportId,
+import SubmitForm from "../submit-form";
+import { handleAddComment } from "@/app/actions/handle-add-comment";
+import { MessageCircle, SendHorizonal } from "lucide-react";
+import { toast } from "sonner";
+
+export default function CommentForm({ reportId }: { reportId: string }) {
+  const handleComment = async (formData: FormData) => {
+    const { success, massage } = await handleAddComment(formData);
+    if (success) {
+      toast.success(massage as string);
+    } else {
+      toast.error(massage as string);
     }
-  });
+  };
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <h3 className="text-lg font-bold text-gray-900">Comments</h3>
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
-            <Eye className="w-3 h-3 mr-1" />
-            <span>{commentReport.length > 0 ? commentReport.length : "0"}</span>
+            <MessageCircle className="w-3 h-3 mr-1" />
           </div>
         </div>
       </div>
@@ -25,11 +28,11 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
       <div className="border-t border-gray-200"></div>
 
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-        <form action={handleAddComment} className="space-y-4">
+        <form action={handleComment} className="space-y-4">
           <div className="flex items-center space-x-2 mb-4">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
             <h4 className="text-sm font-semibold text-gray-700">
-              Add a comment
+              Post Comment
             </h4>
           </div>
 
@@ -58,32 +61,6 @@ export default async function CommentForm({ reportId }: { reportId: string }) {
             />
           </div>
         </form>
-      </div>
-
-      <div className="space-y-4">
-        {commentReport.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
-            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mb-3">
-              <MessageCircle className="w-6 h-6 text-gray-400" />
-            </div>
-            <h5 className="text-sm font-medium text-gray-700 mb-1">
-              No comments yet
-            </h5>
-            <p className="text-xs text-gray-500 text-center">
-              Be the first to share your thoughts on this report
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <h4 className="text-sm font-semibold text-gray-700">
-                Discussion ({commentReport.length})
-              </h4>
-            </div>
-            <CommentCard dataComments={commentReport} />
-          </div>
-        )}
       </div>
     </div>
   );

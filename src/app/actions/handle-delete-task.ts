@@ -5,18 +5,27 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
 export async function handleDeleteTask(idTask: string) {
-  const getProjectId = await prisma.task.findUnique({
-    where: {
-      id: idTask,
-    },
-  });
+  try {
+    const getProjectId = await prisma.task.findUnique({
+      where: {
+        id: idTask,
+      },
+    });
 
-  await prisma.task.delete({
-    where: {
-      id: idTask,
-    },
-  });
+    await prisma.task.delete({
+      where: {
+        id: idTask,
+      },
+    });
 
-  revalidatePath(`/project/${getProjectId?.projectId}`);
-  return redirect(`/project/${getProjectId?.projectId}`);
+    try {
+      revalidatePath(`/project/${getProjectId?.projectId}`);
+      return redirect(`/project/${getProjectId?.projectId}`);
+    } finally {
+      return { success: true, massage: "Successfully delete task" };
+    }
+  } catch (error) {
+    console.error(`Cannot delete task : ${error}`);
+    return { success: false, massage: "Something wrong, please try again" };
+  }
 }

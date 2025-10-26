@@ -11,13 +11,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Clock, EllipsisVertical, FilePen, Paperclip, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function ActionProject({ idProject, inviteCode }: { idProject: string, inviteCode: string }) {
   const router = useRouter();
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this project?");
     if (!confirmDelete) return;
-    await handleDeleteProject(idProject);
+   const {success, massage} =  await handleDeleteProject(idProject);
+   if(success){
+    toast.success(massage as string)
+   } else {
+    toast.error(massage as string)
+   }
   };
 
   const handleCopyInviteCode = () => {

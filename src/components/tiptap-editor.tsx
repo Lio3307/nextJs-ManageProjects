@@ -25,6 +25,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import { ArrowLeft, Calendar, LayoutGrid, Plus } from "lucide-react";
+import { toast } from "sonner";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -83,6 +84,15 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
     immediatelyRender: false,
   });
 
+  const handleTask = async (formData: FormData) => {
+    const {success, massage} = await handleAddTask(formData)
+    if(success){
+      toast.success(massage as string)
+    }else {
+      toast.error(massage as string)
+    }
+  }
+
   return (
     <div className="w-full">
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
@@ -103,7 +113,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
         </div>
 
         <div className="p-6">
-          <form className="space-y-8" action={handleAddTask}>
+          <form className="space-y-8" action={handleTask}>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>

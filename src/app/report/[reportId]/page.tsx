@@ -6,6 +6,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import ActionReport from "@/components/action-button/action-report";
 import { Calendar, MessageCircle, Newspaper } from "lucide-react";
+import CommentCard from "@/components/comment-component/comment-card";
 
 export default async function ReportDetail({
   params,
@@ -23,23 +24,19 @@ export default async function ReportDetail({
     where: {
       id: reportId,
     },
+    include: {
+      task: true,
+      comment: true
+    },
   });
 
   if (!detailReport) {
     return <p>No report matches...</p>;
   }
 
-  const taskName = await prisma.task.findUnique({
-    where: {
-      id: detailReport.taskId,
-    },
-  });
-
-  if (!taskName) throw new Error("Unknown Task");
-
   const getProjectOwnerId = await prisma.project.findUnique({
     where: {
-      id: taskName.projectId,
+      id: detailReport.task.projectId,
     },
   });
 
@@ -52,7 +49,7 @@ export default async function ReportDetail({
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex-1">
               <BreadcrumbWithCustomSeparator
-                name={taskName.title}
+                name={detailReport.task.title}
                 link={`/task/${detailReport.taskId}`}
                 currentPageName="Report"
               />
@@ -144,7 +141,7 @@ export default async function ReportDetail({
         <div className="px-6 py-4 bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
-             <MessageCircle className="w-4 h-4 text-white" />
+              <MessageCircle className="w-4 h-4 text-white" />
             </div>
             <div>
               <h3 className="text-lg font-bold text-gray-900">
@@ -159,6 +156,10 @@ export default async function ReportDetail({
 
         <div className="px-6 py-6">
           <CommentForm reportId={reportId} />
+        </div>
+
+        <div className="px-6 py-6">
+          <CommentCard dataComments={detailReport.comment} />
         </div>
       </div>
     </div>

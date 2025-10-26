@@ -10,12 +10,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { EllipsisVertical, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function AcitonReport({ idReport }: { idReport: string }) {
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this report?");
     if (!confirmDelete) return;
-    await handleDeleteReport(idReport);
+    const { success, massage } = await handleDeleteReport(idReport);
+    if (success) {
+      toast.success(massage as string);
+    } else {
+      toast.error(massage as string);
+    }
   };
 
   return (

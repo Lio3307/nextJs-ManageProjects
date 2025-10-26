@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { handleAddProject } from "@/app/actions/handle-add-project"; 
+import { handleAddProject } from "@/app/actions/handle-add-project";
 import SubmitForm from "../submit-form";
 import { EyeOff, Plus, X } from "lucide-react";
 import {
@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { toast } from "sonner";
 
 export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   const [portal, setPortal] = useState<Element | null>(null);
@@ -28,10 +29,15 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
       alert("Input field cannot empty");
       return;
     }
-    try {
-      await handleAddProject(title, description, selectedVisibility);
-    } catch (error) {
-      throw new Error(`Error adding new data : ${error}`);
+    const { success, massage } = await handleAddProject(
+      title,
+      description,
+      selectedVisibility
+    );
+    if (success) {
+      toast.success(massage as string);
+    } else {
+      toast.error(massage as string);
     }
   };
 
@@ -73,7 +79,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
         </CardHeader>
 
         <CardContent className="px-6 pb-6">
-          <form action={handleSubmit} className="space-y-4"> 
+          <form action={handleSubmit} className="space-y-4">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="space-y-2 w-full">
                 <Label
@@ -100,7 +106,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                 </Label>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="flex items-center space-x-2">
-                     <EyeOff className="w-4 h-4 text-gray-500" />
+                    <EyeOff className="w-4 h-4 text-gray-500" />
                     <span className="text-sm font-medium text-gray-700">
                       Who can see this project?
                     </span>

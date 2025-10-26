@@ -1,12 +1,10 @@
-"use server"
+"use server";
 
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
-import { User } from "@prisma/client";
-
 
 export async function handleAddProject(
   title: string,
@@ -21,35 +19,30 @@ export async function handleAddProject(
     return redirect("/login");
   }
 
-  const latestProject = await prisma.project.create({
-    data: {
-      title: title,
-      description: description,
-      userId: session.user.id,
-      createdBy: session.user.name,
-      visibility,
-    },
-  });
+  try {
+    const latestProject = await prisma.project.create({
+      data: {
+        title: title,
+        description: description,
+        userId: session.user.id,
+        createdBy: session.user.name,
+        visibility,
+      },
+    });
 
-  const getMemberName = await prisma.user.findUnique({
-    where: {
-      id: latestProject.userId,
-    } as User,
-  });
+    await prisma.memberList.create({
+      data: {
+        memberList: session.user.name,
+        memberIdList: session.user.id,
+        projectId: latestProject.id,
+      },
+    });
 
-  if (!getMemberName) {
-    throw new Error("Invalid member name");
+    revalidatePath("/project-list");
+    revalidatePath("/");
+    return { success: true, massage: "Successfully create project" };
+  } catch (error) {
+    console.error(`Cannot add project : ${error}`);
+    return { success: false, massage: "Something wrong, please try again" };
   }
-
-  await prisma.memberList.create({
-    data: {
-      memberList: getMemberName?.name,
-      memberIdList: getMemberName?.id,
-      projectId: latestProject.id,
-    },
-  });
-
-  revalidatePath("/project-list");
-  revalidatePath("/");
-  return redirect(`/project/${latestProject.id}`);
 }

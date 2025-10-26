@@ -17,30 +17,33 @@ export async function handleAddReport(formData: FormData) {
     return redirect("/login");
   }
 
-  const title = formData.get("title") as string;
-  const description = formData.get("description") as string;
-  const idTask = formData.get("idTask") as string;
+  try {
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+    const idTask = formData.get("idTask") as string;
 
-  if (!title.trim() || !description.trim()) {
-    throw new Error("Title and description cannot empty");
-  }
-
-  await prisma.report.create({
-    data: {
-      title: title,
-      description: description,
-      createdBy: session.user.name,
-      userId: session.user.id,
-      taskId: idTask,
+    if (!title.trim() || !description.trim()) {
+      return { success: false, massage: "Title and description cannot empty" };
     }
-  });
 
-  if (referer) {
-    const url = new URL(referer);
-    revalidatePath(url.pathname);
-    return redirect(url.pathname);
+    await prisma.report.create({
+      data: {
+        title: title,
+        description: description,
+        createdBy: session.user.name,
+        userId: session.user.id,
+        taskId: idTask,
+      },
+    });
+
+    if (referer) {
+      const url = new URL(referer);
+      revalidatePath(url.pathname);
+    }
+
+    return { success: true, massage: "Successfully create report" };
+  } catch (error) {
+    console.error(`Cannot create new report : ${error}`);
+    return { success: false, massage: "Something wrong, please try again" };
   }
-
-  revalidatePath("/");
-  return redirect("/");
 }

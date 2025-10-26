@@ -7,6 +7,7 @@ import SubmitForm from "../submit-form";
 import { handleAddReport } from "@/app/actions/handle-add-report";
 import Link from "next/link";
 import { AlertTriangle, ChevronRight, File, MessageSquareWarning } from "lucide-react";
+import { toast } from "sonner";
 
 export default function ReportList({
   reportData,
@@ -15,6 +16,15 @@ export default function ReportList({
   reportData: Report[];
   idTask: string;
 }) {
+
+  const handleReport = async (formData: FormData) => {
+    const {success, massage} = await handleAddReport(formData)
+    if(success) {
+      toast.success(massage as string)
+    } else {
+      toast.error(massage as string)
+    }
+  }
   return (
     <div>
       <div className="bg-white rounded-sm shadow-lg border border-gray-200 overflow-hidden mb-8">
@@ -33,7 +43,7 @@ export default function ReportList({
         </div>
 
         <div className="px-6 py-6">
-          <form action={handleAddReport} className="space-y-6">
+          <form action={handleReport} className="space-y-6">
             <div className="flex justify-end">
               <SubmitForm buttonName="Submit Report" />
             </div>
