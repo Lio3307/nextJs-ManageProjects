@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function Loading() {
+export default function ProjectSkeleton() {
   return (
     <div className="p-4 max-w-7xl mx-auto space-y-8">
       <div className="flex flex-col p-4 lg:p-6 shadow-lg rounded-xl bg-white border border-gray-100">

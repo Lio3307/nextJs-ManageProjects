@@ -9,6 +9,8 @@ import { redirect } from "next/navigation";
 import ActionProject from "@/components/action-button/action-project";
 import { Clipboard, Globe, Lock } from "lucide-react";
 import JoinPublicProjectButton from "@/components/join-public-project-button/join-public-project";
+import { Suspense } from "react";
+import ProjectSkeleton from "@/components/loading-skeleton/project-skeleton";
 
 export default async function DetailProject({
   params,
@@ -49,6 +51,7 @@ export default async function DetailProject({
   }
 
   return (
+    <Suspense fallback={<ProjectSkeleton/>}>
     <div className="p-4 max-w-7xl mx-auto">
       <div className="flex flex-col p-4 lg:p-6 shadow-lg rounded-xl bg-background border border-gray-100">
         <div className="flex  sm:flex-row  justify-between sm:items-start gap-3 sm:gap-0">
@@ -185,5 +188,6 @@ export default async function DetailProject({
         </div>
       )}
     </div>
+    </Suspense>
   );
 }

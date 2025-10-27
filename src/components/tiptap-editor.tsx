@@ -96,9 +96,9 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
   return (
     <div className="w-full">
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
               <Plus className="w-4 h-4 text-white" />
             </div>
             <div>
@@ -116,7 +116,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
           <form className="space-y-8" action={handleTask}>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
                 <Label className="text-base sm:text-sm font-semibold text-gray-900">
                   Task Title
                 </Label>
@@ -138,7 +138,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
                   <Label className="text-base lg:text-sm font-semibold text-gray-900">
                     Task Description
                   </Label>
