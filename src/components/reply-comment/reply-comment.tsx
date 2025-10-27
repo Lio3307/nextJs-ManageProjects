@@ -10,12 +10,12 @@ export default function ReplyComment({ idComment }: { idComment: string }) {
 
   const handleReplyComment = async () => {
     if (!replyText.trim()) {
-      alert("Reply input cannot empty");
+      toast.error("Reply input cannot empty");
       return;
     }
 
     if (!idComment) {
-      alert("Cannot reply comment, maybe the comment already deleted");
+      toast.error("Cannot reply comment, maybe the comment already deleted");
       return;
     }
 

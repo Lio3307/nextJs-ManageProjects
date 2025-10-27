@@ -100,12 +100,16 @@ export default function EditTaskForm({
       return;
     }
 
-      const {success, message} = await handleUpdateTask(newTitle, content, taskId);
-      if(success){
-        toast.success(message as string)
-      } else {
-        toast.error(message as string)
-      }
+    const { success, message } = await handleUpdateTask(
+      newTitle,
+      content,
+      taskId
+    );
+    if (success) {
+      toast.success(message as string);
+    } else {
+      toast.error(message as string);
+    }
   };
 
   return (
@@ -114,7 +118,7 @@ export default function EditTaskForm({
         <div className="px-6 py-4 bg-gradient-to-r from-amber-50 to-orange-50 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
-             <SquarePen className="h-[0.9rem] w-[1rem] text-white" />
+              <SquarePen className="h-[0.9rem] w-[1rem] text-white" />
             </div>
             <div>
               <h2 className="text-xl lg:text-2xl font-bold text-gray-900">

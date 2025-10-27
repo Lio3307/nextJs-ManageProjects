@@ -26,7 +26,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
 
   const handleSubmit = async () => {
     if (!title.trim() || !description.trim()) {
-      alert("Input field cannot empty");
+      toast.error("Input field cannot empty");
       return;
     }
     const { success, message } = await handleAddProject(
