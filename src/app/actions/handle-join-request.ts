@@ -44,10 +44,8 @@ export async function actionRequest(formData: FormData) {
       });
       revalidatePath(`/project/${idProject}/request`);
       revalidatePath("/join-status");
-      return {success: true, message: "Request Accepted!"}
     } catch (error) {
       console.error(`Cannot adding user to project : ${error}`)
-      return {success: false, message: "Something wrong, please try again"}
     }
   } else {
     try {
@@ -66,10 +64,8 @@ export async function actionRequest(formData: FormData) {
       });
       revalidatePath(`/project/${idProject}/request`);
       revalidatePath("/join-status");
-      return {success: true, message: "Rejected request!"}
     } catch (error) {
       console.error(`Cannot update status of join : ${error}`)
-      return {success: false, message: "Something wrong, please try again"}
     }
   }
 

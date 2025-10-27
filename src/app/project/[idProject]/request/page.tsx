@@ -1,9 +1,11 @@
-import { actionRequest } from "@/app/actions";
+import { actionRequest } from "@/app/actions/handle-join-request"; 
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import { Users, Check, X, Info } from "lucide-react";
+import { Suspense } from "react";
+import JoinRequestSkeleton from "@/components/loading-skeleton/request-join-skeleton";
 
 export default async function RequestJoinList({
   params,
@@ -39,6 +41,7 @@ export default async function RequestJoinList({
   });
 
   return (
+    <Suspense fallback={<JoinRequestSkeleton/>}>
     <div className="min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -168,5 +171,6 @@ export default async function RequestJoinList({
         </div>
       </div>
     </div>
+    </Suspense>
   );
 }

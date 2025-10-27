@@ -5,6 +5,8 @@ import prisma from "@/lib/prisma";
 import { Crown, UserRound, Users } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import MemberListSkeleton from "@/components/loading-skeleton/member-list-skeleron";
 
 export default async function MemberList({
   params,
@@ -31,6 +33,7 @@ export default async function MemberList({
   });
 
   return (
+    <Suspense fallback={<MemberListSkeleton/>}>
     <div className="p-4 lg:p-6 max-w-4xl mx-auto">
       <BreadcrumbWithCustomSeparator
         link={`/project/${idProject}`}
@@ -122,5 +125,6 @@ export default async function MemberList({
         )}
       </div>
     </div>
+    </Suspense>
   );
 }
