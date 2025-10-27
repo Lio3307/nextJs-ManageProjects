@@ -10,17 +10,27 @@ export async function handleUpdateProject(
   idProject: string,
   newVisibility: string
 ) {
-  await prisma.project.update({
-    where: {
-      id: idProject,
-    },
-    data: {
-      title: newTitle,
-      description: newDesc,
-      visibility: newVisibility,
-    },
-  });
-
-  revalidatePath(`/project/${idProject}`);
-  return redirect(`/project/${idProject}`);
+  try {
+    
+    await prisma.project.update({
+      where: {
+        id: idProject,
+      },
+      data: {
+        title: newTitle,
+        description: newDesc,
+        visibility: newVisibility,
+      },
+    });
+  
+    try{
+      revalidatePath(`/project/${idProject}`);
+      return {success: true, message: "Project Updated!"}
+    }finally{
+      return redirect(`/project/${idProject}`);
+    }
+  } catch (error) {
+    console.error(`Cannot update project : ${error}`)
+    return {success: false, message: "Something wrong, please try again"}
+  }
 }

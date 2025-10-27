@@ -18,11 +18,11 @@ export default function ReportList({
 }) {
 
   const handleReport = async (formData: FormData) => {
-    const {success, massage} = await handleAddReport(formData)
+    const {success, message} = await handleAddReport(formData)
     if(success) {
-      toast.success(massage as string)
+      toast.success(message as string)
     } else {
-      toast.error(massage as string)
+      toast.error(message as string)
     }
   }
   return (

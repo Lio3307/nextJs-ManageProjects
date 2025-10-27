@@ -7,11 +7,11 @@ import { toast } from "sonner";
 
 export default function CommentForm({ reportId }: { reportId: string }) {
   const handleComment = async (formData: FormData) => {
-    const { success, massage } = await handleAddComment(formData);
+    const { success, message } = await handleAddComment(formData);
     if (success) {
-      toast.success(massage as string);
+      toast.success(message as string);
     } else {
-      toast.error(massage as string);
+      toast.error(message as string);
     }
   };
   return (

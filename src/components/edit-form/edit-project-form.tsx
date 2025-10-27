@@ -8,7 +8,7 @@ import SubmitForm from "../submit-form";
 import { buttonVariants } from "../ui/button";
 import { ArrowLeftFromLine, Eye, Info, Lock } from "lucide-react";
 import Link from "next/link";
-import { handleUpdateProject } from "@/app/actions/handle-update-project"; 
+import { handleUpdateProject } from "@/app/actions/handle-update-project";
 import {
   Select,
   SelectContent,
@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { toast } from "sonner";
 
 export default function EditFormProject({
   selectedData,
@@ -29,17 +30,17 @@ export default function EditFormProject({
   );
 
   const handleSubmit = async () => {
-    try {
-      await handleUpdateProject(
-        newTitle,
-        newDesc,
-        selectedData.id,
-        newVisibilityType
-      );
-    } catch (error) {
-      throw new Error(`Something error ${error}`);
-    } finally {
-      alert("Successfully updated the project");
+    const { success, message } = await handleUpdateProject(
+      newTitle,
+      newDesc,
+      selectedData.id,
+      newVisibilityType
+    );
+
+    if (success) {
+      toast.success(message as string);
+    } else {
+      toast.error(message as string);
     }
   };
 
@@ -58,7 +59,6 @@ export default function EditFormProject({
         <div className="p-6">
           <form action={handleSubmit} className="space-y-8">
             <div className="md:flex hidden  md:flex-col sm:flex-row justify-end gap-3">
-              
               <SubmitForm buttonName="Update" />
               <Link
                 href={`/project/${selectedData.id}`}
@@ -87,9 +87,7 @@ export default function EditFormProject({
                   required
                 />
                 {newTitle && (
-                  <p className="text-xs text-gray-500">
-                    {newTitle.length}
-                  </p>
+                  <p className="text-xs text-gray-500">{newTitle.length}</p>
                 )}
               </div>
 
@@ -121,7 +119,7 @@ export default function EditFormProject({
                     </SelectItem>
                     <SelectItem value="Private">
                       <Lock />
-                        <span>Private - Only members can view</span>
+                      <span>Private - Only members can view</span>
                     </SelectItem>
                   </SelectContent>
                 </Select>

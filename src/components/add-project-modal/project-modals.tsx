@@ -29,15 +29,15 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
       alert("Input field cannot empty");
       return;
     }
-    const { success, massage } = await handleAddProject(
+    const { success, message } = await handleAddProject(
       title,
       description,
       selectedVisibility
     );
     if (success) {
-      toast.success(massage as string);
+      toast.success(message as string);
     } else {
-      toast.error(massage as string);
+      toast.error(message as string);
     }
   };
 

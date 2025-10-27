@@ -85,11 +85,11 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
   });
 
   const handleTask = async (formData: FormData) => {
-    const {success, massage} = await handleAddTask(formData)
+    const {success, message} = await handleAddTask(formData)
     if(success){
-      toast.success(massage as string)
+      toast.success(message as string)
     }else {
-      toast.error(massage as string)
+      toast.error(message as string)
     }
   }
 

@@ -2,10 +2,11 @@
 
 import { MemberList, Project, RequestJoin } from "@prisma/client";
 import { useState } from "react";
-import { joinProjectButton } from "@/app/actions/handle-join-project";
+import { joinProjectByCode } from "@/app/actions/handle-join-project";
 import { searchProject } from "@/app/actions/handle-search-project";
 import SubmitForm from "@/components/submit-form";
 import { User, XCircle } from "lucide-react";
+import { toast } from "sonner";
 
 export default function InviteProject({ userId }: { userId: string }) {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -34,6 +35,15 @@ export default function InviteProject({ userId }: { userId: string }) {
       setMessage("Project not found, please check the invite code");
     }
   };
+
+  const handleJoin = async (formData: FormData) => {
+    const {success, message} = await joinProjectByCode(formData)
+    if(success) {
+      toast.success(message as string)
+    } else {
+      toast.error(message as string)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
@@ -71,7 +81,7 @@ export default function InviteProject({ userId }: { userId: string }) {
 
           {project && (
             <div className="mt-8 border-2 border-gray-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
-              <form action={joinProjectButton}>
+              <form action={handleJoin}>
                 <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-8">
                   <div className="flex items-start justify-between mb-4">
                     <h3

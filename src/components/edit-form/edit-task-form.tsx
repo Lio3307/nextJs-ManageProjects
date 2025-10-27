@@ -25,6 +25,7 @@ import Link from "next/link";
 import { Info, SquarePen, X } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import { handleUpdateTask } from "@/app/actions/handle-update-task";
+import { toast } from "sonner";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -95,15 +96,16 @@ export default function EditTaskForm({
 
   const updateTaskHandler = async () => {
     if (!newTitle.trim() || !newTitle || !content.trim() || !content) {
-      alert("Input Field cannot empty");
+      toast.error("Input Field cannot empty");
       return;
     }
 
-    try {
-      await handleUpdateTask(newTitle, content, taskId);
-    } catch (error) {
-      throw new Error(`Cannot update current task ${error}`);
-    }
+      const {success, message} = await handleUpdateTask(newTitle, content, taskId);
+      if(success){
+        toast.success(message as string)
+      } else {
+        toast.error(message as string)
+      }
   };
 
   return (

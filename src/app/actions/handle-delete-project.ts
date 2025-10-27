@@ -14,12 +14,12 @@ export async function handleDeleteProject(idProject: string) {
 
     try {
       revalidatePath("/");
-      return redirect("/");
+      return { success: true, message: "Successfully delete project" };
     } finally {
-      return { success: true, massage: "Successfully delete project" };
+      return redirect("/");
     }
   } catch (error) {
     console.error(`Cannot delete project : ${error}`);
-    return { success: false, massage: "Something wrong, please try again" };
+    return { success: false, message: "Something wrong, please try again" };
   }
 }

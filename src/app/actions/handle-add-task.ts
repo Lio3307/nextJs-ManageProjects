@@ -21,7 +21,7 @@ export async function handleAddTask(formData: FormData) {
     const projectId = formData.get("projectId") as string;
 
     if (!title.trim() || !content.trim()) {
-      return { success: false, massage: "Title and content are required" };
+      return { success: false, message: "Title and content are required" };
     }
 
     await prisma.task.create({
@@ -35,12 +35,12 @@ export async function handleAddTask(formData: FormData) {
     });
     try {
       revalidatePath(`/project/${projectId}`);
-      return redirect(`/project/${projectId}`);
+      return { succxess: true, message: "Successfully create task" };
     } finally {
-      return { success: true, massage: "Successfully create task" };
+      return redirect(`/project/${projectId}`);
     }
   } catch (error) {
     console.error(`Cannot create task : ${error}`);
-    return { success: false, massage: "Something wrong, please try again" };
+    return { success: false, message: "Something wrong, please try again" };
   }
 }

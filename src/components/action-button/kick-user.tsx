@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ArrowRightFromLine, EllipsisVertical } from "lucide-react";
+import { toast } from "sonner";
 
 export default function KickMember({
   idUser,
@@ -23,12 +24,12 @@ export default function KickMember({
   const handleKick = async () => {
     const confirmKick = confirm("Are you sure want to kick this member?");
     if (!confirmKick) return;
-    try {
-        await kickUser(idUser, idMemberList, idProject)
-        alert('Successfully kick member')
-    } catch (error) {
-        throw new Error(`Cannot kick member : ${error}`)
-    }
+       const {success, message} = await kickUser(idUser, idMemberList, idProject)
+       if(success){
+        toast.success(message)
+       } else {
+        toast.error(message)
+       }
   };
 
   return (

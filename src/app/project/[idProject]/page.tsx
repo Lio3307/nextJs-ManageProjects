@@ -8,8 +8,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import ActionProject from "@/components/action-button/action-project";
 import { Clipboard, Globe, Lock } from "lucide-react";
-import SubmitForm from "@/components/submit-form";
-import { joinPublicProject } from "@/app/actions/handle-join-public-project";
+import JoinPublicProjectButton from "@/components/join-public-project-button/join-public-project";
 
 export default async function DetailProject({
   params,
@@ -145,11 +144,10 @@ export default async function DetailProject({
 
           {session.user.id !== memberList?.memberIdList &&
           dataProject.visibility === "Public" ? (
-            <form action={joinPublicProject}>
-              <input type="hidden" name="user-id" value={session.user.id} />
-              <input type="hidden" name="id-project" value={idProject} />
-              <SubmitForm buttonName="Join Project" />
-            </form>
+            <JoinPublicProjectButton
+              userId={session.user.id}
+              idProject={idProject}
+            />
           ) : null}
         </div>
       </div>

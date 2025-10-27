@@ -18,44 +18,59 @@ export async function actionRequest(formData: FormData) {
         id: userId,
       },
     });
-    await prisma.memberList.create({
-      data: {
-        projectId: idProject,
-        memberIdList: userId,
-        memberList: user!.name,
-      },
-    });
-
-    await prisma.joinStatus.update({
-      where: {
-        id: joinStatusId,
-      },
-      data: {
-        status: "Accepted",
-      },
-    });
-
-    await prisma.requestJoin.delete({
-      where: {
-        id: idRequest,
-      },
-    });
+    try {
+      
+      await prisma.memberList.create({
+        data: {
+          projectId: idProject,
+          memberIdList: userId,
+          memberList: user!.name,
+        },
+      });
+  
+      await prisma.joinStatus.update({
+        where: {
+          id: joinStatusId,
+        },
+        data: {
+          status: "Accepted",
+        },
+      });
+      
+      await prisma.requestJoin.delete({
+        where: {
+          id: idRequest,
+        },
+      });
+      revalidatePath(`/project/${idProject}/request`);
+      revalidatePath("/join-status");
+      return {success: true, message: "Request Accepted!"}
+    } catch (error) {
+      console.error(`Cannot adding user to project : ${error}`)
+      return {success: false, message: "Something wrong, please try again"}
+    }
   } else {
-    await prisma.joinStatus.create({
-      data: {
-        idProject,
-        userId,
-        status: "Rejected",
-      },
-    });
-
-    await prisma.requestJoin.delete({
-      where: {
-        id: idRequest,
-      },
-    });
+    try {
+      await prisma.joinStatus.create({
+        data: {
+          idProject,
+          userId,
+          status: "Rejected",
+        },
+      });
+  
+      await prisma.requestJoin.delete({
+        where: {
+          id: idRequest,
+        },
+      });
+      revalidatePath(`/project/${idProject}/request`);
+      revalidatePath("/join-status");
+      return {success: true, message: "Rejected request!"}
+    } catch (error) {
+      console.error(`Cannot update status of join : ${error}`)
+      return {success: false, message: "Something wrong, please try again"}
+    }
   }
 
-  revalidatePath(`/project/${idProject}/request`);
-  revalidatePath("/join-status");
 }

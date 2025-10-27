@@ -23,7 +23,7 @@ export async function handleAddReport(formData: FormData) {
     const idTask = formData.get("idTask") as string;
 
     if (!title.trim() || !description.trim()) {
-      return { success: false, massage: "Title and description cannot empty" };
+      return { success: false, message: "Title and description cannot empty" };
     }
 
     await prisma.report.create({
@@ -41,9 +41,9 @@ export async function handleAddReport(formData: FormData) {
       revalidatePath(url.pathname);
     }
 
-    return { success: true, massage: "Successfully create report" };
+    return { success: true, message: "Successfully create report" };
   } catch (error) {
     console.error(`Cannot create new report : ${error}`);
-    return { success: false, massage: "Something wrong, please try again" };
+    return { success: false, message: "Something wrong, please try again" };
   }
 }

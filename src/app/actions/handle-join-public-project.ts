@@ -4,21 +4,28 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
 export async function joinPublicProject(formData: FormData) {
-  const idProject = formData.get("id-project") as string;
-  const userId = formData.get("user-id") as string;
-
-  const getUserName = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-
-  await prisma.memberList.create({
-    data: {
-      projectId: idProject,
-      memberIdList: userId,
-      memberList: getUserName!.name,
-    },
-  });
-  revalidatePath(`/project/${idProject}`);
+  try {
+    const idProject = formData.get("id-project") as string;
+    const userId = formData.get("user-id") as string;
+  
+    const getUserName = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+  
+    await prisma.memberList.create({
+      data: {
+        projectId: idProject,
+        memberIdList: userId,
+        memberList: getUserName!.name,
+      },
+    });
+    revalidatePath(`/project/${idProject}`);
+    return {success: true, message: "Successfully join project"}
+  } catch (error) {
+    console.error(`Cannot join project: ${error}`)
+    return {success: false, message: "Something wrong, please try again"}
+    
+  }
 }

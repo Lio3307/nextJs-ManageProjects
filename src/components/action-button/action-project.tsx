@@ -18,20 +18,21 @@ export default function ActionProject({ idProject, inviteCode }: { idProject: st
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this project?");
     if (!confirmDelete) return;
-   const {success, massage} =  await handleDeleteProject(idProject);
+   const {success, message} =  await handleDeleteProject(idProject);
    if(success){
-    toast.success(massage as string)
+    toast.success(message as string)
    } else {
-    toast.error(massage as string)
+    toast.error(message as string)
    }
   };
 
   const handleCopyInviteCode = () => {
     try {
       navigator.clipboard.writeText(inviteCode)
-      alert("Invite code copied to clipboard")
+      toast.success("Invite code copied to clipboard")
     } catch (error) {
       console.error("Failed to copy the  invite code", error)
+      toast.error("Cannot copy code, please try again")
     }
   }
 

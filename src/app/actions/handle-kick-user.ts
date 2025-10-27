@@ -8,12 +8,18 @@ export async function kickUser(
   idMemberList: string,
   idProject: string
 ) {
-  await prisma.memberList.delete({
-    where: {
-      id: idMemberList,
-      memberIdList: idMember,
-    },
-  });
-
-  revalidatePath(`/project/${idProject}/member`);
+  try {
+    await prisma.memberList.delete({
+      where: {
+        id: idMemberList,
+        memberIdList: idMember,
+      },
+    });
+  
+    revalidatePath(`/project/${idProject}/member`);
+    return {success: true, message: "Member kicked!"}
+  } catch (error) {
+    console.error(`Cannot kick user : ${error}`)
+    return {success: false, message: "Something wrong, please try again"}
+  }
 }

@@ -18,9 +18,9 @@ export async function handleAddComment(formData: FormData) {
     const idReport = formData.get("reportId") as string;
 
     if (!comment.trim())
-      return { success: false, massage: "Comment cannot empty!" };
+      return { success: false, message: "Comment cannot empty!" };
     if (!idReport)
-      return { success: false, massage: "Something wrong, please try again" };
+      return { success: false, message: "Something wrong, please try again" };
 
     await prisma.comment.create({
       data: {
@@ -32,9 +32,9 @@ export async function handleAddComment(formData: FormData) {
     });
 
     revalidatePath(`/report/${idReport}`);
-    return { success: true, massage: "Successfully create comment" };
+    return { success: true, message: "Successfully create comment" };
   } catch (error) {
     console.error(`Cannot create comment : ${error}`);
-    return { success: false, massage: "Cannot create comment, try again" };
+    return { success: false, message: "Cannot create comment, try again" };
   }
 }

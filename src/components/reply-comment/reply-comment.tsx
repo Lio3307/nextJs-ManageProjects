@@ -2,6 +2,7 @@
 import { useState } from "react";
 import SubmitForm from "../submit-form";
 import { handleAddReplyComment } from "@/app/actions/handle-reply-comment"; 
+import { toast } from "sonner";
 
 export default function ReplyComment({ idComment }: { idComment: string }) {
   const [replyText, setReplyText] = useState<string>("");
@@ -18,12 +19,13 @@ export default function ReplyComment({ idComment }: { idComment: string }) {
       return;
     }
 
-    try {
-      await handleAddReplyComment(idComment, replyText);
-    } catch (error) {
-      throw new Error(`cannot reply comment,${error}`);
+     const {success, message} = await handleAddReplyComment(idComment, replyText);
+    if(success){
+      toast.success(message as string)
+    } else {
+      toast.error(message as string)
     }
-  };
+    };
 
 
  return (

@@ -9,16 +9,26 @@ export async function handleUpdateTask(
   newContent: string,
   idTask: string
 ) {
-  await prisma.task.update({
-    where: {
-      id: idTask,
-    },
-    data: {
-      title: newTitle,
-      content: newContent,
-    },
-  });
-
-  revalidatePath(`/task/${idTask}`);
-  return redirect(`/task/${idTask}`);
+  try {
+    
+    await prisma.task.update({
+      where: {
+        id: idTask,
+      },
+      data: {
+        title: newTitle,
+        content: newContent,
+      },
+    });
+  
+    try{
+      revalidatePath(`/task/${idTask}`);
+      return {success: true, message: "Task Updated!"}
+    }finally{
+      return redirect(`/task/${idTask}`);
+    }
+  } catch (error) { 
+    console.error(`Cannot update task : ${error}`)
+    return {success: false, message: "Something wrong, please try again"}
+  }
 }

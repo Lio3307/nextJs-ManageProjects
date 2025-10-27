@@ -16,11 +16,11 @@ export default function AcitonReport({ idReport }: { idReport: string }) {
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this report?");
     if (!confirmDelete) return;
-    const { success, massage } = await handleDeleteReport(idReport);
+    const { success, message } = await handleDeleteReport(idReport);
     if (success) {
-      toast.success(massage as string);
+      toast.success(message as string);
     } else {
-      toast.error(massage as string);
+      toast.error(message as string);
     }
   };
 

@@ -20,11 +20,11 @@ export default function ActionTask({ idTask }: { idTask: string }) {
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this Task?");
     if (!confirmDelete) return;
-    const { success, massage } = await handleDeleteTask(idTask);
+    const { success, message } = await handleDeleteTask(idTask);
     if (success) {
-      toast.success(massage as string);
+      toast.success(message as string);
     } else {
-      toast.error(massage as string);
+      toast.error(message as string);
     }
   };
 

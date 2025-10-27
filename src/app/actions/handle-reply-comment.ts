@@ -16,24 +16,32 @@ export async function handleAddReplyComment(
 
   if (!session) return redirect("/login");
 
-  if (!replyText || !idComment) throw new Error("Cannot reply the comment");
+  try {
+    
+    if (!idComment) return {success: false, message: "Something wrong, please try again"};
+  
+    await prisma.replyComment.create({
+      data: {
+        commentId: idComment,
+        userId: session.user.id,
+        replyText,
+      }
+    });
+  
+    const getComment = await prisma.comment.findUnique({
+      where: {
+        id: idComment,
+      },
+      include: {
+        report: true,
+      },
+    });
+  
+    revalidatePath(`/report/${getComment?.reportId}`);
+    return {success: true, message: "Replyed comment!"}
+  } catch (error) {
+    console.error(`Cannot reply comment : ${error}`)
+    return {success: false, message: "Something wrong, please try again"}
+  }
 
-  await prisma.replyComment.create({
-    data: {
-      commentId: idComment,
-      userId: session.user.id,
-      replyText,
-    }
-  });
-
-  const getComment = await prisma.comment.findUnique({
-    where: {
-      id: idComment,
-    },
-    include: {
-      report: true,
-    },
-  });
-
-  revalidatePath(`/report/${getComment?.reportId}`);
 }
