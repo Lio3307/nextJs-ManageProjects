@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
@@ -12,12 +11,8 @@ export async function handleDeleteProject(idProject: string) {
       },
     });
 
-    try {
-      revalidatePath("/");
-      return { success: true, message: "Successfully delete project" };
-    } finally {
-      return redirect("/");
-    }
+    revalidatePath("/");
+    return { success: true, message: "Successfully delete project" };
   } catch (error) {
     console.error(`Cannot delete project : ${error}`);
     return { success: false, message: "Something wrong, please try again" };

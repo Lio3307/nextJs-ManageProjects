@@ -14,7 +14,13 @@ import { EllipsisVertical, FilePen, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export default function ActionTask({ idTask }: { idTask: string }) {
+export default function ActionTask({
+  idTask,
+  idProject,
+}: {
+  idTask: string;
+  idProject: string;
+}) {
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -23,6 +29,7 @@ export default function ActionTask({ idTask }: { idTask: string }) {
     const { success, message } = await handleDeleteTask(idTask);
     if (success) {
       toast.success(message as string);
+      router.replace(`/project/${idProject}`);
     } else {
       toast.error(message as string);
     }

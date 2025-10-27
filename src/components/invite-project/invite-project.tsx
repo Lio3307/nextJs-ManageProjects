@@ -7,6 +7,7 @@ import { searchProject } from "@/app/actions/handle-search-project";
 import SubmitForm from "@/components/submit-form";
 import { User, XCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function InviteProject({ userId }: { userId: string }) {
   const [searchValue, setSearchValue] = useState<string>("");
@@ -15,6 +16,8 @@ export default function InviteProject({ userId }: { userId: string }) {
   const [member, setMember] = useState<MemberList | null>(null);
   const [alreadySendRequest, setAlreadySendRequest] =
     useState<RequestJoin | null>(null);
+
+  const router = useRouter();
 
   const handleSearch = async () => {
     if (!searchValue.trim()) return;
@@ -37,13 +40,14 @@ export default function InviteProject({ userId }: { userId: string }) {
   };
 
   const handleJoin = async (formData: FormData) => {
-    const {success, message} = await joinProjectByCode(formData)
-    if(success) {
-      toast.success(message as string)
+    const { success, message } = await joinProjectByCode(formData);
+    if (success) {
+      toast.success(message as string);
+      router.replace("/join-status");
     } else {
-      toast.error(message as string)
+      toast.error(message as string);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">

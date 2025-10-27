@@ -38,13 +38,9 @@ export async function handleAddProject(
       },
     });
 
-    try{
-      revalidatePath("/project-list");
-      revalidatePath("/");
-      return { success: true, message: "Successfully create project" };
-    }finally{
-      return redirect(`/project/${latestProject.id}`)
-    }
+    revalidatePath("/project-list");
+    revalidatePath("/");
+    return { success: true, message: "Successfully create project" };
   } catch (error) {
     console.error(`Cannot add project : ${error}`);
     return { success: false, message: "Something wrong, please try again" };

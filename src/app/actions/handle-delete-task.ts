@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
@@ -18,12 +17,8 @@ export async function handleDeleteTask(idTask: string) {
       },
     });
 
-    try {
-      revalidatePath(`/project/${getProjectId?.projectId}`);
-      return { suxccess: true, message: "Successfully delete task" };
-    } finally {
-      return redirect(`/project/${getProjectId?.projectId}`);
-    }
+    revalidatePath(`/project/${getProjectId?.projectId}`);
+    return { suxccess: true, message: "Successfully delete task" };
   } catch (error) {
     console.error(`Cannot delete task : ${error}`);
     return { success: false, message: "Something wrong, please try again" };

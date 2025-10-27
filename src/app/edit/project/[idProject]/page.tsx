@@ -1,8 +1,10 @@
 import EditFormProject from "@/components/edit-form/edit-project-form";
+import EditProjectSkeleton from "@/components/loading-skeleton/edit-project-skeleton";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export default async function UpdateProject({
   params,
@@ -26,6 +28,8 @@ export default async function UpdateProject({
   if (session.user.id !== selectedProject?.userId) return notFound();
 
   return (
+    <Suspense fallback={<EditProjectSkeleton/>}>
     <EditFormProject selectedData={selectedProject}/>
+    </Suspense>
   )
 }

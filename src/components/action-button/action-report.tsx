@@ -10,15 +10,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { EllipsisVertical, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export default function AcitonReport({ idReport }: { idReport: string }) {
+export default function AcitonReport({
+  idReport,
+  idTask,
+}: {
+  idReport: string;
+  idTask: string;
+}) {
+  const router = useRouter();
+
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this report?");
     if (!confirmDelete) return;
     const { success, message } = await handleDeleteReport(idReport);
     if (success) {
       toast.success(message as string);
+      router.replace(`/task/${idTask}`);
     } else {
       toast.error(message as string);
     }

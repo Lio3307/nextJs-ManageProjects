@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
@@ -11,7 +10,6 @@ export async function handleUpdateProject(
   newVisibility: string
 ) {
   try {
-    
     await prisma.project.update({
       where: {
         id: idProject,
@@ -22,15 +20,11 @@ export async function handleUpdateProject(
         visibility: newVisibility,
       },
     });
-  
-    try{
-      revalidatePath(`/project/${idProject}`);
-      return {success: true, message: "Project Updated!"}
-    }finally{
-      return redirect(`/project/${idProject}`);
-    }
+
+    revalidatePath(`/project/${idProject}`);
+    return { success: true, message: "Project Updated!" };
   } catch (error) {
-    console.error(`Cannot update project : ${error}`)
-    return {success: false, message: "Something wrong, please try again"}
+    console.error(`Cannot update project : ${error}`);
+    return { success: false, message: "Something wrong, please try again" };
   }
 }

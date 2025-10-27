@@ -18,7 +18,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import BulletList from "@tiptap/extension-bullet-list";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "./ui/input";
-import { handleAddTask } from "@/app/actions/handle-add-task"; 
+import { handleAddTask } from "@/app/actions/handle-add-task";
 import { useState } from "react";
 import SubmitForm from "./submit-form";
 import clsx from "clsx";
@@ -26,6 +26,7 @@ import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import { ArrowLeft, Calendar, LayoutGrid, Plus } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -84,14 +85,17 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
     immediatelyRender: false,
   });
 
+  const router = useRouter();
+
   const handleTask = async (formData: FormData) => {
-    const {success, message} = await handleAddTask(formData)
-    if(success){
-      toast.success(message as string)
-    }else {
-      toast.error(message as string)
+    const { success, message } = await handleAddTask(formData);
+    if (success) {
+      toast.success(message as string);
+      router.replace(`/project/${idProject}`);
+    } else {
+      toast.error(message as string);
     }
-  }
+  };
 
   return (
     <div className="w-full">

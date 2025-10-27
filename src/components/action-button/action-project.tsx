@@ -1,6 +1,6 @@
 "use client";
 
-import { handleDeleteProject } from "@/app/actions/handle-delete-project"; 
+import { handleDeleteProject } from "@/app/actions/handle-delete-project";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,32 +9,45 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Clock, EllipsisVertical, FilePen, Paperclip, Trash2 } from "lucide-react";
+import {
+  Clock,
+  EllipsisVertical,
+  FilePen,
+  Paperclip,
+  Trash2,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export default function ActionProject({ idProject, inviteCode }: { idProject: string, inviteCode: string }) {
+export default function ActionProject({
+  idProject,
+  inviteCode,
+}: {
+  idProject: string;
+  inviteCode: string;
+}) {
   const router = useRouter();
   const handleDelete = async () => {
     const confirmDelete = confirm("Are you sure want to delete this project?");
     if (!confirmDelete) return;
-   const {success, message} =  await handleDeleteProject(idProject);
-   if(success){
-    toast.success(message as string)
-   } else {
-    toast.error(message as string)
-   }
+    const { success, message } = await handleDeleteProject(idProject);
+    if (success) {
+      toast.success(message as string);
+      router.replace("/");
+    } else {
+      toast.error(message as string);
+    }
   };
 
   const handleCopyInviteCode = () => {
     try {
-      navigator.clipboard.writeText(inviteCode)
-      toast.success("Invite code copied to clipboard")
+      navigator.clipboard.writeText(inviteCode);
+      toast.success("Invite code copied to clipboard");
     } catch (error) {
-      console.error("Failed to copy the  invite code", error)
-      toast.error("Cannot copy code, please try again")
+      console.error("Failed to copy the  invite code", error);
+      toast.error("Cannot copy code, please try again");
     }
-  }
+  };
 
   return (
     <DropdownMenu>
@@ -69,7 +82,7 @@ export default function ActionProject({ idProject, inviteCode }: { idProject: st
           <span className="text-xs text-gray-600"> Copy invite code</span>
         </DropdownMenuItem>
         <DropdownMenuItem
-        onClick={() => router.push(`/project/${idProject}/request`)}
+          onClick={() => router.push(`/project/${idProject}/request`)}
           className="text-sky-600 focus:text-sky-600"
         >
           <Clock className="text-gray-600 mr-1 h-2 w-2" />

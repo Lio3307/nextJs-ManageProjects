@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import DetailedTask from "../detailed-task/detail-task";
 import ReportList from "../report-list/report-list";
 import type { Task, Report } from "@prisma/client";
+import DetailedTaskSkeleton from "../loading-skeleton/detailed-task-skeleton";
 
 export default function TaskNav({
   idTask,
@@ -44,7 +45,9 @@ export default function TaskNav({
 
       <div className="mt-6">
         {currentNav === "Task" ? (
-          <DetailedTask detailedTask={taskData} />
+          <Suspense fallback={<DetailedTaskSkeleton/>}>
+            <DetailedTask detailedTask={taskData} />
+          </Suspense>
         ) : (
           <ReportList idTask={idTask} reportData={reportData} />
         )}

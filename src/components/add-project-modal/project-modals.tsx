@@ -16,12 +16,16 @@ import {
   SelectValue,
 } from "../ui/select";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   const [portal, setPortal] = useState<Element | null>(null);
-  const [selectedVisibility, setSelectedVisibility] = useState<string>("Public");
+  const [selectedVisibility, setSelectedVisibility] =
+    useState<string>("Public");
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+
+  const router = useRouter();
 
   const handleSubmit = async () => {
     if (!title.trim() || !description.trim()) {
@@ -35,6 +39,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
     );
     if (success) {
       toast.success(message as string);
+      router.replace("/project-list");
     } else {
       toast.error(message as string);
     }

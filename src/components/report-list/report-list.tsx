@@ -8,6 +8,8 @@ import { handleAddReport } from "@/app/actions/handle-add-report";
 import Link from "next/link";
 import { AlertTriangle, ChevronRight, File, MessageSquareWarning } from "lucide-react";
 import { toast } from "sonner";
+import { Suspense } from "react";
+import ReportListSkeleton from "../loading-skeleton/report-list-skeleton";
 
 export default function ReportList({
   reportData,
@@ -26,7 +28,7 @@ export default function ReportList({
     }
   }
   return (
-    <div>
+    <Suspense fallback={<ReportListSkeleton/>}>
       <div className="bg-white rounded-sm shadow-lg border border-gray-200 overflow-hidden mb-8">
         <div className="px-6 py-4 bg-gray-200">
           <div className="flex items-center space-x-3">
@@ -188,6 +190,6 @@ export default function ReportList({
           </div>
         )}
       </div>
-    </div>
+    </Suspense>
   );
 }

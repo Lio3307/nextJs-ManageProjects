@@ -26,6 +26,7 @@ import { Info, SquarePen, X } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import { handleUpdateTask } from "@/app/actions/handle-update-task";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -94,6 +95,8 @@ export default function EditTaskForm({
     immediatelyRender: false,
   });
 
+  const router = useRouter()
+
   const updateTaskHandler = async () => {
     if (!newTitle.trim() || !newTitle || !content.trim() || !content) {
       toast.error("Input Field cannot empty");
@@ -107,6 +110,7 @@ export default function EditTaskForm({
     );
     if (success) {
       toast.success(message as string);
+      router.replace(`task/${taskId}`)
     } else {
       toast.error(message as string);
     }

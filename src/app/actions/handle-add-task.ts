@@ -33,12 +33,10 @@ export async function handleAddTask(formData: FormData) {
         projectId: projectId,
       },
     });
-    try {
-      revalidatePath(`/project/${projectId}`);
-      return { succxess: true, message: "Successfully create task" };
-    } finally {
-      return redirect(`/project/${projectId}`);
-    }
+
+    revalidatePath(`/project/${projectId}`);
+
+    return { success: true, message: "Successfully create task" };
   } catch (error) {
     console.error(`Cannot create task : ${error}`);
     return { success: false, message: "Something wrong, please try again" };

@@ -6,6 +6,8 @@ import ProjectCard from "@/components/card/project-card";
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectModal from "@/components/add-project-modal/project-modals";
 import { CircleCheck, Filter, FolderPlus, Inbox } from "lucide-react";
+import { Suspense } from "react";
+import ProjectListSkeleton from "@/components/loading-skeleton/project-list-skeleton";
 
 export default async function ProjectList() {
   const session = await auth.api.getSession({
@@ -35,6 +37,7 @@ export default async function ProjectList() {
   });
 
   return (
+    <Suspense fallback={<ProjectListSkeleton/>}>
     <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
       {data.length === 0 && memberOfProject.length === 0 ? (
         <div className="flex flex-col items-center justify-center min-h-[400px] lg:min-h-[500px]">
@@ -203,5 +206,6 @@ export default async function ProjectList() {
         </div>
       )}
     </div>
+    </Suspense>
   );
 }

@@ -54,7 +54,7 @@ export default async function DetailTask({
           />
           {session.user.id === taskData.userId ||
           session.user.id === taskData.project.userId ? (
-            <ActionTask idTask={idTask} />
+            <ActionTask idProject={taskData.projectId} idTask={idTask} />
           ) : (
             ""
           )}

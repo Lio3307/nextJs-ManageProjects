@@ -7,6 +7,8 @@ import { redirect } from "next/navigation";
 import ActionReport from "@/components/action-button/action-report";
 import { Calendar, MessageCircle, Newspaper } from "lucide-react";
 import CommentCard from "@/components/comment-component/comment-card";
+import { Suspense } from "react";
+import ReportDetailSkeleton from "@/components/loading-skeleton/report-skeleton";
 
 export default async function ReportDetail({
   params,
@@ -43,6 +45,7 @@ export default async function ReportDetail({
   if (!getProjectOwnerId) throw new Error("Error get project");
 
   return (
+    <Suspense fallback={<ReportDetailSkeleton/>}>
     <div className="p-4">
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-8">
         <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-blue-50 border-b border-gray-200">
@@ -58,7 +61,7 @@ export default async function ReportDetail({
             {(session.user.id === detailReport.userId ||
               session.user.id === getProjectOwnerId.userId) && (
               <div className="flex-shrink-0">
-                <ActionReport idReport={reportId} />
+                <ActionReport idTask={detailReport.taskId} idReport={reportId} />
               </div>
             )}
           </div>
@@ -163,5 +166,6 @@ export default async function ReportDetail({
         </div>
       </div>
     </div>
+    </Suspense>
   );
 }

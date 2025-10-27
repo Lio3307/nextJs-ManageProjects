@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function EditFormProject({
   selectedData,
@@ -29,6 +30,8 @@ export default function EditFormProject({
     selectedData.visibility
   );
 
+  const router = useRouter()
+
   const handleSubmit = async () => {
     const { success, message } = await handleUpdateProject(
       newTitle,
@@ -39,6 +42,7 @@ export default function EditFormProject({
 
     if (success) {
       toast.success(message as string);
+      router.replace(`project/${selectedData.id}`)
     } else {
       toast.error(message as string);
     }

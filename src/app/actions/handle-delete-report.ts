@@ -1,6 +1,5 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 
@@ -17,13 +16,9 @@ export async function handleDeleteReport(idReport: string) {
         id: idReport,
       },
     });
-    
-    try {
-      revalidatePath(`/task/${currentReport?.taskId}`);
-      return { success: true, message: "Successfully delete report" };
-    } finally {
-      return redirect(`/task/${currentReport?.taskId}`);
-    }
+
+    revalidatePath(`/task/${currentReport?.taskId}`);
+    return { success: true, message: "Successfully delete report" };
   } catch (error) {
     console.error(`Cannot delete report : ${error}`);
     return { success: false, message: "Something wrong, please try again" };

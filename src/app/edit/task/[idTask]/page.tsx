@@ -1,8 +1,10 @@
 import EditTaskForm from "@/components/edit-form/edit-task-form";
+import EditTaskSkeleton from "@/components/loading-skeleton/edit-task-skeleton";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export default async function EditTask({
   params,
@@ -27,11 +29,13 @@ export default async function EditTask({
 
   return (
     <div className="p-4">
-      <EditTaskForm
-        contentTask={selectedTask.content}
-        titleTask={selectedTask.title}
-        taskId={selectedTask.id}
-      />
+      <Suspense fallback={<EditTaskSkeleton/>}>
+        <EditTaskForm
+          contentTask={selectedTask.content}
+          titleTask={selectedTask.title}
+          taskId={selectedTask.id}
+        />
+      </Suspense>
     </div>
   );
 }
