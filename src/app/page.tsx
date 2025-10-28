@@ -135,11 +135,11 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
         {data.length === 0 ? (
           <div className="space-y-8">
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left shadow-lg">
               <h1 className="text-4xl lg:text-3xl font-extrabold text-gray-900 mb-3 tracking-tight">
                 Welcome back,{" "}
                 <span className="text-blue-600  ">{session.user.name}</span>!
@@ -185,7 +185,7 @@ export default async function Home() {
           </div>
         ) : (
           <div className="space-y-8">
-            <div className="bg-white rounded-md p-6 lg:p-8 relative overflow-hidden">
+            <div className="bg-white rounded-md p-6 lg:p-8 relative overflow-hidden shadow-lg">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 relative z-10">
                 <div>
                   <h1 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">

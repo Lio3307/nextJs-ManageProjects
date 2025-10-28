@@ -139,7 +139,7 @@ export default function EditTaskForm({
           <form className="space-y-8" action={updateTaskHandler}>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
                 <Label className="text-sm font-semibold text-gray-900">
                   Task Title
                 </Label>
@@ -152,7 +152,7 @@ export default function EditTaskForm({
                 required
                 type="text"
                 placeholder="Enter a clear and descriptive task title..."
-                className="h-12 lg:h-14 text-base lg:text-lg font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 border-2"
+                className="h-12 lg:h-14 text-base lg:text-lg font-medium focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-all duration-200 border-1"
               />
               <p className="text-xs text-gray-500">
                 Use a descriptive title that clearly explains what needs to be
@@ -163,7 +163,7 @@ export default function EditTaskForm({
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
                   <Label className="text-sm font-semibold text-gray-900">
                     Task Content
                   </Label>

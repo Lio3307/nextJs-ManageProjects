@@ -32,7 +32,7 @@ export default function CommentCard({
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+                    <div className="w-7 h-7 bg-gray-500 rounded-full flex items-center justify-center">
                       <span className="text-white font-semibold text-xs">
                         {comment.commentBy?.charAt(0)?.toUpperCase() || "U"}
                       </span>

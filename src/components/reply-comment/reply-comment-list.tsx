@@ -24,7 +24,7 @@ export default async function ReplyCommentList({
               className="bg-gray-50 rounded-lg border border-gray-200 p-3"
             >
               <div className="flex items-center space-x-2 mb-2">
-                <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-xs">
                     {reply.user.name?.charAt(0)?.toUpperCase() || "U"}
                   </span>
@@ -51,9 +51,7 @@ export default async function ReplyCommentList({
             </div>
           ))}
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </>
   );
 }

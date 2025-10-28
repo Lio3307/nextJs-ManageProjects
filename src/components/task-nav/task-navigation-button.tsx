@@ -2,9 +2,10 @@
 
 import { Suspense, useState } from "react";
 import DetailedTask from "../detailed-task/detail-task";
-import ReportList from "../report-list/report-list";
 import type { Task, Report } from "@prisma/client";
 import DetailedTaskSkeleton from "../loading-skeleton/detailed-task-skeleton";
+import ReportForm from "../reports/report-list";
+import ReportListSkeleton from "../loading-skeleton/report-list-skeleton";
 
 export default function TaskNav({
   idTask,
@@ -45,11 +46,13 @@ export default function TaskNav({
 
       <div className="mt-6">
         {currentNav === "Task" ? (
-          <Suspense fallback={<DetailedTaskSkeleton/>}>
+          <Suspense fallback={<DetailedTaskSkeleton />}>
             <DetailedTask detailedTask={taskData} />
           </Suspense>
         ) : (
-          <ReportList idTask={idTask} reportData={reportData} />
+          <Suspense fallback={<ReportListSkeleton />}>
+            <ReportForm idTask={idTask} reportData={reportData} />
+          </Suspense>
         )}
       </div>
     </>

@@ -6,7 +6,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import ActionReport from "@/components/action-button/action-report";
 import { Calendar, MessageCircle, Newspaper } from "lucide-react";
-import CommentCard from "@/components/comment-component/comment-card";
+import CommentCard from "@/components/card/comment-card";
 import { Suspense } from "react";
 import ReportDetailSkeleton from "@/components/loading-skeleton/report-skeleton";
 
@@ -48,7 +48,7 @@ export default async function ReportDetail({
     <Suspense fallback={<ReportDetailSkeleton/>}>
     <div className="p-4">
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-8">
-        <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-blue-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex-1">
               <BreadcrumbWithCustomSeparator
@@ -70,7 +70,7 @@ export default async function ReportDetail({
         <div className="px-6 py-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold text-xs">
                   {detailReport.createdBy?.charAt(0)?.toUpperCase() || "U"}
                 </span>
@@ -141,9 +141,9 @@ export default async function ReportDetail({
       </div>
 
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-gray-200">
+        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
               <MessageCircle className="w-4 h-4 text-white" />
             </div>
             <div>

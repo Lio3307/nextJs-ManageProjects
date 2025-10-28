@@ -33,7 +33,7 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <main className="w-full">
-            <div className="sticky top-0 z-50 bg-white  border-b md:hidden">
+            <div className="sticky top-0 z-50 bg-white  border-b lg:hidden">
               <SidebarTrigger />
             </div>
             {children}
