@@ -4,7 +4,7 @@ import { Suspense, useState } from "react";
 import DetailedTask from "../detailed-task/detail-task";
 import type { Task, Report } from "@prisma/client";
 import DetailedTaskSkeleton from "../loading-skeleton/detailed-task-skeleton";
-import ReportForm from "../reports/report-list";
+import ReportForm from "../reports/report-form";
 import ReportListSkeleton from "../loading-skeleton/report-list-skeleton";
 
 export default function TaskNav({

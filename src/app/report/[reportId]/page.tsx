@@ -28,7 +28,7 @@ export default async function ReportDetail({
     },
     include: {
       task: true,
-      comment: true
+      comment: true,
     },
   });
 
@@ -45,127 +45,167 @@ export default async function ReportDetail({
   if (!getProjectOwnerId) throw new Error("Error get project");
 
   return (
-    <Suspense fallback={<ReportDetailSkeleton/>}>
-    <div className="p-4">
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-8">
-        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="flex-1">
-              <BreadcrumbWithCustomSeparator
-                name={detailReport.task.title}
-                link={`/task/${detailReport.taskId}`}
-                currentPageName="Report"
-              />
+    <Suspense fallback={<ReportDetailSkeleton />}>
+      <div className="p-4 lg:p-6 space-y-6 lg:space-y-8">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-300">
+          <div className="px-6 lg:px-8 py-5 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <div className="flex items-center space-x-3 flex-1 min-w-0">
+                <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
+                  <svg
+                    className="w-5 h-5 text-white dark:text-gray-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <BreadcrumbWithCustomSeparator
+                    name={detailReport.task.title}
+                    link={`/task/${detailReport.taskId}`}
+                    currentPageName="Report"
+                  />
+                </div>
+              </div>
+
+              {(session.user.id === detailReport.userId ||
+                session.user.id === getProjectOwnerId.userId) && (
+                <div className="flex-shrink-0">
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-lg blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <div className="relative">
+                      <ActionReport
+                        idTask={detailReport.taskId}
+                        idReport={reportId}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="px-6 lg:px-8 py-6 lg:py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-8">
+              <div className="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02]">
+                <div className="w-11 h-11 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-200 dark:to-gray-100 rounded-full flex items-center justify-center shadow-lg ring-2 ring-gray-100 dark:ring-gray-800 flex-shrink-0">
+                  <span className="text-white dark:text-gray-900 font-bold text-sm">
+                    {detailReport.createdBy?.charAt(0)?.toUpperCase() || "U"}
+                  </span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                    Created by
+                  </p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
+                    {detailReport.createdBy}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-md hover:scale-[1.02]">
+                <div className="w-11 h-11 bg-gradient-to-br from-gray-700 to-gray-800 dark:from-gray-300 dark:to-gray-200 rounded-full flex items-center justify-center shadow-lg flex-shrink-0">
+                  <Calendar className="w-5 h-5 text-white dark:text-gray-900" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                    Posted on
+                  </p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }).format(new Date(detailReport.createdAt))}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {(session.user.id === detailReport.userId ||
-              session.user.id === getProjectOwnerId.userId) && (
-              <div className="flex-shrink-0">
-                <ActionReport idTask={detailReport.taskId} idReport={reportId} />
+            <div className="flex items-center space-x-2 mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border border-gray-900 dark:border-gray-100 shadow-md">
+                <Newspaper className="w-4 h-4" />
+                <span>Progress Report</span>
               </div>
-            )}
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="h-8 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-gray-900 dark:bg-gray-100 rounded-full animate-pulse"></div>
+                  <h3 className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Report Title
+                  </h3>
+                </div>
+              </div>
+              <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 leading-tight pl-6">
+                {detailReport.title}
+              </h1>
+            </div>
           </div>
         </div>
 
-        <div className="px-6 py-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-semibold text-xs">
-                  {detailReport.createdBy?.charAt(0)?.toUpperCase() || "U"}
-                </span>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Created by</p>
-                <p className="text-sm font-semibold text-gray-900">
-                  {detailReport.createdBy}
-                </p>
-              </div>
-            </div>
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-300">
+          <div className="px-6 lg:px-8 py-5 bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 dark:from-gray-850 dark:via-gray-800 dark:to-gray-850 border-b border-gray-200 dark:border-gray-700 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-gray-900/5 dark:from-gray-100/5 to-transparent rounded-full blur-2xl"></div>
 
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <Calendar className="w-4 h-4 text-green-600" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Posted on</p>
-                <p className="text-sm font-semibold text-gray-900">
-                  {new Intl.DateTimeFormat("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  }).format(new Date(detailReport.createdAt))}
-                </p>
+            <div className="flex items-center space-x-3 relative z-10">
+              <div className="h-8 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
+                <h3 className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  Report Details
+                </h3>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2 mb-6">
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
-              <Newspaper className="w-3 h-3 mr-1" />
-              Progress Report
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-sky-500 rounded-full"></div>
-              <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                Report Title
-              </h3>
-            </div>
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">
-              {detailReport.title}
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-8">
-        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-sky-500 rounded-full"></div>
-            <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-              Report Details
-            </h3>
-          </div>
-        </div>
-
-        <div className="px-6 py-6">
-          <div className="prose prose-sm lg:prose-base max-w-none">
-            <p className="text-base text-gray-700 leading-relaxed whitespace-pre-wrap">
-              {detailReport.description}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
-              <MessageCircle className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900">
-                Comments & Discussion
-              </h3>
-              <p className="text-sm text-gray-600">
-                Share feedback and collaborate
+          <div className="px-6 lg:px-8 py-8">
+            <div className="prose prose-sm lg:prose-base max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-strong:text-gray-900 dark:prose-strong:text-gray-100">
+              <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+                {detailReport.description}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="px-6 py-6">
-          <CommentForm reportId={reportId} />
-        </div>
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-300">
+          <div className="px-6 lg:px-8 py-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl"></div>
 
-        <div className="px-6 py-6">
-          <CommentCard dataComments={detailReport.comment} />
+            <div className="flex items-start space-x-4 relative z-10">
+              <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                <MessageCircle className="w-6 h-6 text-white dark:text-gray-900" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+                  Comments & Discussion
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Share feedback and collaborate
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="px-6 lg:px-8 py-6 border-b border-gray-200 dark:border-gray-700">
+            <CommentForm reportId={reportId} />
+          </div>
+
+          <div className="px-6 lg:px-8 py-6">
+            <CommentCard dataComments={detailReport.comment} />
+          </div>
         </div>
       </div>
-    </div>
     </Suspense>
   );
 }

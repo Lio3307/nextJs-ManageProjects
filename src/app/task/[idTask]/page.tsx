@@ -45,22 +45,56 @@ export default async function DetailTask({
 
   return (
     <>
-      <div className="p-4">
-        <div className="flex justify-between">
-          <BreadcrumbWithCustomSeparator
-            name={taskData.project.title}
-            link={`/project/${taskData.projectId}`}
-            currentPageName="Task"
-          />
+      <div className="p-4 lg:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 p-4 lg:p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
+          <div className="flex items-center space-x-3 flex-1 min-w-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
+              <svg
+                className="w-5 h-5 text-white dark:text-gray-900"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <BreadcrumbWithCustomSeparator
+                name={taskData.project.title}
+                link={`/project/${taskData.projectId}`}
+                currentPageName="Task"
+              />
+            </div>
+          </div>
+
           {session.user.id === taskData.userId ||
           session.user.id === taskData.project.userId ? (
-            <ActionTask idProject={taskData.projectId} idTask={idTask} />
-          ) : (
-            ""
-          )}
+            <div className="flex justify-end sm:justify-start flex-shrink-0">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-lg blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <ActionTask idProject={taskData.projectId} idTask={idTask} />
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
 
-        <TaskNav idTask={idTask} taskData={taskData} reportData={reportData} />
+        <div className="relative">
+          <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-gray-900/5 to-transparent dark:from-gray-100/5 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-gray-900/5 to-transparent dark:from-gray-100/5 rounded-full blur-3xl -z-10"></div>
+
+          <TaskNav
+            idTask={idTask}
+            taskData={taskData}
+            reportData={reportData}
+          />
+        </div>
       </div>
     </>
   );

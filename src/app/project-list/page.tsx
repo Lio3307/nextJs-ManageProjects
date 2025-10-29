@@ -41,45 +41,76 @@ export default async function ProjectList() {
       <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
         {data.length === 0 && memberOfProject.length === 0 ? (
           <div className="flex flex-col items-center justify-center min-h-[400px] lg:min-h-[500px]">
-            <div className="text-center max-w-md mx-auto">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FolderPlus className="w-10 h-10 lg:w-12 lg:h-12 text-blue-500" />
-              </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900/5 to-transparent dark:from-gray-100/5 rounded-full blur-3xl"></div>
 
-              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3">
-                No projects yet
-              </h3>
-              <p className="text-sm lg:text-base text-gray-600 mb-8 leading-relaxed">
-                Create your first project to start organizing tasks and
-                collaborating with your team.
-              </p>
-
-              <div className="space-y-4">
-                <ModalTrigger
-                  compo={<ProjectModal />}
-                  buttonName="Create Your First Project"
-                />
-
-                <div className="flex items-center justify-center space-x-4 text-xs text-gray-400">
-                  <div className="flex items-center space-x-1">
-                    <CircleCheck className="w-3 h-3" />
-                    <span>Free to create</span>
+              <div className="relative text-center max-w-lg mx-auto p-8">
+                <div className="relative w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-8">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
+                  <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <FolderPlus className="w-12 h-12 lg:w-16 lg:h-16 text-white dark:text-gray-900" />
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <CircleCheck className="w-3 h-3" />
-                    <span>Easy setup</span>
+                </div>
+
+                <h3 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-4 tracking-tight">
+                  No projects yet
+                </h3>
+                <p className="text-base lg:text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
+                  Create your first project to start organizing tasks and
+                  collaborating with your team.
+                </p>
+
+                <div className="space-y-6">
+                  <ModalTrigger
+                    compo={<ProjectModal />}
+                    buttonName="Create Your First Project"
+                  />
+
+                  <div className="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 bg-gray-900 dark:bg-gray-100 rounded-full flex items-center justify-center">
+                        <CircleCheck className="w-3 h-3 text-white dark:text-gray-900" />
+                      </div>
+                      <span className="font-medium">Free to create</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 bg-gray-900 dark:bg-gray-100 rounded-full flex items-center justify-center">
+                        <CircleCheck className="w-3 h-3 text-white dark:text-gray-900" />
+                      </div>
+                      <span className="font-medium">Easy setup</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          <div className="space-y-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-              <div className="space-y-2">
-                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
-                  Your Project List
-                </h1>
+          <div className="space-y-8 lg:space-y-10">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 p-6 lg:p-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl transition-colors duration-300">
+              <div className="flex items-center space-x-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-lg">
+                  <svg
+                    className="w-7 h-7 text-white dark:text-gray-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h1 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                    Your Project List
+                  </h1>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    Manage and organize all your projects
+                  </p>
+                </div>
               </div>
 
               <div className="flex-shrink-0">
@@ -90,46 +121,123 @@ export default async function ProjectList() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-gray-200">
-              <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="text-2xl font-bold text-blue-600">
-                  {data.length}
-                </div>
-                <div className="text-xs text-blue-600 font-medium">
-                  Total Projects
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+              <div className="relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 rounded-2xl"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+
+                <div className="relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-all duration-300 hover:shadow-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-xl flex items-center justify-center shadow-md">
+                      <svg
+                        className="w-5 h-5 text-white dark:text-gray-900"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+                    {data.length}
+                  </div>
+                  <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                    Total Projects
+                  </div>
                 </div>
               </div>
 
-              <div className="text-center p-4 bg-amber-50 rounded-lg border border-amber-200">
-                <div className="text-2xl font-bold text-amber-600">
-                  {data.filter((project) => project.visibility === "Public")
-                    .length || 0}
+              <div className="relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 rounded-2xl"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+
+                <div className="relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-all duration-300 hover:shadow-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-200 dark:to-gray-100 rounded-xl flex items-center justify-center shadow-md">
+                      <svg
+                        className="w-5 h-5 text-white dark:text-gray-900"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+                    {data.filter((project) => project.visibility === "Public")
+                      .length || 0}
+                  </div>
+                  <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                    Public
+                  </div>
                 </div>
-                <div className="text-xs text-amber-600 font-medium">Public</div>
               </div>
 
-              <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <div className="text-2xl font-bold text-purple-600">
-                  {data.filter((project) => project.visibility === "Private")
-                    .length || 0}
-                </div>
-                <div className="text-xs text-purple-600 font-medium">
-                  Private
+              <div className="relative overflow-hidden group col-span-2 lg:col-span-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 rounded-2xl"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+
+                <div className="relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-all duration-300 hover:shadow-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 dark:from-gray-300 dark:to-gray-200 rounded-xl flex items-center justify-center shadow-md">
+                      <svg
+                        className="w-5 h-5 text-white dark:text-gray-900"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+                    {data.filter((project) => project.visibility === "Private")
+                      .length || 0}
+                  </div>
+                  <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                    Private
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-6 mt-8">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Projects You Own
-                </h2>
-                <span className="text-sm text-gray-500">
-                  {data.length} project{data.length !== 1 ? "s" : ""}
-                </span>
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="h-8 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div>
+                    <h2 className="text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                      Projects You Own
+                    </h2>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
+                        <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">
+                          {data.length} project{data.length !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
                 {data.length > 0 &&
                   data.map((item) => (
                     <div key={item.id} className="w-full">
@@ -139,19 +247,28 @@ export default async function ProjectList() {
               </div>
             </div>
 
-            <div className="space-y-6 mt-12 pt-8 border-t border-gray-200">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Projects You Joined
-                </h2>
-                <span className="text-sm text-gray-500">
-                  {memberOfProject?.length || 0} project
-                  {memberOfProject?.length !== 1 ? "s" : ""}
-                </span>
+            <div className="space-y-6 pt-10 border-t-2 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="h-8 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div>
+                    <h2 className="text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                      Projects You Joined
+                    </h2>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
+                        <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">
+                          {memberOfProject?.length || 0} project
+                          {memberOfProject?.length !== 1 ? "s" : ""}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {memberOfProject && memberOfProject.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
                   {memberOfProject.map((item) => (
                     <div key={item.id} className="w-full">
                       <ProjectCard data={item.project} />
@@ -159,24 +276,44 @@ export default async function ProjectList() {
                   ))}
                 </div>
               ) : (
-                <div className="bg-white rounded-lg shadow-md p-12 text-center">
-                  <div className="flex justify-center text-gray-400 mb-4">
-                    <Inbox className="h-16 w-16" />
+                <div className="relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-2xl"></div>
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
+
+                  <div className="relative p-12 lg:p-16 text-center border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl">
+                    <div className="w-20 h-20 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                      <Inbox className="w-10 h-10 text-gray-500 dark:text-gray-400" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                      No projects yet
+                    </h3>
+                    <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                      You havent joined any projects yet.
+                    </p>
                   </div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
-                    No projects yet
-                  </h3>
-                  <p className="text-gray-500">
-                    You havent joined any projects yet.
-                  </p>
                 </div>
               )}
             </div>
 
             {data.length > 8 && (
               <div className="flex justify-center pt-8">
-                <button className="px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                  Load More Projects
+                <button className="group px-8 py-4 text-sm font-bold text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-gray-900 dark:hover:border-gray-100 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-900/20 dark:focus:ring-gray-100/20">
+                  <span className="flex items-center space-x-2">
+                    <span>Load More Projects</span>
+                    <svg
+                      className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-200"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </span>
                 </button>
               </div>
             )}

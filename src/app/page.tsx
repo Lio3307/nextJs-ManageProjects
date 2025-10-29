@@ -135,64 +135,104 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="px-4 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300">
+      <div className="px-4 lg:px-8 py-8 lg:py-12 max-w-7xl mx-auto">
         {data.length === 0 ? (
-          <div className="space-y-8">
-            <div className="text-center lg:text-left shadow-lg">
-              <h1 className="text-4xl lg:text-3xl font-extrabold text-gray-900 mb-3 tracking-tight">
-                Welcome back,{" "}
-                <span className="text-blue-600  ">{session.user.name}</span>!
-              </h1>
-              <p className="text-base lg:text-md text-gray-600">
-                Ready to start your first project? Lets get you organized and
-                productive.
-              </p>
+          <div className="space-y-10 lg:space-y-12">
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-3xl"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 dark:bg-black/5 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 dark:bg-black/5 rounded-full blur-2xl"></div>
+
+              <div className="relative p-8 lg:p-12 text-center lg:text-left">
+                <h1 className="text-4xl lg:text-5xl font-extrabold text-white dark:text-gray-900 mb-4 tracking-tight">
+                  Welcome back,{" "}
+                  <span className="inline-block bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 bg-clip-text text-transparent">
+                    {session.user.name}
+                  </span>
+                  !
+                </h1>
+                <p className="text-base lg:text-lg text-gray-200 dark:text-gray-700 max-w-2xl">
+                  Ready to start your first project? Lets get you organized and
+                  productive.
+                </p>
+              </div>
             </div>
 
-            <div className="p-4 text-center relative">
-              <div className="relative w-28 h-28 lg:w-36 lg:h-36 mx-auto mb-2">
-                <div className="relative w-28 h-28 bg-blue-100 rounded-full flex items-center justify-center">
-                  <ClipboardList className="w-14 h-14 text-blue-600" />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-850 rounded-3xl"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
+
+              <div className="relative p-8 lg:p-12 text-center">
+                <div className="relative w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-8">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
+                  <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <ClipboardList className="w-16 h-16 lg:w-20 lg:h-20 text-white dark:text-gray-900" />
+                  </div>
                 </div>
+
+                <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-4 tracking-tight">
+                  Create Your First Project
+                </h2>
+                <p className="text-base lg:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+                  Projects help you organize tasks, collaborate with team
+                  members, and track progress all in one place
+                </p>
+
+                <ModalTrigger
+                  compo={<ProjectModal />}
+                  buttonName="Create Project"
+                />
               </div>
+            </div>
 
-              <h2 className="text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">
-                Create Your First Project
-              </h2>
-              <p className="text-base text-gray-600 max-w-md mx-auto mb-4 leading-relaxed">
-                Projects help you organize tasks, collaborate with team members,
-                and track progress all in one place
-              </p>
-
-              <ModalTrigger
-                compo={<ProjectModal />}
-                buttonName="Create Project"
-              />
-              <div className="space-y-6 pt-8 border-t border-gray-200 mt-4">
+            <div className="space-y-6 pt-8 border-t-2 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-lg">
+                  <svg
+                    className="w-6 h-6 text-white dark:text-gray-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
                 <div>
-                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                  <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
                     Explore Public Projects
                   </h2>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">
                     Discover projects shared by the community
                   </p>
                 </div>
-
-                <PublicProject />
               </div>
+
+              <PublicProject />
             </div>
           </div>
         ) : (
-          <div className="space-y-8">
-            <div className="bg-white rounded-md p-6 lg:p-8 relative overflow-hidden shadow-lg">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 relative z-10">
-                <div>
-                  <h1 className="text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">
+          <div className="space-y-8 lg:space-y-10">
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-100 dark:via-gray-200 dark:to-gray-100"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 dark:bg-black/5 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 dark:bg-black/5 rounded-full blur-2xl"></div>
+
+              <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 p-8 lg:p-10">
+                <div className="flex-1">
+                  <h1 className="text-3xl lg:text-4xl font-extrabold text-white dark:text-gray-900 mb-3 tracking-tight">
                     Welcome back,{" "}
-                    <span className="text-blue-600">{session.user.name}</span>!
+                    <span className="inline-block bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 bg-clip-text text-transparent">
+                      {session.user.name}
+                    </span>
+                    !
                   </h1>
-                  <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
+                  <p className="text-sm lg:text-base text-gray-200 dark:text-gray-700 leading-relaxed max-w-2xl">
                     Stay organized and keep your projects moving forward. Heres
                     what youre working on recently.
                   </p>
@@ -207,45 +247,82 @@ export default async function Home() {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight">
-                    Recent Projects
-                  </h2>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Your latest {data.length} project
-                    {data.length !== 1 ? "s" : ""}
-                  </p>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-md">
+                    <svg
+                      className="w-6 h-6 text-white dark:text-gray-900"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                      Recent Projects
+                    </h2>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
+                        <p className="text-xs font-semibold text-gray-900 dark:text-gray-100">
+                          {data.length} project{data.length !== 1 ? "s" : ""}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <Link
                   href="/projects"
-                  className="text-sm font-semibold text-blue-600 hover:text-purple-600 transition-colors duration-200 flex items-center gap-1 group"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 group rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
-                  View all
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                  <span>View all projects</span>
+                  <ChevronRight
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+                    strokeWidth={2.5}
+                  />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-6">
                 {data.map((item) => (
-                  <div
-                    key={item.id}
-                    className="w-full transform hover:scale-105 transition-transform duration-200"
-                  >
+                  <div key={item.id} className="w-full">
                     <ProjectCard data={item} />
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-6 pt-8 border-t-2 border-gray-200">
-              <div>
-                <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 tracking-tight">
-                  Explore Public Projects
-                </h2>
-                <p className="text-sm text-gray-600 mt-1">
-                  Discover projects shared by the community
-                </p>
+            <div className="space-y-6 pt-10 border-t-2 border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-4 p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-md">
+                  <svg
+                    className="w-6 h-6 text-white dark:text-gray-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                    Explore Public Projects
+                  </h2>
+                  <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">
+                    Discover projects shared by the community
+                  </p>
+                </div>
               </div>
 
               <PublicProject />
