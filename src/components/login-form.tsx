@@ -68,7 +68,8 @@ export function LoginForm({
       toast.success(message as string);
       router.push("/");
     } else {
-      toast.error(message as string);
+      console.error(message as string)
+      toast.error("Something wrong, please try again");
     }
     setIsLoading(false);
   }

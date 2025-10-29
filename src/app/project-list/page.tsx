@@ -92,7 +92,7 @@ export default async function ProjectList() {
                   <FolderOpen className="w-7 h-7 text-white dark:text-gray-900" />
                 </div>
                 <div>
-                  <h1 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                  <h1 className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
                     Your Project List
                   </h1>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -120,7 +120,7 @@ export default async function ProjectList() {
                       <Folder className="w-5 h-5 text-white dark:text-gray-900" />
                     </div>
                   </div>
-                  <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+                  <div className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
                     {data.length}
                   </div>
                   <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">
@@ -139,7 +139,7 @@ export default async function ProjectList() {
                       <Globe className="w-5 h-5 text-white dark:text-gray-900" />
                     </div>
                   </div>
-                  <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+                  <div className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
                     {data.filter((project) => project.visibility === "Public")
                       .length || 0}
                   </div>
@@ -159,7 +159,7 @@ export default async function ProjectList() {
                       <Lock className="w-5 h-5 text-white dark:text-gray-900" />
                     </div>
                   </div>
-                  <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
+                  <div className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
                     {data.filter((project) => project.visibility === "Private")
                       .length || 0}
                   </div>
@@ -173,13 +173,13 @@ export default async function ProjectList() {
             <div className="space-y-6">
               <div className="flex items-center justify-between p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
                 <div className="flex items-center space-x-3">
-                  <div className="h-8 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div className="h-14 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
                   <div>
-                    <h2 className="text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                    <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
                       Projects You Own
                     </h2>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
+                    <div className="flex space-x-2 mt-1">
+                      <div className="px-3 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
                         <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">
                           {data.length} project{data.length !== 1 ? "s" : ""}
                         </span>
@@ -202,13 +202,13 @@ export default async function ProjectList() {
             <div className="space-y-6 pt-10 border-t-2 border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between p-5 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
                 <div className="flex items-center space-x-3">
-                  <div className="h-8 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div className="h-14 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
                   <div>
-                    <h2 className="text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                    <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
                       Projects You Joined
                     </h2>
                     <div className="flex items-center space-x-2 mt-1">
-                      <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
+                      <div className="px-3 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
                         <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">
                           {memberOfProject?.length || 0} project
                           {memberOfProject?.length !== 1 ? "s" : ""}
@@ -246,17 +246,6 @@ export default async function ProjectList() {
                 </div>
               )}
             </div>
-
-            {data.length > 8 && (
-              <div className="flex justify-center pt-8">
-                <button className="group px-8 py-4 text-sm font-bold text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-gray-900 dark:hover:border-gray-100 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-900/20 dark:focus:ring-gray-100/20">
-                  <span className="flex items-center space-x-2">
-                    <span>Load More Projects</span>
-                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-200" />
-                  </span>
-                </button>
-              </div>
-            )}
           </div>
         )}
       </div>

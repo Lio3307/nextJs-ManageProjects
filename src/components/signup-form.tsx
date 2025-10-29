@@ -73,9 +73,14 @@ export function SignUpForm({
       toast.success(message as string);
       router.push("/");
     } else {
-      toast.error(message as string);
+      console.error(message)
+      toast.error("Something wrong, please try again");
     }
     setIsLoading(false);
+  }
+
+  if(isPending){
+    return <p>Loading</p>
   }
 
   return (

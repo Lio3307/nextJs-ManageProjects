@@ -47,6 +47,10 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
 
   useEffect(() => {
     setPortal(document.querySelector("#portals"));
+     document.body.style.overflow = "hidden";
+     return () => {
+       document.body.style.overflow = "";
+     }
   }, []);
 
   if (!portal) return null;
@@ -80,7 +84,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight">
+              <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight">
                 Create New Project
               </h2>
               <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
