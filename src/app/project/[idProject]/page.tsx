@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import ActionProject from "@/components/action-button/action-project";
-import { Clipboard, Globe, Lock } from "lucide-react";
+import { Calendar, Clipboard, Globe, Lock } from "lucide-react";
 import JoinPublicProjectButton from "@/components/join-public-project-button/join-public-project";
 import { Suspense } from "react";
 import ProjectSkeleton from "@/components/loading-skeleton/project-skeleton";
@@ -72,19 +72,7 @@ export default async function DetailProject({
                 </div>
               </div>
               <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
+                <Calendar className="w-4 h-4 text-current" />
                 <span className="font-medium text-gray-800 dark:text-gray-200">
                   {new Intl.DateTimeFormat("en-US", {
                     year: "numeric",

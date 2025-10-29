@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { Clock } from "lucide-react";
 
 export default async function ReplyCommentList({
   commentId,
@@ -39,19 +40,7 @@ export default async function ReplyCommentList({
                       <div className="flex items-center space-x-2">
                         <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
                         <div className="flex items-center space-x-1.5 px-2 py-0.5 bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700">
-                          <svg
-                            className="w-3 h-3 text-gray-500 dark:text-gray-400 flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                            />
-                          </svg>
+                          <Clock className="w-3 h-3 text-gray-500 dark:text-gray-400 flex-shrink-0" />
                           <p className="text-xs font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap">
                             {new Intl.DateTimeFormat("en-US", {
                               year: "numeric",

@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { FileText } from "lucide-react";
 
 export default async function DetailTask({
   params,
@@ -49,19 +50,7 @@ export default async function DetailTask({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 p-4 lg:p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
             <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
-              <svg
-                className="w-5 h-5 text-white dark:text-gray-900"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+              <FileText className="w-5 h-5 text-white dark:text-gray-900" />
             </div>
             <div className="flex-1 min-w-0">
               <BreadcrumbWithCustomSeparator

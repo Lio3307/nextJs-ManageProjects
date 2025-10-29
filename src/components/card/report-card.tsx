@@ -1,7 +1,7 @@
 "use client";
 
 import { Report } from "@prisma/client";
-import { ChevronRight } from "lucide-react";
+import { Calendar, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function ReportCard({ reportData }: { reportData: Report[] }) {
@@ -34,19 +34,7 @@ export default function ReportCard({ reportData }: { reportData: Report[] }) {
 
                 <div className="flex items-center space-x-2 sm:text-right">
                   <div className="w-8 h-8 bg-gray-700 dark:bg-gray-300 rounded-lg flex items-center justify-center shadow-sm sm:hidden">
-                    <svg
-                      className="w-4 h-4 text-white dark:text-gray-900"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
+                    <Calendar className="w-4 h-4 text-white dark:text-gray-900" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">

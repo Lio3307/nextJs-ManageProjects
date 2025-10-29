@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import ProjectCard from "@/components/card/project-card";
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectModal from "@/components/add-project-modal/project-modals";
-import { CircleCheck, FolderPlus, Inbox } from "lucide-react";
+import { ChevronDown, CircleCheck, Folder, FolderOpen, FolderPlus, Globe, Inbox, Lock } from "lucide-react";
 import { Suspense } from "react";
 import ProjectListSkeleton from "@/components/loading-skeleton/project-list-skeleton";
 
@@ -89,19 +89,7 @@ export default async function ProjectList() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 p-6 lg:p-8 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl transition-colors duration-300">
               <div className="flex items-center space-x-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-lg">
-                  <svg
-                    className="w-7 h-7 text-white dark:text-gray-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                    />
-                  </svg>
+                  <FolderOpen className="w-7 h-7 text-white dark:text-gray-900" />
                 </div>
                 <div>
                   <h1 className="text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
@@ -129,19 +117,7 @@ export default async function ProjectList() {
                 <div className="relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-all duration-300 hover:shadow-lg">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-xl flex items-center justify-center shadow-md">
-                      <svg
-                        className="w-5 h-5 text-white dark:text-gray-900"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                        />
-                      </svg>
+                      <Folder className="w-5 h-5 text-white dark:text-gray-900" />
                     </div>
                   </div>
                   <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
@@ -160,19 +136,7 @@ export default async function ProjectList() {
                 <div className="relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-all duration-300 hover:shadow-lg">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-200 dark:to-gray-100 rounded-xl flex items-center justify-center shadow-md">
-                      <svg
-                        className="w-5 h-5 text-white dark:text-gray-900"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+                      <Globe className="w-5 h-5 text-white dark:text-gray-900" />
                     </div>
                   </div>
                   <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
@@ -192,19 +156,7 @@ export default async function ProjectList() {
                 <div className="relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-all duration-300 hover:shadow-lg">
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-800 dark:from-gray-300 dark:to-gray-200 rounded-xl flex items-center justify-center shadow-md">
-                      <svg
-                        className="w-5 h-5 text-white dark:text-gray-900"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                        />
-                      </svg>
+                      <Lock className="w-5 h-5 text-white dark:text-gray-900" />
                     </div>
                   </div>
                   <div className="text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-gray-100 mb-1">
@@ -300,19 +252,7 @@ export default async function ProjectList() {
                 <button className="group px-8 py-4 text-sm font-bold text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-gray-900 dark:hover:border-gray-100 hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-gray-900/20 dark:focus:ring-gray-100/20">
                   <span className="flex items-center space-x-2">
                     <span>Load More Projects</span>
-                    <svg
-                      className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-200"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-200" />
                   </span>
                 </button>
               </div>
