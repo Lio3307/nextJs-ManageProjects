@@ -19,7 +19,6 @@ import {
   History,
   House,
   LogOutIcon,
-  Plus,
 } from "lucide-react";
 import Link from "next/link";
 import {
@@ -30,8 +29,6 @@ import {
 } from "./ui/dropdown-menu";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import ModalTrigger from "./add-project-modal/modal-trigger";
-import ProjectModal from "./add-project-modal/project-modals";
 import LogedOut from "./logout";
 
 const menuItems = [
@@ -90,26 +87,6 @@ export async function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Quick Actions</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Create Project">
-                  <ModalTrigger
-                    compo={<ProjectModal />}
-                    buttonName={
-                      <>
-                        <Plus /> <span>New Project</span>{" "}
-                      </>
-                    }
-                  />
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

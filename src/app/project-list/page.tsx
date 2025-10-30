@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import ProjectCard from "@/components/card/project-card";
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectModal from "@/components/add-project-modal/project-modals";
-import { ChevronDown, CircleCheck, Folder, FolderOpen, FolderPlus, Globe, Inbox, Lock } from "lucide-react";
+import { CircleCheck, Folder, FolderOpen, FolderPlus, Globe, Inbox, Lock } from "lucide-react";
 import { Suspense } from "react";
 import ProjectListSkeleton from "@/components/loading-skeleton/project-list-skeleton";
 
@@ -14,7 +14,7 @@ export default async function ProjectList() {
     headers: await headers(),
   });
 
-  if (!session) {
+  if (!session) { 
     return redirect("/login");
   }
 

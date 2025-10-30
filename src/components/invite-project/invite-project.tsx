@@ -50,96 +50,228 @@ export default function InviteProject({ userId }: { userId: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 p-4 lg:p-6 transition-colors duration-300">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Join a Project
-            </h2>
-            <p className="text-gray-600">
-              Enter the invite code to join an existing project
-            </p>
+        <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 overflow-hidden transition-colors duration-300">
+          <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 p-8 lg:p-10 border-b-2 border-gray-700 dark:border-gray-300">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 dark:bg-black/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 dark:bg-black/5 rounded-full blur-2xl"></div>
+
+            <div className="relative z-10 flex items-start space-x-4">
+              <div className="w-16 h-16 bg-white/10 dark:bg-black/10 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl ring-4 ring-white/20 dark:ring-black/20 flex-shrink-0">
+                <svg
+                  className="w-8 h-8 text-white dark:text-gray-900"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                  />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h2 className="text-2xl  font-extrabold text-white dark:text-gray-900 mb-2 tracking-tight">
+                  Join a Project
+                </h2>
+                <p className="text-base lg:text-md text-gray-200 dark:text-gray-700 leading-relaxed">
+                  Enter the invite code to join an existing project
+                </p>
+              </div>
+            </div>
           </div>
 
-          <form className="w-full mb-6" action={handleSearch}>
-            <div className="flex gap-3">
-              <input
-                type="text"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Enter invite code..."
-                className="flex-1 border-2 border-gray-200 px-5 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 text-gray-800 placeholder-gray-400"
-              />
-
-              {searchValue.trim() !== "" && <SubmitForm buttonName="Search" />}
-            </div>
-          </form>
-
-          {message && (
-            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-lg mb-6 flex items-start gap-3">
-              <XCircle className="w-5 h-5 mt-0.5 flex-shrink-0 text-gray-400" />
-              <span>{message}</span>
-            </div>
-          )}
-
-          {project && (
-            <div className="mt-8 border-2 border-gray-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
-              <form action={handleJoin}>
-                <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-8">
-                  <div className="flex items-start justify-between mb-4">
-                    <h3
-                      id="project-title"
-                      className="font-bold text-3xl text-gray-900 flex-1"
-                    >
-                      {project.title}
-                    </h3>
-                    <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
-                      Project
-                    </div>
-                  </div>
-
-                  <p
-                    id="project-desc"
-                    className="text-gray-700 mb-6 leading-relaxed text-lg"
-                  >
-                    {project.description}
-                  </p>
-
-                  <div className="flex items-center gap-2 text-sm">
-                    <User className="w-5 h-5 text-gray-400" />
-                    <span className="text-gray-600 font-medium">
-                      Created by:
-                    </span>
-                    <span
-                      id="project-by"
-                      className="bg-white px-4 py-1.5 rounded-full text-gray-800 font-semibold shadow-sm"
-                    >
-                      {project.createdBy}
-                    </span>
+          <div className="p-6 lg:p-8">
+            <form className="w-full mb-8" action={handleSearch}>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <div className="h-6 w-1 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
+                    <label className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wide">
+                      Invite Code
+                    </label>
                   </div>
                 </div>
 
-                {userId !== member?.memberIdList &&
-                userId !== alreadySendRequest?.userId ? (
-                  <div className="p-8 bg-white border-t-2 border-gray-100">
-                    <input
-                      type="hidden"
-                      name="join-id-project"
-                      value={project.id}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="text"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    placeholder="Enter invite code..."
+                    className="flex-1 h-14 border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-5 py-3 rounded-xl focus:outline-none focus:ring-4 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 focus:border-gray-900 dark:focus:border-gray-100 transition-all duration-200 shadow-sm hover:border-gray-300 dark:hover:border-gray-600 font-medium text-base"
+                  />
+                  {searchValue.trim() !== "" && (
+                    <div className="sm:w-auto w-full">
+                      <SubmitForm buttonName="Search" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
+
+            {message && (
+              <div className="bg-gradient-to-r from-red-50 to-red-100 dark:from-red-950/50 dark:to-red-900/30 border-2 border-red-200 dark:border-red-800/50 rounded-xl p-5 mb-8 transition-colors duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 bg-red-500/10 dark:bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <XCircle
+                      className="w-5 h-5 text-red-600 dark:text-red-400"
+                      strokeWidth={2.5}
                     />
-                    <input
-                      type="hidden"
-                      name="project-invite-code"
-                      value={project.inviteCode}
-                    />
-                    <SubmitForm buttonName="Join Project" />
                   </div>
-                ) : null}
-              </form>
-            </div>
-          )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm lg:text-base text-red-800 dark:text-red-300 font-medium leading-relaxed">
+                      {message}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {project && (
+              <div className="border-2 border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                <form action={handleJoin}>
+                  <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 p-6 lg:p-8">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl"></div>
+
+                    <div className="relative z-10 space-y-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start space-x-3 flex-1 min-w-0">
+                          <div className="h-16 w-1.5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full flex-shrink-0"></div>
+                          <h3
+                            id="project-title"
+                            className="font-extrabold text-2xl lg:text-3xl text-gray-900 dark:text-gray-100 leading-tight tracking-tight flex-1"
+                          >
+                            {project.title}
+                          </h3>
+                        </div>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-full text-xs font-bold uppercase tracking-wide shadow-md flex-shrink-0">
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                            />
+                          </svg>
+                          Project
+                        </div>
+                      </div>
+
+                      <div className="pl-6">
+                        <p
+                          id="project-desc"
+                          className="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                        >
+                          {project.description}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                        <div className="w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-200 dark:to-gray-100 rounded-full flex items-center justify-center shadow-md ring-2 ring-gray-100 dark:ring-gray-800 flex-shrink-0">
+                          <User
+                            className="w-5 h-5 text-white dark:text-gray-900"
+                            strokeWidth={2.5}
+                          />
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 flex-1 min-w-0">
+                          <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                            Created by:
+                          </span>
+                          <span
+                            id="project-by"
+                            className="px-3 py-1 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-full text-sm text-gray-900 dark:text-gray-100 font-bold shadow-sm border border-gray-200 dark:border-gray-600"
+                          >
+                            {project.createdBy}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {userId !== member?.memberIdList &&
+                  userId !== alreadySendRequest?.userId ? (
+                    <div className="p-6 lg:p-8 bg-white dark:bg-gray-900 border-t-2 border-gray-200 dark:border-gray-700">
+                      <input
+                        type="hidden"
+                        name="join-id-project"
+                        value={project.id}
+                      />
+                      <input
+                        type="hidden"
+                        name="project-invite-code"
+                        value={project.inviteCode}
+                      />
+                      <SubmitForm buttonName="Join Project" />
+                    </div>
+                  ) : null}
+                </form>
+              </div>
+            )}
+          </div>
         </div>
+
+        {!project && !message && (
+          <div className="mt-6 lg:mt-8 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-850 rounded-2xl"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
+
+            <div className="relative p-5 lg:p-6 border-2 border-gray-200 dark:border-gray-700 rounded-2xl transition-colors duration-300">
+              <div className="flex items-start space-x-4">
+                <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
+                  <svg
+                    className="w-5 h-5 text-white dark:text-gray-900"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-base lg:text-md font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    How to Join
+                  </h4>
+                  <ul className="space-y-2.5 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                    <li className="flex items-start space-x-2">
+                      <div className="w-1.5 h-1.5 bg-gray-900 dark:bg-gray-100 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>
+                        Get an invite code from a project owner or member
+                      </span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-1.5 h-1.5 bg-gray-900 dark:bg-gray-100 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>
+                        Enter the code in the field above and click Search
+                      </span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <div className="w-1.5 h-1.5 bg-gray-900 dark:bg-gray-100 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>
+                        Review the project details and click Join Project
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
