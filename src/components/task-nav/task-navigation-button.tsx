@@ -25,19 +25,20 @@ export default function TaskNav({
 
   return (
     <>
-      <div className="flex my-4 bg-gray-100 dark:bg-gray-800 rounded-xl p-1 shadow-inner">
+      <div className="flex my-4 bg-gray-100 dark:bg-neutral-950 rounded-xl p-1 shadow-inner">
         {navItems.map((item) => (
           <button
-            className={`flex-1 py-2 px-4 text-sm font-semibold transition-all duration-200 ease-in-out first:rounded-l-lg last:rounded-r-lg ${
-              currentNav === item.name
-                ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-md border-0 transform scale-[0.98]"
-                : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-700/50"
-            }`}
+            key={item.id}
+            className={`flex-1 py-2 px-4 text-sm font-semibold transition-all duration-200 ease-in-out first:rounded-l-lg last:rounded-r-lg
+          ${
+            currentNav === item.name
+              ? "bg-white dark:bg-neutral-800 text-gray-900 dark:text-neutral-50 shadow-md transform scale-[0.98]"
+              : "text-gray-600 dark:text-neutral-200 hover:text-gray-900 dark:hover:text-neutral-50 hover:bg-white/50 dark:hover:bg-neutral-800/50"
+          }`}
             onClick={(e) => {
               e.stopPropagation();
               setCurrentNav(item.name);
             }}
-            key={item.id}
           >
             {item.name}
           </button>

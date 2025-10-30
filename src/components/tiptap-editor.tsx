@@ -23,8 +23,7 @@ import { useState } from "react";
 import SubmitForm from "./submit-form";
 import clsx from "clsx";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import { ArrowLeft, Calendar, LayoutGrid, Plus } from "lucide-react";
+import { ArrowLeft, Info, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -98,152 +97,77 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
   };
 
   return (
-    <div className="w-full">
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 bg-gray-100 border-b border-gray-200">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
-              <Plus className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
-                Create New Task
-              </h2>
-              <p className="text-sm text-gray-600 mt-1">
-                Add a new task to your project
-              </p>
-            </div>
-          </div>
+<div className="w-full">
+  <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+    <div className="px-6 lg:px-8 py-6 bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 lg:w-14 lg:h-14 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl flex items-center justify-center">
+          <Plus className="w-6 h-6 lg:w-7 lg:h-7 text-neutral-900 dark:text-neutral-100" strokeWidth={2}/>
         </div>
-
-        <div className="p-6">
-          <form className="space-y-8" action={handleTask}>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-                <Label className="text-base sm:text-sm font-semibold text-gray-900">
-                  Task Title
-                </Label>
-                <span className="text-red-500 text-sm">*</span>
-              </div>
-              <Input
-                name="title"
-                required
-                type="text"
-                placeholder="Enter a clear and descriptive task title..."
-                className="text-base lg:text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 border-2"
-              />
-              <p className="text-xs text-gray-500">
-                Use a descriptive title that clearly explains what needs to be
-                done
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
-                  <Label className="text-base lg:text-sm font-semibold text-gray-900">
-                    Task Description
-                  </Label>
-                </div>
-                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                  Rich Text Editor
-                </span>
-              </div>
-
-              <div className="border-2 border-gray-200 rounded-lg overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all duration-200">
-                <div className="sticky top-0 z-20 bg-gray-50 border-b border-gray-200 p-3">
-                  <div className="flex flex-wrap gap-2">
-                    <MenuBar editor={editor} />
-                  </div>
-                </div>
-
-                <div className="bg-white">
-                  <EditorContent
-                    className="tiptap min-h-[200px] lg:min-h-[300px] p-4 prose prose-sm lg:prose-base max-w-none focus:outline-none"
-                    editor={editor}
-                  />
-                </div>
-              </div>
-
-              <p className="text-xs text-gray-500">
-                Provide detailed information about the task, including
-                requirements, deadlines, and any relevant context
-              </p>
-            </div>
-
-            <input type="hidden" name="content" value={content} />
-            <input type="hidden" name="projectId" value={idProject} />
-
-            <div className="sm:flex flex-col hidden sm:flex-row gap-3 pt-6 border-t border-gray-200">
-              <div className="flex-1">
-                <SubmitForm buttonName="Create Task" />
-              </div>
-              <Link
-                href={`/project/${idProject}`}
-                className={buttonVariants({
-                  variant: "outline",
-                  className: "sm:w-auto w-full",
-                })}
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Cancel
-              </Link>
-            </div>
-
-            <div className="sm:hidden flex flex-col gap-3 pt-4 border-t border-gray-100">
-              <div className="grid grid-cols-2 gap-3">
-                <Link
-                  href={`/project/${idProject}`}
-                  className={buttonVariants({
-                    variant: "outline",
-                    size: "lg",
-                  })}
-                >
-                  Cancel
-                </Link>
-                <SubmitForm buttonName="Create" />
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <div className="flex items-start space-x-3">
-            <LayoutGrid className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-            <div>
-              <h4 className="text-sm font-semibold text-blue-900 mb-2">
-                Writing Tips
-              </h4>
-              <ul className="text-xs text-blue-700 space-y-1">
-                <li>• Use action verbs in your title</li>
-                <li>• Break down complex tasks into steps</li>
-                <li>• Include relevant deadlines and priorities</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-          <div className="flex items-start space-x-3">
-            <Calendar className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-            <div>
-              <h4 className="text-sm font-semibold text-green-900 mb-2">
-                Rich Editor Features
-              </h4>
-              <ul className="text-xs text-green-700 space-y-1">
-                <li>• Format text with bold, italic, lists</li>
-                <li>• Add links and media content</li>
-                <li>• Use headings to organize content</li>
-              </ul>
-            </div>
-          </div>
+        <div className="flex-1 min-w-0">
+          <h2 className="text-xl lg:text-2xl font-bold text-neutral-900 dark:text-neutral-100">Create New Task</h2>
+          <p className="text-sm lg:text-base text-neutral-600 dark:text-neutral-400">Add a new task to your project</p>
         </div>
       </div>
     </div>
+
+    <div className="p-6 lg:p-8">
+      <form className="space-y-8" action={handleTask}>
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <Label className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Task Title</Label>
+            <span className="text-red-500 font-semibold">*</span>
+          </div>
+
+          <Input
+            name="title"
+            required
+            type="text"
+            placeholder="Enter task title..."
+            className="h-12 lg:h-14 text-base border border-neutral-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:ring-2 focus:ring-neutral-900 dark:focus:ring-neutral-100 rounded-xl"
+          />
+
+          <div className="flex items-start gap-2 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
+            <Info className="w-4 h-4 text-neutral-500"/>
+            <p className="text-xs lg:text-sm text-neutral-600 dark:text-neutral-400">Use a descriptive title</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <Label className="text-sm font-medium text-neutral-900 dark:text-neutral-100">Task Description</Label>
+            <span className="text-xs px-2 py-1 rounded border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300">Rich Editor</span>
+          </div>
+
+          <div className="border border-neutral-300 dark:border-neutral-600 rounded-xl overflow-hidden bg-white dark:bg-neutral-800">
+            <div className="p-2 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900">
+              <MenuBar editor={editor}/>
+            </div>
+            <EditorContent
+              className="tiptap p-4 min-h-[220px] lg:min-h-[300px] prose dark:prose-invert focus:outline-none"
+              editor={editor}
+            />
+          </div>
+
+          <div className="flex items-start gap-2 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
+            <Info className="w-4 h-4 text-neutral-500"/>
+            <p className="text-xs lg:text-sm text-neutral-600 dark:text-neutral-400">Explain task details clearly.</p>
+          </div>
+        </div>
+
+        <input type="hidden" name="content" value={content} />
+        <input type="hidden" name="projectId" value={idProject} />
+
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-8 border-t border-neutral-200 dark:border-neutral-700">
+          <SubmitForm buttonName="Create Task" />
+          <Link href={`/project/${idProject}`} className="px-3 py-1 flex items-center justify-center border border-neutral-400 dark:border-neutral-600 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800">
+            <ArrowLeft /> Cancel
+          </Link>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
   );
 };
 

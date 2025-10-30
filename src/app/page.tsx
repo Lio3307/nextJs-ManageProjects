@@ -129,64 +129,48 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-neutral-950 transition-colors duration-300">
       <div className="px-4 lg:px-8 py-8 lg:py-12 max-w-7xl mx-auto">
         {data.length === 0 ? (
           <div className="space-y-10">
-            <div className="relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-3xl"></div>
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 dark:bg-black/5 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 dark:bg-black/5 rounded-full blur-2xl"></div>
-
-              <div className="relative p-8 text-center lg:text-left">
-                <h1 className="text-3xl  font-extrabold text-white dark:text-gray-900 mb-4 tracking-tight">
-                  Welcome back,{" "}
-                  <span className="inline-block bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 bg-clip-text text-transparent">
-                    {session.user.name}
-                  </span>
-                  !
-                </h1>
-                <p className="text-base lg:text-sm text-gray-200 dark:text-gray-700 max-w-2xl">
-                  Ready to start your first project? Lets get you organized and
-                  productive.
-                </p>
-              </div>
+            <div className="relative overflow-hidden p-8 rounded-3xl bg-white dark:bg-neutral-950 shadow-lg text-center lg:text-left">
+              <h1 className="text-3xl font-extrabold text-black dark:text-white mb-4 tracking-tight">
+                Welcome back,{" "}
+                <span className="text-black dark:text-white">
+                  {session.user.name}
+                </span>
+                !
+              </h1>
+              <p className="text-base lg:text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                Ready to start your first project? Lets get you organized and
+                productive.
+              </p>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-850 rounded-3xl"></div>
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
-
-              <div className="relative p-8 lg:p-12 text-center">
-                <div className="relative w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
-                  <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-100 dark:to-gray-200 rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                    <ClipboardList className="w-16 h-16 text-white dark:text-gray-900" />
-                  </div>
-                </div>
-
-                <h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-4 tracking-tight">
-                  Create Your First Project
-                </h2>
-                <p className="text-base lg:text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-                  Projects help you organize tasks, collaborate with team
-                  members, and track progress all in one place
-                </p>
-
-                <ModalTrigger
-                  compo={<ProjectModal />}
-                  buttonName="Create Project"
-                />
+            <div className="relative p-8 lg:p-12 rounded-3xl bg-white dark:bg-neutral-950 shadow-lg text-center">
+              <div className="w-32 h-32 lg:w-40 lg:h-40 mx-auto mb-8 flex items-center justify-center bg-black dark:bg-white rounded-3xl shadow-lg">
+                <ClipboardList className="w-16 h-16 text-white dark:text-black" />
               </div>
+              <h2 className="text-3xl font-extrabold text-black dark:text-white mb-4 tracking-tight">
+                Create Your First Project
+              </h2>
+              <p className="text-base lg:text-sm text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+                Projects help you organize tasks, collaborate with team members,
+                and track progress all in one place.
+              </p>
+              <ModalTrigger
+                compo={<ProjectModal />}
+                buttonName="Create Project"
+              />
             </div>
 
-            <div className="space-y-6 pt-8 border-t-2 border-gray-200 dark:border-gray-700">
+            <div className="space-y-6 pt-8 border-t-2 border-gray-200 dark:border-neutral-800">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-lg">
-                  <Globe className="w-6 h-6 text-white dark:text-gray-900" />
+                <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center shadow-md">
+                  <Globe className="w-6 h-6 text-white dark:text-black" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                  <h2 className="text-xl font-extrabold text-black dark:text-white tracking-tight">
                     Explore Public Projects
                   </h2>
                   <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">
@@ -194,53 +178,46 @@ export default async function Home() {
                   </p>
                 </div>
               </div>
-
               <PublicProject />
             </div>
           </div>
         ) : (
           <div className="space-y-8 lg:space-y-10">
-            <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-100 dark:via-gray-200 dark:to-gray-100"></div>
-              <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 dark:bg-black/5 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 dark:bg-black/5 rounded-full blur-2xl"></div>
-
-              <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 p-8 lg:p-10">
-                <div className="flex-1">
-                  <h1 className="text-3xl font-extrabold text-white dark:text-gray-900 mb-3 tracking-tight">
-                    Welcome back,{" "}
-                    <span className="inline-block bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-900 bg-clip-text text-transparent">
-                      {session.user.name}
-                    </span>
-                    !
-                  </h1>
-                  <p className="text-sm lg:text-base text-gray-200 dark:text-gray-700 leading-relaxed max-w-2xl">
-                    Stay organized and keep your projects moving forward. Heres
-                    what youre working on recently.
-                  </p>
-                </div>
-                <div className="flex-shrink-0">
-                  <ModalTrigger
-                    compo={<ProjectModal />}
-                    buttonName="Create Project"
-                  />
-                </div>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 p-8 lg:p-10 bg-white dark:bg-neutral-950 rounded-3xl shadow-2xl">
+              <div className="flex-1">
+                <h1 className="text-3xl font-extrabold text-black dark:text-white mb-3 tracking-tight">
+                  Welcome back,{" "}
+                  <span className="text-black dark:text-white">
+                    {session.user.name}
+                  </span>
+                  !
+                </h1>
+                <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
+                  Stay organized and keep your projects moving forward. Heres
+                  what youre working on recently.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <ModalTrigger
+                  compo={<ProjectModal />}
+                  buttonName="Create Project"
+                />
               </div>
             </div>
 
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-md">
-                    <Folder className="w-6 h-6 text-white dark:text-gray-900" />
+                  <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center shadow-md">
+                    <Folder className="w-6 h-6 text-white dark:text-black" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                    <h2 className="text-xl font-extrabold text-black dark:text-white tracking-tight">
                       Recent Projects
                     </h2>
                     <div className="flex items-center space-x-2 mt-1">
-                      <div className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700">
-                        <p className="text-xs font-semibold text-gray-900 dark:text-gray-100">
+                      <div className="px-3 py-1 bg-gray-100 dark:bg-neutral-800 rounded-full border border-gray-200 dark:border-neutral-800">
+                        <p className="text-xs font-semibold text-black dark:text-white">
                           {data.length} project{data.length !== 1 ? "s" : ""}
                         </p>
                       </div>
@@ -249,7 +226,7 @@ export default async function Home() {
                 </div>
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 group rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800"
                 >
                   <span>View all projects</span>
                   <ChevronRight
@@ -268,13 +245,13 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="space-y-6 pt-10 border-t-2 border-gray-200 dark:border-gray-700">
-              <div className="flex items-center space-x-4 p-6 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
-                <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center shadow-md">
-                  <Globe className="w-6 h-6 text-white dark:text-gray-900" />
+            <div className="space-y-6 pt-10 border-t-2 border-gray-200 dark:border-neutral-800">
+              <div className="flex items-center space-x-4 p-6 bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg">
+                <div className="w-12 h-12 bg-black dark:bg-white rounded-xl flex items-center justify-center shadow-md">
+                  <Globe className="w-6 h-6 text-white dark:text-black" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
+                  <h2 className="text-xl font-extrabold text-black dark:text-white tracking-tight">
                     Explore Public Projects
                   </h2>
                   <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">
@@ -282,7 +259,6 @@ export default async function Home() {
                   </p>
                 </div>
               </div>
-
               <PublicProject />
             </div>
           </div>

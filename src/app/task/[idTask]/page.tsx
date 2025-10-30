@@ -47,10 +47,10 @@ export default async function DetailTask({
   return (
     <>
       <div className="p-4 lg:p-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 p-4 lg:p-5 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 p-4 lg:p-5 bg-white dark:bg-neutral-950 rounded-xl border border-gray-200 dark:border-neutral-800 shadow-sm transition-colors duration-300">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
-            <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
-              <FileText className="w-5 h-5 text-white dark:text-gray-900" />
+            <div className="w-10 h-10 bg-gray-900 dark:bg-neutral-800 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
+              <FileText className="w-5 h-5 text-white dark:text-neutral-50" />
             </div>
             <div className="flex-1 min-w-0">
               <BreadcrumbWithCustomSeparator
@@ -64,20 +64,12 @@ export default async function DetailTask({
           {session.user.id === taskData.userId ||
           session.user.id === taskData.project.userId ? (
             <div className="flex justify-end sm:justify-start flex-shrink-0">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-lg blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <ActionTask idProject={taskData.projectId} idTask={idTask} />
-                </div>
-              </div>
+              <ActionTask idProject={taskData.projectId} idTask={idTask} />
             </div>
           ) : null}
         </div>
 
         <div className="relative">
-          <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-gray-900/5 to-transparent dark:from-gray-100/5 rounded-full blur-3xl -z-10"></div>
-          <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-gray-900/5 to-transparent dark:from-gray-100/5 rounded-full blur-3xl -z-10"></div>
-
           <TaskNav
             idTask={idTask}
             taskData={taskData}
