@@ -30,6 +30,7 @@ import {
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import LogedOut from "./logout";
+import { ThemeToggle } from "./theme/theme-toggle";
 
 const menuItems = [
   { id: 1, title: "Overview", url: "/", icon: <House /> },
@@ -73,6 +74,16 @@ export async function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Theme</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <ThemeToggle />
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
