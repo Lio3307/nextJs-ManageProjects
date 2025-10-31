@@ -18,11 +18,20 @@ export default async function ReplyCommentList({
   return (
     <>
       {replyComment.length > 0 ? (
-        <div className="ml-6 lg:ml-12 mt-4 space-y-3 lg:space-y-4 relative">
+        <div 
+          className="ml-6 lg:ml-12 mt-4 space-y-3 lg:space-y-4 relative"
+          role="list"
+          aria-label="Replies to comment"
+        >
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-300 dark:bg-neutral-700 rounded-full"></div>
 
           {replyComment.map((reply) => (
-            <div key={reply.id} className="relative group">
+            <div 
+              key={reply.id} 
+              className="relative group"
+              role="listitem"
+              aria-label={`Reply from ${reply.user.name}`}
+            >
               <div className="absolute left-0 top-6 w-4 lg:w-6 h-0.5 bg-gray-300 dark:bg-neutral-700"></div>
 
               <div className="ml-4 lg:ml-6 bg-white dark:bg-neutral-950 rounded-xl border border-gray-200 dark:border-neutral-800 p-4 lg:p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">

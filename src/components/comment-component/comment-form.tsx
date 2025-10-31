@@ -15,13 +15,20 @@ export default function CommentForm({ reportId }: { reportId: string }) {
     }
   };
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6 lg:space-y-8">
+    <div 
+      className="w-full max-w-4xl mx-auto space-y-6 lg:space-y-8"
+      role="region"
+      aria-labelledby="comments-heading"
+    >
   <div className="flex items-center justify-between p-5 lg:p-6 bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg transition-colors duration-300">
     <div className="flex items-center space-x-4">
       <div className="w-12 h-12 bg-black dark:bg-neutral-800 rounded-xl flex items-center justify-center shadow-md">
         <MessageCircle className="w-6 h-6 text-white dark:text-neutral-50" />
       </div>
-      <h3 className="text-xl lg:text-2xl font-bold text-black dark:text-neutral-50">
+      <h3 
+        id="comments-heading"
+        className="text-xl lg:text-2xl font-bold text-black dark:text-neutral-50"
+      >
         Comments
       </h3>
     </div>

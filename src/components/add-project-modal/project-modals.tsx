@@ -56,10 +56,16 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
   if (!portal) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       <div
         className="absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-md transition-all duration-300"
         onClick={onClose}
+        aria-hidden="true"
       />
 
       <Card className="relative z-10 w-full max-w-2xl mx-auto rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transform transition-all duration-300 scale-100 max-h-[90vh] overflow-hidden flex flex-col">
@@ -84,7 +90,10 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight">
+              <h2 
+              id="modal-title"
+              className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight"
+            >
                 Create New Project
               </h2>
               <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed">

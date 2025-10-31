@@ -6,10 +6,23 @@ import Link from "next/link";
 
 export default function ReportCard({ reportData }: { reportData: Report[] }) {
   return (
-    <div className="space-y-5 lg:space-y-6">
+    <div 
+      className="space-y-5 lg:space-y-6"
+      role="list"
+      aria-label="Reports list"
+    >
       {reportData.map((data) => (
-        <Link key={data.id} href={`/dashboard/report/${data.id}`} className="block group">
-          <div className="bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-transform duration-300 overflow-hidden relative">
+        <Link 
+          key={data.id} 
+          href={`/dashboard/report/${data.id}`} 
+          className="block group"
+          aria-label={`View report: ${data.title}`}
+        >
+          <div 
+            className="bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-transform duration-300 overflow-hidden relative"
+            role="article"
+            aria-labelledby={`report-title-${data.id}`}
+          >
             <div className="h-1 w-full bg-black dark:bg-neutral-50 group-hover:h-1.5 transition-all duration-300"></div>
 
             <div className="px-6 lg:px-8 py-5 border-b border-gray-200 dark:border-neutral-800 relative">
@@ -53,7 +66,10 @@ export default function ReportCard({ reportData }: { reportData: Report[] }) {
             <div className="px-6 lg:px-8 py-6 relative">
               <div className="flex items-start space-x-3 mb-4">
                 <div className="h-12 w-1 bg-black dark:bg-neutral-50 rounded-full flex-shrink-0 mt-1"></div>
-                <h4 className="text-lg lg:text-xl mt-3 font-bold text-black dark:text-neutral-50 leading-tight line-clamp-2 group-hover:text-black dark:group-hover:text-white transition-colors duration-200">
+                <h4 
+                  id={`report-title-${data.id}`}
+                  className="text-lg lg:text-xl mt-3 font-bold text-black dark:text-neutral-50 leading-tight line-clamp-2 group-hover:text-black dark:group-hover:text-white transition-colors duration-200"
+                >
                   {data.title}
                 </h4>
               </div>

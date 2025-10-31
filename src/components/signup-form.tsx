@@ -111,6 +111,7 @@ export function SignUpForm({
                     onClick={signInwithGoogle}
                     variant="outline"
                     className="w-full h-10 border-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg font-medium text-sm"
+                    aria-describedby="google-signup-desc"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-4 h-4 mr-2">
                       <path
@@ -126,7 +127,7 @@ export function SignUpForm({
                       <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
                     </div>
                     <div className="relative flex justify-center text-xs">
-                      <span className="px-2 bg-white dark:bg-neutral-950 text-gray-500">Or</span>
+                      <span id="google-signup-desc" className="px-2 bg-white dark:bg-neutral-950 text-gray-500">Or sign up with email</span>
                     </div>
                   </div>
 
@@ -186,6 +187,8 @@ export function SignUpForm({
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
                                 className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                                aria-pressed={showPassword}
                               >
                                 {showPassword ? (
                                   <EyeOff className="w-4 h-4" />

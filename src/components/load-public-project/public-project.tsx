@@ -66,6 +66,7 @@ export default function PublicProject() {
           onClick={loadProjects}
           disabled={loading}
           className="inline-flex items-center gap-2 px-6 py-3 bg-black hover:bg-black disabled:bg-gray-400 text-white font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md disabled:cursor-not-allowed"
+          aria-busy={loading}
         >
           {loading && <Loader2 className="w-4 h-4 animate-spin" />}
           {loading

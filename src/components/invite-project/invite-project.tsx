@@ -50,7 +50,11 @@ export default function InviteProject({ userId }: { userId: string }) {
   };
 
   return (
-   <div className="min-h-screen bg-gray-50 dark:bg-neutral-950 p-4 lg:p-6 transition-colors duration-300">
+   <div 
+     className="min-h-screen bg-gray-50 dark:bg-neutral-950 p-4 lg:p-6 transition-colors duration-300"
+     role="main"
+     aria-label="Join project"
+   >
   <div className="max-w-3xl mx-auto">
     <div className="bg-white dark:bg-neutral-950 rounded-2xl shadow-2xl border-2 border-gray-200 dark:border-neutral-800 overflow-hidden transition-colors duration-300">
       <div className="relative overflow-hidden bg-gray-900 dark:bg-gray-100 p-8 lg:p-10 border-b-2 border-gray-700 dark:border-gray-300">
@@ -85,7 +89,11 @@ export default function InviteProject({ userId }: { userId: string }) {
       </div>
 
       <div className="p-6 lg:p-8">
-        <form className="w-full mb-8" action={handleSearch}>
+        <form 
+          className="w-full mb-8" 
+          action={handleSearch}
+          aria-label="Search for project by invite code"
+        >
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="h-6 w-1 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
@@ -134,7 +142,10 @@ export default function InviteProject({ userId }: { userId: string }) {
 
         {project && (
           <div className="border-2 border-gray-200 dark:border-neutral-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <form action={handleJoin}>
+            <form 
+              action={handleJoin}
+              aria-labelledby="project-title project-desc project-by"
+            >
               <div className="relative overflow-hidden bg-gray-50 dark:bg-neutral-950 p-6 lg:p-8">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl"></div>

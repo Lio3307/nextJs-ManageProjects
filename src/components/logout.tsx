@@ -18,7 +18,18 @@ export default function LogedOut({ children }: { children: ReactNode }) {
     router.refresh();
   };
   return (
-    <div onClick={handleLogOut} className="w-full">
+    <div 
+      onClick={handleLogOut} 
+      className="w-full"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleLogOut();
+        }
+      }}
+      aria-label="Log out of your account"
+    >
       {children}
     </div>
   );

@@ -9,7 +9,11 @@ export default function CommentCard({
   dataComments: Comment[];
 }) {
   return (
-<div className="space-y-5 lg:space-y-6">
+<div 
+  className="space-y-5 lg:space-y-6"
+  role="list"
+  aria-label="Comments list"
+>
   {dataComments.length === 0 ? (
     <div className="relative overflow-hidden">
       <div className="relative flex flex-col items-center justify-center p-12 lg:p-16 border-2 border-dashed border-gray-300 dark:border-neutral-800 rounded-2xl bg-white dark:bg-neutral-950 transition-colors duration-300">
@@ -30,6 +34,8 @@ export default function CommentCard({
         <div
           key={comment.id}
           className="group bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+          role="article"
+          aria-labelledby={`comment-author-${comment.id}`}
         >
           <div className="p-5 lg:p-6 space-y-4">
             <div className="flex items-start justify-between gap-4">
@@ -40,7 +46,10 @@ export default function CommentCard({
                   </span>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm lg:text-base font-bold text-black dark:text-neutral-50 truncate">
+                  <p 
+                    id={`comment-author-${comment.id}`}
+                    className="text-sm lg:text-base font-bold text-black dark:text-neutral-50 truncate"
+                  >
                     {comment.commentBy}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-neutral-400">

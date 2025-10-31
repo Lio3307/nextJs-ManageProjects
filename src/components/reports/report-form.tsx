@@ -26,14 +26,21 @@ export default function ReportForm({
   };
   return (
     <>
-      <div className="bg-white dark:bg-neutral-950 rounded-2xl shadow-xl border border-gray-200 dark:border-neutral-800 overflow-hidden mb-8 transition-colors duration-300">
+      <div 
+        className="bg-white dark:bg-neutral-950 rounded-2xl shadow-xl border border-gray-200 dark:border-neutral-800 overflow-hidden mb-8 transition-colors duration-300"
+        role="region"
+        aria-labelledby="create-report-heading"
+      >
         <div className="px-6 lg:px-8 py-6 relative overflow-hidden bg-black/5 dark:bg-neutral-900/5">
           <div className="flex items-start space-x-4 relative z-10">
             <div className="w-12 h-12 bg-white/10 dark:bg-neutral-800 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ring-2 ring-white/20 dark:ring-neutral-700">
               <MessageSquareWarning className="text-white dark:text-neutral-50 w-6 h-6" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-xl lg:text-2xl font-bold text-black dark:text-neutral-50 mb-1">
+              <h2 
+                id="create-report-heading"
+                className="text-xl lg:text-2xl font-bold text-black dark:text-neutral-50 mb-1"
+              >
                 Create Report
               </h2>
               <p className="text-sm text-gray-700 dark:text-neutral-300">

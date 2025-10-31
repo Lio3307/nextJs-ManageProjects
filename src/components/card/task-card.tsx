@@ -10,9 +10,17 @@ type TaskProps = {
 
 export default function TaskCard({ data }: { data: TaskProps }) {
   return (
-    <Link href={`/dashboard/task/${data.id}`} className="block w-full h-full">
+    <Link 
+      href={`/dashboard/task/${data.id}`} 
+      className="block w-full h-full"
+      aria-label={`View task ${data.title}`}
+    >
       <div className="group transition-all duration-300">
-        <Card className="w-full h-full cursor-pointer flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-md bg-white dark:bg-neutral-950 transition-all duration-300 overflow-hidden">
+        <Card 
+          className="w-full h-full cursor-pointer flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-md bg-white dark:bg-neutral-950 transition-all duration-300 overflow-hidden"
+          role="article"
+          aria-labelledby={`task-title-${data.id}`}
+        >
           <div className="h-1 w-full bg-neutral-900 dark:bg-neutral-100 group-hover:h-1.5 transition-all duration-300"></div>
 
           <CardHeader className="pt-6 pb-4 px-6">
@@ -24,7 +32,10 @@ export default function TaskCard({ data }: { data: TaskProps }) {
               <div className="w-2 h-2 rounded-full bg-neutral-400 dark:bg-neutral-600 group-hover:bg-neutral-900 dark:group-hover:bg-neutral-100 transition-all duration-300 group-hover:scale-125"></div>
             </div>
 
-            <CardTitle className="text-lg lg:text-xl font-bold line-clamp-2 text-neutral-900 dark:text-neutral-100 group-hover:text-black dark:group-hover:text-white leading-tight transition-colors min-h-[3.5rem]">
+            <CardTitle 
+              id={`task-title-${data.id}`}
+              className="text-lg lg:text-xl font-bold line-clamp-2 text-neutral-900 dark:text-neutral-100 group-hover:text-black dark:group-hover:text-white leading-tight transition-colors min-h-[3.5rem]"
+            >
               {data.title}
             </CardTitle>
           </CardHeader>

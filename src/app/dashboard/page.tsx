@@ -34,7 +34,10 @@ export default async function DashboardOverview() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-neutral-950 transition-colors duration-300">
+    <main 
+      className="min-h-screen bg-gray-50 dark:bg-neutral-950 transition-colors duration-300"
+      aria-label="Dashboard"
+    >
       <div className="px-4 lg:px-8 py-8 lg:py-12 max-w-7xl mx-auto">
         {data.length === 0 ? (
           <div className="space-y-10">
@@ -169,6 +172,6 @@ export default async function DashboardOverview() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }

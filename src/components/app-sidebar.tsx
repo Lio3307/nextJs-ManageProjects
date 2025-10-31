@@ -50,7 +50,11 @@ export async function AppSidebar() {
   });
 
   return (
-    <Sidebar collapsible="icon" className="border-r">
+    <Sidebar 
+      collapsible="offcanvas" 
+      className="border-r z-40 shadow-xl"
+      aria-label="Main navigation"
+    >
       <SidebarHeader className="border-b border-sidebar-border">
         <SidebarMenu>
           <SidebarMenuItem>

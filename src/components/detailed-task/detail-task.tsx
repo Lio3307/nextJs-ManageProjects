@@ -6,7 +6,11 @@ import type { Task } from "@prisma/client";
 
 export default function DetailedTask({ detailedTask }: { detailedTask: Task }) {
   return (
-    <div className="w-full space-y-6">
+    <div 
+      className="w-full space-y-6"
+      role="main"
+      aria-label="Task details"
+    >
       <div className="bg-white dark:bg-neutral-950 rounded-2xl shadow-md border border-gray-200 dark:border-neutral-800 overflow-hidden transition-colors duration-300">
         <div className="px-6 lg:px-8 py-6 border-b border-gray-200 dark:border-neutral-800 bg-gray-50 dark:bg-neutral-950">
           <div className="flex items-start space-x-4 mb-6">

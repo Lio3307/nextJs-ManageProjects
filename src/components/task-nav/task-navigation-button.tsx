@@ -25,7 +25,11 @@ export default function TaskNav({
 
   return (
     <>
-      <div className="flex my-4 bg-gray-100 dark:bg-neutral-950 rounded-xl p-1 shadow-inner">
+      <div 
+        className="flex my-4 bg-gray-100 dark:bg-neutral-950 rounded-xl p-1 shadow-inner"
+        role="tablist"
+        aria-label="Task navigation"
+      >
         {navItems.map((item) => (
           <button
             key={item.id}
@@ -39,6 +43,8 @@ export default function TaskNav({
               e.stopPropagation();
               setCurrentNav(item.name);
             }}
+            aria-selected={currentNav === item.name}
+            role="tab"
           >
             {item.name}
           </button>

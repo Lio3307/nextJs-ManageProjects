@@ -23,6 +23,7 @@ export default function ModalTrigger({
           e.stopPropagation();
           setShowModal(true);
         }}
+        aria-haspopup="dialog"
       >
         {buttonName}
       </Button>

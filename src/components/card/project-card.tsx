@@ -11,14 +11,25 @@ type ProjectProps = {
 
 export default function ProjectCard({ data }: { data: ProjectProps }) {
   return (
-    <Link href={`/dashboard/project/${data.id}`} className="group block w-full h-full">
-      <Card className="w-full h-full cursor-pointer flex flex-col shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950 relative">
+    <Link 
+      href={`/dashboard/project/${data.id}`} 
+      className="group block w-full h-full"
+      aria-label={`View project ${data.title}`}
+    >
+      <Card 
+        className="w-full h-full cursor-pointer flex flex-col shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950 relative"
+        role="article"
+        aria-labelledby={`project-title-${data.id}`}
+      >
         <div className="absolute top-0 right-0 w-24 h-24 bg-black/5 dark:bg-white/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-125 transition-transform duration-300"></div>
 
         <CardHeader className="py-5 px-6 bg-black dark:bg-white relative overflow-hidden">
           <div className="flex items-start justify-between gap-4 relative z-10">
             <div className="flex-1 min-w-0">
-              <CardTitle className="text-lg lg:text-xl font-bold line-clamp-2 text-white dark:text-black group-hover:text-gray-100 dark:group-hover:text-gray-900 transition-colors duration-200 leading-tight">
+              <CardTitle 
+                id={`project-title-${data.id}`}
+                className="text-lg lg:text-xl font-bold line-clamp-2 text-white dark:text-black group-hover:text-gray-100 dark:group-hover:text-gray-900 transition-colors duration-200 leading-tight"
+              >
                 {data.title}
               </CardTitle>
             </div>

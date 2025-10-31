@@ -37,7 +37,10 @@ export default function AcitonReport({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="p-2 rounded-md hover:bg-muted transition">
+        <button 
+          className="p-2 rounded-md hover:bg-muted transition"
+          aria-label="Report actions"
+        >
           <EllipsisVertical className="h-5 w-5" />
         </button>
       </DropdownMenuTrigger>
