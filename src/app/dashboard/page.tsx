@@ -1,24 +1,18 @@
 import ModalTrigger from "@/components/add-project-modal/modal-trigger";
 import ProjectCard from "@/components/card/project-card";
-import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
 import ProjectModal from "@/components/add-project-modal/project-modals";
 import Link from "next/link";
 import {
-  Archive,
-  Calendar,
   ChevronRight,
   ClipboardList,
   Folder,
   Globe,
-  LogIn,
-  Table,
-  UserPlus,
-  Users,
 } from "lucide-react";
 import PublicProject from "@/components/load-public-project/public-project";
+import { redirect } from "next/navigation";
 
 export default async function DashboardOverview() {
   const session = await auth.api.getSession({
@@ -36,96 +30,7 @@ export default async function DashboardOverview() {
   });
 
   if (!session) {
-    return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
-        <div className="flex flex-col items-center justify-center min-h-screen px-4 lg:px-8 relative z-10">
-          <div className="w-full max-w-lg mx-auto text-center">
-            <div className="mb-8">
-              <div className="relative w-24 h-24 lg:w-28 lg:h-28 mx-auto mb-8">
-                <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 rounded-3xl rotate-6 blur-lg opacity-30 animate-pulse"></div>
-                <div className="relative w-24 h-24 lg:w-28 lg:h-28 bg-gray-800 dark:bg-gray-700 rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                  <Archive className="w-12 h-12 lg:w-14 lg:h-14 text-white" />
-                </div>
-              </div>
-
-              <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
-                Welcome to <span className="font-extrabold">ProjectHub</span>
-              </h1>
-              <p className="text-base lg:text-lg text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-md mx-auto">
-                Join thousands of teams who organize their work and collaborate
-                seamlessly. Create your account to get started.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 lg:p-10">
-              <div className="space-y-6">
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                    Ready to get started?
-                  </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Sign in to access your projects or create a new account
-                  </p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    className={buttonVariants({
-                      className:
-                        "flex-1 h-14 text-base font-semibold bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100",
-                    })}
-                    href="/login"
-                  >
-                    <LogIn className="w-5 h-5 mr-2" />
-                    Sign In
-                  </Link>
-                  <Link
-                    className={buttonVariants({
-                      variant: "outline",
-                      className:
-                        "flex-1 h-14 text-base font-semibold border-2 border-gray-300 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800/50 text-gray-900 dark:text-white transform hover:scale-105 transition-all duration-200",
-                    })}
-                    href="/signup"
-                  >
-                    <UserPlus className="w-5 h-5 mr-2" />
-                    Sign Up
-                  </Link>
-                </div>
-
-                <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                    <div className="p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200 group">
-                      <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-200">
-                        <Table className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-                      </div>
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        Organize Projects
-                      </p>
-                    </div>
-                    <div className="p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200 group">
-                      <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-200">
-                        <Users className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-                      </div>
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        Team Collaboration
-                      </p>
-                    </div>
-                    <div className="p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-200 group">
-                      <div className="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-200">
-                        <Calendar className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-                      </div>
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        Track Progress
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return redirect('/signup')
   }
 
   return (
