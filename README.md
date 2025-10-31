@@ -117,6 +117,17 @@ The application uses Better Auth for authentication with the following features:
 - Session management with secure cookies
 - Protected routes for dashboard pages
 
+## Database and Realtime Updates
+
+**Important**: This application uses a traditional database approach with PostgreSQL and Prisma ORM. Data is not updated in realtime using WebSockets or similar technologies.
+
+- **Data Fetching**: Data is fetched from the database on page load and through manual refresh
+- **No Automatic Updates**: Changes made by other users will not automatically appear in your browser
+- **Manual Refresh Required**: Users need to manually refresh pages or navigate between routes to see updated data
+- **Form Submissions**: Form submissions will update the UI immediately after successful database operations
+
+This approach was chosen for simplicity and to reduce infrastructure complexity. For applications requiring realtime updates, technologies like WebSockets, Server-Sent Events, or solutions like Pusher would need to be implemented.
+
 ## Development
 
 ### Available Scripts
