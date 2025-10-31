@@ -51,7 +51,7 @@ export function LoginForm({
   const signInwithGoogle = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/",
+      callbackURL: "/dashboard",
     });
   };
 
@@ -60,7 +60,7 @@ export function LoginForm({
     const { success, message } = await signIn(values.email, values.password);
     if (success) {
       toast.success(message as string);
-      router.push("/");
+      router.push("/dashboard");
     } else {
       console.error(message as string);
       toast.error("Something wrong, please try again");
@@ -71,7 +71,7 @@ export function LoginForm({
   if (isPending) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="w-8 h-8 animate-spin text-gray-900 dark:text-gray-100" />
+        <Loader2 className="w-8 h-8 animate-spin text-neutral-950 dark:text-gray-100" />
       </div>
     );
   }
@@ -82,9 +82,9 @@ export function LoginForm({
         <LogedIn />
       ) : (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
-          <Card className="border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl bg-white dark:bg-gray-900">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl bg-white dark:bg-neutral-950">
             <CardHeader className="text-center p-6 border-b border-gray-200 dark:border-gray-700">
-              <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              <CardTitle className="text-2xl font-bold text-neutral-950 dark:text-gray-100">
                 Welcome back
               </CardTitle>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
@@ -122,7 +122,7 @@ export function LoginForm({
                       <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
                     </div>
                     <div className="relative flex justify-center text-xs">
-                      <span className="px-2 bg-white dark:bg-gray-900 text-gray-500">
+                      <span className="px-2 bg-white dark:bg-neutral-950 text-gray-500">
                         Or
                       </span>
                     </div>
@@ -186,7 +186,7 @@ export function LoginForm({
                   <Button
                     disabled={isLoading}
                     type="submit"
-                    className="w-full h-11 bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-gray-900 font-semibold rounded-lg"
+                    className="w-full h-11 bg-neutral-950 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-neutral-950 font-semibold rounded-lg"
                   >
                     {isLoading ? (
                       <Loader2 className="size-4 animate-spin" />
@@ -199,7 +199,7 @@ export function LoginForm({
                     Dont have an account?{" "}
                     <Link
                       href="/signup"
-                      className="font-semibold text-gray-900 dark:text-gray-100 hover:underline"
+                      className="font-semibold text-neutral-950 dark:text-gray-100 hover:underline"
                     >
                       Sign up
                     </Link>
