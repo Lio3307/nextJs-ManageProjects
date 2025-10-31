@@ -28,7 +28,7 @@ export default function AcitonReport({
     const { success, message } = await handleDeleteReport(idReport);
     if (success) {
       toast.success(message as string);
-      router.replace(`/task/${idTask}`);
+      router.replace(`/dashboard/task/${idTask}`);
     } else {
       toast.error(message as string);
     }

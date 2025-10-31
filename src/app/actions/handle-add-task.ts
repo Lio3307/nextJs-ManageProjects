@@ -34,7 +34,7 @@ export async function handleAddTask(formData: FormData) {
       },
     });
 
-    revalidatePath(`/project/${projectId}`);
+    revalidatePath(`/dashboard/project/${projectId}`);
 
     return { success: true, message: "Successfully create task" };
   } catch (error) {

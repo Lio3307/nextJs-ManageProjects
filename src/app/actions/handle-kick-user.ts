@@ -16,7 +16,7 @@ export async function kickUser(
       },
     });
   
-    revalidatePath(`/project/${idProject}/member`);
+    revalidatePath(`/dashboard/project/${idProject}/member`);
     return {success: true, message: "Member kicked!"}
   } catch (error) {
     console.error(`Cannot kick user : ${error}`)

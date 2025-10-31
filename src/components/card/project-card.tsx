@@ -11,7 +11,7 @@ type ProjectProps = {
 
 export default function ProjectCard({ data }: { data: ProjectProps }) {
   return (
-    <Link href={`/project/${data.id}`} className="group block w-full h-full">
+    <Link href={`/dashboard/project/${data.id}`} className="group block w-full h-full">
       <Card className="w-full h-full cursor-pointer flex flex-col shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 dark:border-neutral-800 rounded-2xl overflow-hidden bg-white dark:bg-neutral-950 relative">
         <div className="absolute top-0 right-0 w-24 h-24 bg-black/5 dark:bg-white/5 rounded-bl-full transform translate-x-8 -translate-y-8 group-hover:scale-125 transition-transform duration-300"></div>
 

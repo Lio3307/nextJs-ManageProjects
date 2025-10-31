@@ -90,7 +90,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
     const { success, message } = await handleAddTask(formData);
     if (success) {
       toast.success(message as string);
-      router.replace(`/project/${idProject}`);
+      router.replace(`/dashboard/project/${idProject}`);
     } else {
       toast.error(message as string);
     }
@@ -160,7 +160,7 @@ const Tiptap = ({ idProject }: { idProject: string | string[] }) => {
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-8 border-t border-neutral-200 dark:border-neutral-700">
           <SubmitForm buttonName="Create Task" />
-          <Link href={`/project/${idProject}`} className="px-3 py-1 flex items-center justify-center border border-neutral-400 dark:border-neutral-600 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800">
+          <Link href={`/dashboard/project/${idProject}`} className="px-3 py-1 flex items-center justify-center border border-neutral-400 dark:border-neutral-600 rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800">
             <ArrowLeft /> Cancel
           </Link>
         </div>

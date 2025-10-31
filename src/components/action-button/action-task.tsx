@@ -29,7 +29,7 @@ export default function ActionTask({
     const { success, message } = await handleDeleteTask(idTask);
     if (success) {
       toast.success(message as string);
-      router.replace(`/project/${idProject}`);
+      router.replace(`/dashboard/project/${idProject}`);
     } else {
       toast.error(message as string);
     }
@@ -53,7 +53,7 @@ export default function ActionTask({
           Delete Task
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => router.push(`/edit/task/${idTask}`)}
+          onClick={() => router.push(`/dashboard/edit/task/${idTask}`)}
           className="text-sky-600 focus:text-sky-600"
         >
           <FilePen className="text-sky-600 mr-2 h-4 w-4" />

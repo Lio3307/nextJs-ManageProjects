@@ -256,7 +256,7 @@ export default function EditTaskForm({
                 <SubmitForm buttonName="Update Task" />
               </div>
               <Link
-                href={`/task/${taskId}`}
+                href={`/dashboard/task/${taskId}`}
                 className={buttonVariants({
                   variant: "outline",
                   className:
@@ -271,7 +271,7 @@ export default function EditTaskForm({
             <div className="sm:hidden flex flex-col gap-3 pt-6 border-t-2 border-gray-200 dark:border-neutral-800">
               <SubmitForm buttonName="Update Task" />
               <Link
-                href={`/task/${taskId}`}
+                href={`/dashboard/task/${taskId}`}
                 className={buttonVariants({
                   variant: "outline",
                   size: "lg",

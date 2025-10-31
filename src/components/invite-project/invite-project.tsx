@@ -43,7 +43,7 @@ export default function InviteProject({ userId }: { userId: string }) {
     const { success, message } = await joinProjectByCode(formData);
     if (success) {
       toast.success(message as string);
-      router.replace("/join-status");
+      router.replace("/dashboard//join-status");
     } else {
       toast.error(message as string);
     }

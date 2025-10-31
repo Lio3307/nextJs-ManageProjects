@@ -31,7 +31,7 @@ export async function handleAddComment(formData: FormData) {
       },
     });
 
-    revalidatePath(`/report/${idReport}`);
+    revalidatePath(`/dashboard/report/${idReport}`);
     return { success: true, message: "Successfully create comment" };
   } catch (error) {
     console.error(`Cannot create comment : ${error}`);

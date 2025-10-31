@@ -55,7 +55,7 @@ export default async function DetailTask({
             <div className="flex-1 min-w-0">
               <BreadcrumbWithCustomSeparator
                 name={taskData.project.title}
-                link={`/project/${taskData.projectId}`}
+                link={`/dashboard/project/${taskData.projectId}`}
                 currentPageName="Task"
               />
             </div>

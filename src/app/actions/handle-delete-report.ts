@@ -17,7 +17,7 @@ export async function handleDeleteReport(idReport: string) {
       },
     });
 
-    revalidatePath(`/task/${currentReport?.taskId}`);
+    revalidatePath(`/dashboard/task/${currentReport?.taskId}`);
     return { success: true, message: "Successfully delete report" };
   } catch (error) {
     console.error(`Cannot delete report : ${error}`);

@@ -131,14 +131,14 @@ export default async function DetailProject({
     {/* Footer Actions */}
     <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800">
       <Link
-        href={`/project/${idProject}/member`}
+        href={`/dashboard/project/${idProject}/member`}
         className="inline-flex items-center px-4 py-2.5 text-sm font-semibold text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition"
       >
         Check Member List →
       </Link>
 
       {session.user.id === dataProject.userId && (
-        <Link href={`/project/${idProject}/add-task`} className={buttonVariants()}>
+        <Link href={`/dashboard/project/${idProject}/add-task`} className={buttonVariants()}>
           Add Task
         </Link>
       )}

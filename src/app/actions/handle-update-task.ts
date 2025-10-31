@@ -19,7 +19,7 @@ export async function handleUpdateTask(
       },
     });
 
-    revalidatePath(`/task/${idTask}`);
+    revalidatePath(`/dashboard/task/${idTask}`);
     return { success: true, message: "Task Updated!" };
   } catch (error) {
     console.error(`Cannot update task : ${error}`);

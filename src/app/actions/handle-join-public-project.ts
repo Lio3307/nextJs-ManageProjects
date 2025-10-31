@@ -21,7 +21,7 @@ export async function joinPublicProject(formData: FormData) {
         memberList: getUserName!.name,
       },
     });
-    revalidatePath(`/project/${idProject}`);
+    revalidatePath(`/dashboard/project/${idProject}`);
     return {success: true, message: "Successfully join project"}
   } catch (error) {
     console.error(`Cannot join project: ${error}`)

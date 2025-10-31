@@ -33,15 +33,15 @@ import LogedOut from "./logout";
 import { ThemeToggle } from "./theme/theme-toggle";
 
 const menuItems = [
-  { id: 1, title: "Overview", url: "/", icon: <House /> },
+  { id: 1, title: "Overview", url: "/dashboard", icon: <House /> },
   {
     id: 2,
     title: "Project",
-    url: "/project-list",
+    url: "/dashboard/project-list",
     icon: <Folder />,
   },
-  { id: 3, title: "Join Project", url: "/join-project", icon: <CirclePlus /> },
-  { id: 4, title: "Join History", url: "/join-status", icon: <History /> },
+  { id: 3, title: "Join Project", url: "/dashboard/join-project", icon: <CirclePlus /> },
+  { id: 4, title: "Join History", url: "/dashboard/join-status", icon: <History /> },
 ];
 
 export async function AppSidebar() {

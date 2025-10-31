@@ -39,7 +39,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
     );
     if (success) {
       toast.success(message as string);
-      router.replace("/project-list");
+      router.replace("/dashboard/project-list");
     } else {
       toast.error(message as string);
     }

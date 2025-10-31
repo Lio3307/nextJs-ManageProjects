@@ -37,7 +37,7 @@ export async function handleAddReplyComment(
       },
     });
   
-    revalidatePath(`/report/${getComment?.reportId}`);
+    revalidatePath(`/dashboard/report/${getComment?.reportId}`);
     return {success: true, message: "Replyed comment!"}
   } catch (error) {
     console.error(`Cannot reply comment : ${error}`)

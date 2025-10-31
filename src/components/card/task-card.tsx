@@ -10,7 +10,7 @@ type TaskProps = {
 
 export default function TaskCard({ data }: { data: TaskProps }) {
   return (
-    <Link href={`/task/${data.id}`} className="block w-full h-full">
+    <Link href={`/dashboard/task/${data.id}`} className="block w-full h-full">
       <div className="group transition-all duration-300">
         <Card className="w-full h-full cursor-pointer flex flex-col rounded-xl border border-neutral-200 dark:border-neutral-800 shadow-sm hover:shadow-md bg-white dark:bg-neutral-950 transition-all duration-300 overflow-hidden">
           <div className="h-1 w-full bg-neutral-900 dark:bg-neutral-100 group-hover:h-1.5 transition-all duration-300"></div>

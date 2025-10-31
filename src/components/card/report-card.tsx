@@ -8,7 +8,7 @@ export default function ReportCard({ reportData }: { reportData: Report[] }) {
   return (
     <div className="space-y-5 lg:space-y-6">
       {reportData.map((data) => (
-        <Link key={data.id} href={`/report/${data.id}`} className="block group">
+        <Link key={data.id} href={`/dashboard/report/${data.id}`} className="block group">
           <div className="bg-white dark:bg-neutral-950 rounded-2xl border border-gray-200 dark:border-neutral-800 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-transform duration-300 overflow-hidden relative">
             <div className="h-1 w-full bg-black dark:bg-neutral-50 group-hover:h-1.5 transition-all duration-300"></div>
 

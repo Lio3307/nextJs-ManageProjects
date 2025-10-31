@@ -42,8 +42,8 @@ export async function actionRequest(formData: FormData) {
           id: idRequest,
         },
       });
-      revalidatePath(`/project/${idProject}/request`);
-      revalidatePath("/join-status");
+      revalidatePath(`/dashboard/project/${idProject}/request`);
+      revalidatePath("/dashboard/join-status");
     } catch (error) {
       console.error(`Cannot adding user to project : ${error}`)
     }
@@ -62,8 +62,8 @@ export async function actionRequest(formData: FormData) {
           id: idRequest,
         },
       });
-      revalidatePath(`/project/${idProject}/request`);
-      revalidatePath("/join-status");
+      revalidatePath(`/dashboard/project/${idProject}/request`);
+      revalidatePath("/dashboard/join-status");
     } catch (error) {
       console.error(`Cannot update status of join : ${error}`)
     }

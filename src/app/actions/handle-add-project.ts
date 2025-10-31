@@ -38,7 +38,7 @@ export async function handleAddProject(
       },
     });
 
-    revalidatePath("/project-list");
+    revalidatePath("/dashboard/project-list");
     revalidatePath("/");
     return { success: true, message: "Successfully create project" };
   } catch (error) {

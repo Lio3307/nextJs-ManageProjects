@@ -37,7 +37,7 @@ export default async function MemberList({
       <div className="p-4 lg:p-6 max-w-4xl mx-auto space-y-6">
   <div className="mb-6">
     <BreadcrumbWithCustomSeparator
-      link={`/project/${idProject}`}
+      link={`/dashboard/project/${idProject}`}
       name={project.title}
       currentPageName="Member List"
     />

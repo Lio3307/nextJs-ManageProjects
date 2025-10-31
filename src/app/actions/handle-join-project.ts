@@ -37,7 +37,7 @@ export async function joinProjectByCode(formData: FormData) {
       },
     });
 
-    revalidatePath(`/project/${joinIdProject}/request`);
+    revalidatePath(`/dashboard/project/${joinIdProject}/request`);
     return { success: true, message: "Successfuy join project" };
   } catch (error) {
     console.error(`Cannot join project : ${error}`);

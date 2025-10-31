@@ -17,7 +17,7 @@ export async function handleDeleteTask(idTask: string) {
       },
     });
 
-    revalidatePath(`/project/${getProjectId?.projectId}`);
+    revalidatePath(`/dashboard/project/${getProjectId?.projectId}`);
     return { suxccess: true, message: "Successfully delete task" };
   } catch (error) {
     console.error(`Cannot delete task : ${error}`);

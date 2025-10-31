@@ -10,15 +10,15 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/project/:path*",
-    "/edit/project/:path*",
-    "/edit/task/:path*",
-    "/project/:path*/add-task",
-    "/project/:path*/member",
-    "/project/:path*/request",
-    "/report/:path*",
-    "/task/:path*",
-    "/join-project",
-    "/join-status",
+    "/dashboard/project/:path*",
+    "/dashboard/edit/project/:path*",
+    "/dashboard/edit/task/:path*",
+    "/dashboard/project/:path*/add-task",
+    "/dashboard/project/:path*/member",
+    "/dashboard/project/:path*/request",
+    "/dashboard/report/:path*",
+    "/dashboard/task/:path*",
+    "/dashboard/join-project",
+    "/dashboard/join-status",
   ],
 };

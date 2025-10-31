@@ -21,7 +21,7 @@ export async function handleUpdateProject(
       },
     });
 
-    revalidatePath(`/project/${idProject}`);
+    revalidatePath(`/dashboard/project/${idProject}`);
     return { success: true, message: "Project Updated!" };
   } catch (error) {
     console.error(`Cannot update project : ${error}`);

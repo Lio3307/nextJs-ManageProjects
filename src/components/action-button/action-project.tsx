@@ -67,7 +67,7 @@ export default function ActionProject({
           Delete Project
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => router.push(`/edit/project/${idProject}`)}
+          onClick={() => router.push(`/dashboard/edit/project/${idProject}`)}
           className="text-sky-600 focus:text-sky-600"
         >
           <FilePen className="text-sky-600 mr-2 h-4 w-4" />
@@ -82,7 +82,7 @@ export default function ActionProject({
           <span className="text-xs text-gray-600"> Copy invite code</span>
         </DropdownMenuItem>
         <DropdownMenuItem
-          onClick={() => router.push(`/project/${idProject}/request`)}
+          onClick={() => router.push(`/dashboard/project/${idProject}/request`)}
           className="text-sky-600 focus:text-sky-600"
         >
           <Clock className="text-gray-600 mr-1 h-2 w-2" />

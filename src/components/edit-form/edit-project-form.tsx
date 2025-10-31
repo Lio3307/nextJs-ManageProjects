@@ -85,7 +85,7 @@ export default function EditFormProject({
             <div className="hidden md:flex justify-end gap-3 lg:gap-4">
               <SubmitForm buttonName="Update" />
               <Link
-                href={`/project/${selectedData.id}`}
+                href={`/dashboard/project/${selectedData.id}`}
                 className={buttonVariants({
                   variant: "secondary",
                   className:
@@ -177,7 +177,7 @@ export default function EditFormProject({
             <div className="flex flex-col md:hidden gap-3 pt-6 border-t border-gray-200 dark:border-neutral-800">
               <SubmitForm buttonName="Update Project" />
               <Link
-                href={`/project/${selectedData.id}`}
+                href={`/dashboard/project/${selectedData.id}`}
                 className={buttonVariants({
                   variant: "outline",
                   className: "w-full h-12 border font-semibold",
