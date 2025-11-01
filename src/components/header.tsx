@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils";
 import { useScroll } from "motion/react";
 
 const menuItems = [
-  { name: "Features", href: "#feature" },
-  { name: "Solution", href: "#about" },
-  { name: "Pricing", href: "#link" },
-  { name: "About", href: "#link" },
+  { name: "Features", href: "#features" },
+  { name: "About", href: "#about" },
+  { name: "FAQs", href: "#faqs" },
 ];
 
 export const HeroHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
