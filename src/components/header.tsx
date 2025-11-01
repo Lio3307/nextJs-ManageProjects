@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 import { useScroll } from "motion/react";
 
 const menuItems = [
-  { name: "Features", href: "#link" },
-  { name: "Solution", href: "#link" },
+  { name: "Features", href: "#feature" },
+  { name: "Solution", href: "#about" },
   { name: "Pricing", href: "#link" },
   { name: "About", href: "#link" },
 ];
