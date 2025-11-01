@@ -33,7 +33,7 @@ export default function ActionProject({
     const { success, message } = await handleDeleteProject(idProject);
     if (success) {
       toast.success(message as string);
-      router.replace("/");
+      router.replace("/dashboard");
     } else {
       toast.error(message as string);
     }

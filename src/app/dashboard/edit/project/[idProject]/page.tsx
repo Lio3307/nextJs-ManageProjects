@@ -17,7 +17,7 @@ export default async function UpdateProject({
     headers: await headers(),
   });
 
-  if (!session) return redirect("/");
+  if (!session) return redirect("/login");
 
   const selectedProject = await prisma.project.findUnique({
     where: {

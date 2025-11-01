@@ -9,7 +9,7 @@ export default function LogedIn() {
         <Card>
           <CardContent>
             <CardTitle className="mb-4">You already registered</CardTitle>
-            <Link className={buttonVariants()} href={"/"}>Back Home</Link>
+            <Link className={buttonVariants()} href={"/dashboard"}>Back Home</Link>
           </CardContent>
         </Card>
       </div>

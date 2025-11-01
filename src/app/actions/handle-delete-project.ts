@@ -11,7 +11,7 @@ export async function handleDeleteProject(idProject: string) {
       },
     });
 
-    revalidatePath("/");
+    revalidatePath("/dashboard");
     return { success: true, message: "Successfully delete project" };
   } catch (error) {
     console.error(`Cannot delete project : ${error}`);

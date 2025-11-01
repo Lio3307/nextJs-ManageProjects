@@ -39,7 +39,7 @@ export async function handleAddProject(
     });
 
     revalidatePath("/dashboard/project-list");
-    revalidatePath("/");
+    revalidatePath("/dashboard");
     return { success: true, message: "Successfully create project" };
   } catch (error) {
     console.error(`Cannot add project : ${error}`);
