@@ -38,8 +38,8 @@ export async function handleAddProject(
       },
     });
 
-    revalidatePath("/dashboard/project-list");
     revalidatePath("/dashboard");
+    revalidatePath("/dashboard/project-list");
     return { success: true, message: "Successfully create project" };
   } catch (error) {
     console.error(`Cannot add project : ${error}`);

@@ -61,7 +61,7 @@ export async function AppSidebar() {
 
   return (
     <Sidebar
-      collapsible="offcanvas"
+      collapsible="icon"
       className="border-r z-40 shadow-xl"
       aria-label="Main navigation"
     >
