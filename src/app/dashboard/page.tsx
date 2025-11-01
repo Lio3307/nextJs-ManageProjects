@@ -128,7 +128,7 @@ export default async function DashboardOverview() {
                   </div>
                 </div>
                 <Link
-                  href="/dashboard/projects"
+                  href="/dashboard/project-list"
                   className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-black dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800"
                 >
                   <span>View all projects</span>
