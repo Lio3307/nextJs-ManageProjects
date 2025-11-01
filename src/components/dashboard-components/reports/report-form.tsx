@@ -1,13 +1,13 @@
 "use client";
 
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Label } from "../../ui/label";
+import { Input } from "../../ui/input";
 import type { Report } from "@prisma/client";
 import SubmitForm from "../submit-form";
 import { handleAddReport } from "@/app/actions/handle-add-report";
 import { AlertTriangle, File, MessageSquareWarning } from "lucide-react";
 import { toast } from "sonner";
-import ReportCard from "../card/report-card";
+import ReportCard from "../../card/report-card";
 
 export default function ReportForm({
   reportData,
@@ -26,7 +26,7 @@ export default function ReportForm({
   };
   return (
     <>
-      <div 
+      <div
         className="bg-white dark:bg-neutral-950 rounded-2xl shadow-xl border border-gray-200 dark:border-neutral-800 overflow-hidden mb-8 transition-colors duration-300"
         role="region"
         aria-labelledby="create-report-heading"
@@ -37,7 +37,7 @@ export default function ReportForm({
               <MessageSquareWarning className="text-white dark:text-neutral-50 w-6 h-6" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 
+              <h2
                 id="create-report-heading"
                 className="text-xl lg:text-2xl font-bold text-black dark:text-neutral-50 mb-1"
               >

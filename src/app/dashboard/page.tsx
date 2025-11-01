@@ -1,17 +1,12 @@
-import ModalTrigger from "@/components/add-project-modal/modal-trigger";
+import ModalTrigger from "@/components/dashboard-components/add-project-modal/modal-trigger";
 import ProjectCard from "@/components/card/project-card";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
-import ProjectModal from "@/components/add-project-modal/project-modals";
+import ProjectModal from "@/components/dashboard-components/add-project-modal/project-modals";
 import Link from "next/link";
-import {
-  ChevronRight,
-  ClipboardList,
-  Folder,
-  Globe,
-} from "lucide-react";
-import PublicProject from "@/components/load-public-project/public-project";
+import { ChevronRight, ClipboardList, Folder, Globe } from "lucide-react";
+import PublicProject from "@/components/dashboard-components/load-public-project/public-project";
 import { redirect } from "next/navigation";
 
 export default async function DashboardOverview() {
@@ -30,11 +25,11 @@ export default async function DashboardOverview() {
   });
 
   if (!session) {
-    return redirect('/signup')
+    return redirect("/signup");
   }
 
   return (
-    <main 
+    <main
       className="min-h-screen bg-gray-50 dark:bg-neutral-950 transition-colors duration-300"
       aria-label="Dashboard"
     >

@@ -1,7 +1,13 @@
 "use client";
 
-import {  useState, cloneElement, isValidElement, ReactElement, ReactNode } from "react";
-import { Button } from "../ui/button";
+import {
+  useState,
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  ReactNode,
+} from "react";
+import { Button } from "../../ui/button";
 
 type WithOnClose = { onClose?: () => void };
 
@@ -17,7 +23,7 @@ export default function ModalTrigger({
   return (
     <>
       <Button
-      className="cursor-pointer"
+        className="cursor-pointer"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

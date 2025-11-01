@@ -32,8 +32,8 @@ export default function ReplyComment({ idComment }: { idComment: string }) {
   return (
     <div className="">
       <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-        <form 
-          className="space-y-3" 
+        <form
+          className="space-y-3"
           action={handleReplyComment}
           aria-label="Reply to comment"
         >

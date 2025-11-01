@@ -2,10 +2,10 @@
 
 import { Project } from "@prisma/client";
 import { useState } from "react";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Label } from "../../ui/label";
+import { Input } from "../../ui/input";
 import SubmitForm from "../submit-form";
-import { buttonVariants } from "../ui/button";
+import { buttonVariants } from "../../ui/button";
 import { ArrowLeftFromLine, Eye, Lock } from "lucide-react";
 import Link from "next/link";
 import { handleUpdateProject } from "@/app/actions/handle-update-project";
@@ -15,7 +15,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../../ui/select";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 

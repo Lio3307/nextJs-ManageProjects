@@ -20,10 +20,7 @@ export default function JoinPublicProjectButton({
     }
   };
   return (
-    <form 
-      action={handleJoinPublic}
-      aria-label="Join public project"
-    >
+    <form action={handleJoinPublic} aria-label="Join public project">
       <input type="hidden" name="user-id" value={userId} />
       <input type="hidden" name="id-project" value={idProject} />
       <SubmitForm buttonName="Join Project" />

@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import { Users, Check, X, Info } from "lucide-react";
 import { Suspense } from "react";
-import JoinRequestSkeleton from "@/components/loading-skeleton/request-join-skeleton";
+import JoinRequestSkeleton from "@/components/dashboard-components/loading-skeleton/request-join-skeleton";
 
 export default async function RequestJoinList({
   params,

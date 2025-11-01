@@ -1,6 +1,6 @@
-import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb-custom";
-import ActionTask from "@/components/action-button/action-task";
-import TaskNav from "@/components/task-nav/task-navigation-button";
+import { BreadcrumbWithCustomSeparator } from "@/components/dashboard-components/breadcrumb-custom";
+import ActionTask from "@/components/dashboard-components/action-button/action-task";
+import TaskNav from "@/components/dashboard-components/task-nav/task-navigation-button";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Card, CardContent, CardHeader } from "../../ui/card";
+import { Label } from "../../ui/label";
+import { Input } from "../../ui/input";
 import { handleAddProject } from "@/app/actions/handle-add-project";
 import SubmitForm from "../submit-form";
 import { EyeOff, FileText, Globe, Info, Lock, Plus, X } from "lucide-react";
@@ -14,7 +14,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../../ui/select";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -47,16 +47,16 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
 
   useEffect(() => {
     setPortal(document.querySelector("#portals"));
-     document.body.style.overflow = "hidden";
-     return () => {
-       document.body.style.overflow = "";
-     }
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
   if (!portal) return null;
 
   return createPortal(
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
@@ -90,10 +90,10 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h2 
-              id="modal-title"
-              className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight"
-            >
+              <h2
+                id="modal-title"
+                className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight"
+              >
                 Create New Project
               </h2>
               <p className="text-sm lg:text-base text-gray-600 dark:text-gray-400 leading-relaxed">

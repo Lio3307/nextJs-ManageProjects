@@ -26,10 +26,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "../ui/dropdown-menu";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import LogedOut from "./logout";
+import LogedOut from "../logout";
 import { ThemeToggle } from "./theme/theme-toggle";
 
 const menuItems = [
@@ -40,8 +40,18 @@ const menuItems = [
     url: "/dashboard/project-list",
     icon: <Folder />,
   },
-  { id: 3, title: "Join Project", url: "/dashboard/join-project", icon: <CirclePlus /> },
-  { id: 4, title: "Join History", url: "/dashboard/join-status", icon: <History /> },
+  {
+    id: 3,
+    title: "Join Project",
+    url: "/dashboard/join-project",
+    icon: <CirclePlus />,
+  },
+  {
+    id: 4,
+    title: "Join History",
+    url: "/dashboard/join-status",
+    icon: <History />,
+  },
 ];
 
 export async function AppSidebar() {
@@ -50,8 +60,8 @@ export async function AppSidebar() {
   });
 
   return (
-    <Sidebar 
-      collapsible="offcanvas" 
+    <Sidebar
+      collapsible="offcanvas"
       className="border-r z-40 shadow-xl"
       aria-label="Main navigation"
     >

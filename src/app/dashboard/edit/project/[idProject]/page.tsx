@@ -1,5 +1,5 @@
-import EditFormProject from "@/components/edit-form/edit-project-form";
-import EditProjectSkeleton from "@/components/loading-skeleton/edit-project-skeleton";
+import EditFormProject from "@/components/dashboard-components/edit-form/edit-project-form";
+import EditProjectSkeleton from "@/components/dashboard-components/loading-skeleton/edit-project-skeleton";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";
@@ -28,8 +28,8 @@ export default async function UpdateProject({
   if (session.user.id !== selectedProject?.userId) return notFound();
 
   return (
-    <Suspense fallback={<EditProjectSkeleton/>}>
-    <EditFormProject selectedData={selectedProject}/>
+    <Suspense fallback={<EditProjectSkeleton />}>
+      <EditFormProject selectedData={selectedProject} />
     </Suspense>
-  )
+  );
 }
