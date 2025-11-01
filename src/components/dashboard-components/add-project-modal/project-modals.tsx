@@ -63,12 +63,12 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
       aria-labelledby="modal-title"
     >
       <div
-        className="absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-md transition-all duration-300"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-all duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      <Card className="relative z-10 w-full max-w-2xl mx-auto rounded-3xl shadow-2xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transform transition-all duration-300 scale-100 max-h-[90vh] overflow-hidden flex flex-col">
+      <Card className="relative z-10 w-full max-w-2xl mx-auto rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-950 transform transition-all duration-300 max-h-[90vh] overflow-hidden flex flex-col">
         <button
           onClick={onClose}
           className="absolute right-5 top-5 z-30 text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full p-2 transition-all duration-200 group"
@@ -77,22 +77,18 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
           <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
         </button>
 
-        <CardHeader className="flex-shrink-0 pb-6 pt-8 px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 border-b-2 border-gray-200 dark:border-gray-700 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gray-900/5 dark:bg-gray-100/5 rounded-full blur-2xl pointer-events-none"></div>
-
-          <div className="flex items-start space-x-4 relative z-10 pr-10">
-            <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 ring-4 ring-gray-900/10 dark:ring-gray-100/10">
+        <CardHeader className="flex-shrink-0 pb-6 pt-8 px-6 lg:px-8 bg-white dark:bg-neutral-950 border-b border-gray-200 dark:border-gray-700 relative">
+          <div className="flex items-start space-x-4">
+            <div className="w-14 h-14 bg-gray-900 dark:bg-gray-100 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0 ring-2 ring-gray-900/10 dark:ring-gray-100/10">
               <Plus
                 className="w-7 h-7 text-white dark:text-gray-900"
                 strokeWidth={2.5}
               />
             </div>
-
             <div className="flex-1 min-w-0">
               <h2
                 id="modal-title"
-                className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2 leading-tight"
+                className="text-xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight mb-2"
               >
                 Create New Project
               </h2>
@@ -108,7 +104,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <div className="w-1 h-5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div className="w-1 h-5 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
                   <Label
                     className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wide"
                     htmlFor="title"
@@ -127,13 +123,13 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                   name="title"
                   required
                   placeholder="Enter your project name..."
-                  className="h-12 lg:h-14 text-base px-4 border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-gray-900 dark:focus:border-gray-100 focus:ring-4 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 transition-all duration-200 rounded-xl shadow-sm hover:border-gray-300 dark:hover:border-gray-600"
+                  className="h-12 lg:h-14 text-base px-4 border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-gray-900 dark:focus:border-gray-100 focus:ring-2 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 transition-all duration-200 rounded-xl shadow-sm hover:border-gray-300 dark:hover:border-gray-600"
                 />
               </div>
 
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <div className="w-1 h-5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                  <div className="w-1 h-5 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
                   <Label className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wide">
                     Visibility
                   </Label>
@@ -142,10 +138,10 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                   </span>
                 </div>
 
-                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 rounded-xl border-2 border-gray-200 dark:border-gray-700 shadow-sm">
+                <div className="p-4 bg-white dark:bg-neutral-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center space-x-2.5 min-w-0 flex-1">
-                      <div className="w-8 h-8 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 flex-shrink-0">
+                      <div className="w-8 h-8 bg-white dark:bg-neutral-950 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-700 flex-shrink-0">
                         <EyeOff className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                       </div>
                       <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 truncate">
@@ -157,13 +153,13 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                       onValueChange={setSelectedVisibility}
                       required
                     >
-                      <SelectTrigger className="w-28 sm:w-32 h-10 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-gray-900 dark:focus:border-gray-100 focus:ring-2 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 rounded-lg font-semibold text-sm shadow-sm hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 flex-shrink-0">
+                      <SelectTrigger className="w-28 sm:w-32 h-10 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-950 text-gray-900 dark:text-gray-100 focus:border-gray-900 dark:focus:border-gray-100 focus:ring-2 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 rounded-lg font-semibold text-sm shadow-sm hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 flex-shrink-0">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700">
+                      <SelectContent className="bg-white dark:bg-neutral-950 border border-gray-200 dark:border-gray-700">
                         <SelectItem
                           value="Public"
-                          className="focus:bg-gray-100 dark:focus:bg-gray-700 cursor-pointer"
+                          className="focus:bg-gray-100 dark:focus:bg-neutral-800 cursor-pointer"
                         >
                           <div className="flex items-center space-x-2">
                             <Globe className="w-4 h-4" />
@@ -172,7 +168,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                         </SelectItem>
                         <SelectItem
                           value="Private"
-                          className="focus:bg-gray-100 dark:focus:bg-gray-700 cursor-pointer"
+                          className="focus:bg-gray-100 dark:focus:bg-neutral-800 cursor-pointer"
                         >
                           <div className="flex items-center space-x-2">
                             <Lock className="w-4 h-4 text-current" />
@@ -184,7 +180,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-2 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex items-start space-x-2 p-3 bg-white dark:bg-neutral-950 rounded-lg border border-gray-200 dark:border-gray-700">
                   <Info className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-0.5 flex-shrink-0" />
                   <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                     {selectedVisibility === "Public"
@@ -199,7 +195,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
 
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <div className="w-1 h-5 bg-gradient-to-b from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 rounded-full"></div>
+                <div className="w-1 h-5 bg-gray-900 dark:bg-gray-100 rounded-full"></div>
                 <Label
                   className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wide"
                   htmlFor="description"
@@ -210,7 +206,6 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                   *
                 </span>
               </div>
-
               <textarea
                 id="description"
                 name="description"
@@ -218,11 +213,11 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 rows={5}
-                className="w-full min-h-[140px] rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-4 text-sm lg:text-base text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-gray-900 dark:focus:border-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 transition-all duration-200 resize-none shadow-sm hover:border-gray-300 dark:hover:border-gray-600"
+                className="w-full min-h-[140px] rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-950 px-4 py-4 text-sm lg:text-base text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-gray-900 dark:focus:border-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-900/10 dark:focus:ring-gray-100/10 transition-all duration-200 resize-none shadow-sm hover:border-gray-300 dark:hover:border-gray-600"
                 placeholder="Describe your project goals, objectives, and key details..."
               />
 
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-4 py-2.5 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-850 dark:to-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-4 py-2.5 bg-white dark:bg-neutral-950 rounded-lg border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center space-x-2">
                   <FileText className="w-4 h-4 text-gray-500 dark:text-gray-400 flex-shrink-0" />
                   <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 font-medium">
@@ -238,7 +233,7 @@ export default function ProjectModal({ onClose }: { onClose?: () => void }) {
               </div>
             </div>
 
-            <div className="pt-6 border-t-2 border-gray-200 dark:border-gray-700">
+            <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
               <SubmitForm buttonName="Create Project" />
             </div>
           </form>
