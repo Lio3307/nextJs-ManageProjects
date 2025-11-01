@@ -95,19 +95,45 @@ The application will be available at http://localhost:3000
 
 ## Project Structure
 
+The project follows a standard Next.js 15 App Router structure with additional organization for better maintainability:
+
 ```
 src/
-├── app/                 # Next.js app router pages
-│   ├── dashboard/       # Main dashboard pages
-│   ├── login/           # Login page
-│   ├── signup/          # Signup page
-│   └── ...              # Other pages
-├── components/          # Reusable UI components
-├── hooks/               # Custom React hooks
-└── lib/                 # Utility functions and configurations
+├── app/                    # Next.js app router pages and layouts
+│   ├── (auth)/            # Authentication pages (login, signup)
+│   │   ├── login/         # Login page with email/password and Google OAuth
+│   │   └── signup/        # User registration page
+│   ├── dashboard/         # Main dashboard application
+│   │   ├── page.tsx       # Dashboard overview page
+│   │   ├── project/       # Project-specific pages
+│   │   │   └── [idProject]/ # Dynamic routes for individual projects
+│   │   ├── project-list/  # List of user's projects
+│   │   ├── join-project/  # Join project functionality
+│   │   ├── join-status/   # Join request status tracking
+│   │   └── report/        # Report viewing and management
+│   └── layout.tsx         # Root layout with providers
+├── components/            # Reusable UI components
+│   ├── ui/                # shadcn/ui components (buttons, cards, etc.)
+│   ├── home-components/   # Landing page components
+│   └── dashboard-components/ # Dashboard-specific components
+├── hooks/                 # Custom React hooks
+├── lib/                   # Utility functions and configurations
+│   └── auth/              # Authentication utilities
+└── styles/                # Global styles and Tailwind configuration
 prisma/
-├── schema.prisma        # Database schema
+├── schema.prisma          # Database schema definition
+└── migrations/            # Database migration files
+public/                    # Static assets (images, icons, etc.)
 ```
+
+Key directories explained:
+- `src/app/`: Contains all pages and layouts using Next.js App Router
+- `src/components/`: Reusable UI components organized by purpose
+- `src/components/ui/`: shadcn/ui components with Radix UI foundation
+- `src/components/home-components/`: Components for the landing page
+- `src/components/dashboard-components/`: Components specific to the dashboard
+- `src/lib/`: Utility functions, authentication helpers, and configurations
+- `prisma/`: Database schema and migrations using Prisma ORM
 
 ## Authentication Flow
 
