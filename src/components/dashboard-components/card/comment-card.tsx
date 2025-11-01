@@ -1,6 +1,6 @@
 import { Comment } from "@prisma/client";
-import ReplyButton from "../dashboard/reply-comment/reply-button";
-import ReplyCommentList from "../dashboard/reply-comment/reply-comment-list";
+import ReplyButton from "../reply-comment/reply-button";
+import ReplyCommentList from "../reply-comment/reply-comment-list";
 import { Calendar, Clock, MessageCircle } from "lucide-react";
 
 export default function CommentCard({

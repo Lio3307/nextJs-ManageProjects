@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { getProjects } from "@/app/actions/handle-pagination-public-project";
 import { Project } from "@prisma/client";
-import ProjectCard from "../../card/project-card";
+import ProjectCard from "../card/project-card";
 import { Archive, Loader2 } from "lucide-react";
 
 export default function PublicProject() {

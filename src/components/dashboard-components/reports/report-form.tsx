@@ -7,7 +7,7 @@ import SubmitForm from "../submit-form";
 import { handleAddReport } from "@/app/actions/handle-add-report";
 import { AlertTriangle, File, MessageSquareWarning } from "lucide-react";
 import { toast } from "sonner";
-import ReportCard from "../../card/report-card";
+import ReportCard from "../card/report-card";
 
 export default function ReportForm({
   reportData,

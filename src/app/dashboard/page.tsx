@@ -1,5 +1,5 @@
 import ModalTrigger from "@/components/dashboard-components/add-project-modal/modal-trigger";
-import ProjectCard from "@/components/card/project-card";
+import ProjectCard from "@/components/dashboard-components/card/project-card";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { headers } from "next/headers";

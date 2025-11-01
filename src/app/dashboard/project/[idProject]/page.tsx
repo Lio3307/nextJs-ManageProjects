@@ -1,4 +1,4 @@
-import TaskCard from "@/components/card/task-card";
+import TaskCard from "@/components/dashboard-components/card/task-card";
 import { buttonVariants } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import Link from "next/link";

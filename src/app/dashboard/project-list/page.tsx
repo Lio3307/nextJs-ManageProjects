@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import ProjectCard from "@/components/card/project-card";
+import ProjectCard from "@/components/dashboard-components/card/project-card";
 import ModalTrigger from "@/components/dashboard-components/add-project-modal/modal-trigger";
 import ProjectModal from "@/components/dashboard-components/add-project-modal/project-modals";
 import {

@@ -6,7 +6,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import ActionReport from "@/components/dashboard-components/action-button/action-report";
 import { Calendar, FileText, MessageCircle, Newspaper } from "lucide-react";
-import CommentCard from "@/components/card/comment-card";
+import CommentCard from "@/components/dashboard-components/card/comment-card";
 import { Suspense } from "react";
 import ReportDetailSkeleton from "@/components/dashboard-components/loading-skeleton/report-skeleton";
 
