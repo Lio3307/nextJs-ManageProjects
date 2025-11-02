@@ -64,8 +64,8 @@ The application uses a comprehensive data model with the following entities:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Lio3307/nextJs-ManageProjects
-cd nextJs-ManageProjects
+git clone https://github.com/Lio3307/nextJs-ProjectHub
+cd nextJs-ProjectHub
 ```
 
 2. Install dependencies:
