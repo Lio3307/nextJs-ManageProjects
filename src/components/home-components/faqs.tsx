@@ -14,7 +14,7 @@ export default function FAQs() {
                     <div className="divide-y divide-dashed sm:mx-auto sm:max-w-lg lg:mx-0">
                         <div className="pb-6">
                             <h3 className="font-medium">How do I create a new project in ProjectHub?</h3>
-                            <p className="text-muted-foreground mt-4">Creating a new project is simple. After logging in to your dashboard, click on the "New Project" button and fill in the project details.</p>
+                            <p className="text-muted-foreground mt-4">Creating a new project is simple. After logging in to your dashboard, click on the &quot;New Project&quot; button and fill in the project details.</p>
 
                             <ol className="list-outside list-decimal space-y-2 pl-4">
                                 <li className="text-muted-foreground mt-4">Provide a name and description for your project</li>

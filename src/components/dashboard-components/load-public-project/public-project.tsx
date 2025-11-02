@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getProjects } from "@/app/actions/handle-pagination-public-project";
 import { Project } from "@prisma/client";
 import ProjectCard from "../card/project-card";
@@ -11,7 +11,7 @@ export default function PublicProject() {
   const take = 15;
   const [loading, setLoading] = useState<boolean>(false);
 
-  const loadProjects = async () => {
+  const loadProjects = useCallback(async () => {
     try {
       setLoading(true);
       const newProject = await getProjects(skip, take);
@@ -26,16 +26,11 @@ export default function PublicProject() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [skip, take]);
 
   useEffect(() => {
     loadProjects();
-
-    return () => {
-      setProjects([]);
-      setSkip(0);
-    };
-  }, []);
+  }, [loadProjects]);
 
   return (
     <div className="space-y-6">
