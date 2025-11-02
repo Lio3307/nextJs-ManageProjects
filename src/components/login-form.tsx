@@ -73,12 +73,11 @@ export function LoginForm({
         console.error(message as string);
         toast.error("Something wrong, please try again");
       }
+      setIsLoading(false);
     } catch (error) {
       console.error("Login error:", error);
       toast.error("An error occurred during login. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   }
 
   if (isPending) {
