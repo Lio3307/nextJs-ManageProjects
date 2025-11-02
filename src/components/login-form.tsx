@@ -24,7 +24,6 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import LogedIn from "./loged-in";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { LoadingOverlay } from "@/components/ui/loading-overlay";
 
 const formSchema = z.object({
@@ -101,35 +100,21 @@ export function LoginForm({
         isVisible={isLoading} 
       />
       {session ? (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div>
           <LogedIn />
-        </motion.div>
+        </div>
       ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className={cn("flex flex-col gap-6", className)}
-          {...props}
-        >
+        <div className={cn("flex flex-col gap-6", className)} {...props}>
           <Card className="border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl bg-white dark:bg-neutral-950">
             <CardHeader className="text-center p-6 border-b border-gray-200 dark:border-gray-700">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-              >
+              <div>
                 <CardTitle className="text-2xl font-bold text-neutral-950 dark:text-gray-100">
                   Welcome back
                 </CardTitle>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                   Login to your account
                 </p>
-              </motion.div>
+              </div>
             </CardHeader>
 
             <CardContent className="p-6">
@@ -138,10 +123,7 @@ export function LoginForm({
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-4"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
+                  <div>
                     <Button
                       type="button"
                       onClick={signInwithGoogle}
@@ -171,7 +153,7 @@ export function LoginForm({
                         </>
                       )}
                     </Button>
-                  </motion.div>
+                  </div>
 
                   <div className="relative">
                     <div className="absolute inset-0 flex items-center">
@@ -184,11 +166,7 @@ export function LoginForm({
                     </div>
                   </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
+                  <div>
                     <FormField
                       control={form.control}
                       name="email"
@@ -210,13 +188,9 @@ export function LoginForm({
                         </FormItem>
                       )}
                     />
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
+                  <div>
                     <FormField
                       control={form.control}
                       name="password"
@@ -254,13 +228,9 @@ export function LoginForm({
                         </FormItem>
                       )}
                     />
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
+                  <div>
                     <Button
                       disabled={isLoading || isGoogleLoading}
                       type="submit"
@@ -275,14 +245,9 @@ export function LoginForm({
                         "Login"
                       )}
                     </Button>
-                  </motion.div>
+                  </div>
 
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-center text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                     Dont have an account?{" "}
                     <Link
                       href="/signup"
@@ -290,12 +255,12 @@ export function LoginForm({
                     >
                       Sign up
                     </Link>
-                  </motion.p>
+                  </p>
                 </form>
               </Form>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       )}
     </>
   );

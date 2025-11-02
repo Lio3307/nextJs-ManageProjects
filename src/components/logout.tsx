@@ -4,7 +4,6 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 import { LoadingOverlay } from "@/components/ui/loading-overlay";
-import { motion } from "motion/react";
 
 export default function LogedOut({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -38,10 +37,7 @@ export default function LogedOut({ children }: { children: ReactNode }) {
         message="Signing out..." 
         isVisible={isLoading} 
       />
-      <motion.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
+      <div>
         <div 
           onClick={handleLogOut} 
           className="w-full"
@@ -56,7 +52,7 @@ export default function LogedOut({ children }: { children: ReactNode }) {
         >
           {children}
         </div>
-      </motion.div>
+      </div>
     </>
   );
 }

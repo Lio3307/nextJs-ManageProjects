@@ -29,7 +29,6 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import LogedIn from "./loged-in";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { LoadingOverlay } from "@/components/ui/loading-overlay";
 
 const formSchema = z.object({
@@ -112,44 +111,27 @@ export function SignUpForm({
         isVisible={isLoading} 
       />
       {session ? (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div>
           <LogedIn />
-        </motion.div>
+        </div>
       ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className={cn("flex flex-col gap-4 max-w-2xl mx-auto", className)}
-          {...props}
-        >
+        <div className={cn("flex flex-col gap-4 max-w-2xl mx-auto", className)} {...props}>
           <Card className="border border-gray-200 dark:border-gray-700 shadow-xl rounded-2xl bg-white dark:bg-neutral-950">
             <CardHeader className="text-center p-5 border-b border-gray-200 dark:border-gray-700">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-              >
+              <div>
                 <CardTitle className="text-2xl font-bold text-neutral-950 dark:text-gray-100">
                   Create an account
                 </CardTitle>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                   Sign up to get started
                 </p>
-              </motion.div>
+              </div>
             </CardHeader>
 
             <CardContent className="p-5">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
+                  <div>
                     <Button
                       type="button"
                       onClick={signInwithGoogle}
@@ -175,7 +157,7 @@ export function SignUpForm({
                         </>
                       )}
                     </Button>
-                  </motion.div>
+                  </div>
 
                   <div className="relative">
                     <div className="absolute inset-0 flex items-center">
@@ -186,11 +168,7 @@ export function SignUpForm({
                     </div>
                   </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                  >
+                  <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <FormField
                         control={form.control}
@@ -267,13 +245,9 @@ export function SignUpForm({
                         )}
                       />
                     </div>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
+                  <div>
                     <Button
                       disabled={isLoading || isGoogleLoading}
                       type="submit"
@@ -288,24 +262,19 @@ export function SignUpForm({
                         "Sign Up"
                       )}
                     </Button>
-                  </motion.div>
+                  </div>
 
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-center text-sm text-gray-600 dark:text-gray-400"
-                  >
+                  <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                     Already have an account?{" "}
                     <Link href="/login" className="font-semibold text-neutral-950 dark:text-gray-100 hover:underline">
                       Sign in
                     </Link>
-                  </motion.p>
+                  </p>
                 </form>
               </Form>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       )}
     </>
   );
