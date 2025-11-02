@@ -19,7 +19,7 @@ export default function FAQs() {
                             <ol className="list-outside list-decimal space-y-2 pl-4">
                                 <li className="text-muted-foreground mt-4">Provide a name and description for your project</li>
                                 <li className="text-muted-foreground mt-4">Set the visibility (public or private)</li>
-                                <li className="text-muted-foreground mt-4">Click "Create" to initialize your project</li>
+                                <li className="text-muted-foreground mt-4">Click &quot;Create&quot; to initialize your project</li>
                             </ol>
                         </div>
                         <div className="py-6">
