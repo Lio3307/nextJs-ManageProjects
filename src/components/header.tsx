@@ -65,6 +65,16 @@ export const HeroHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                       </Link>
                     </li>
                   ))}
+                  {isLoggedIn ? (
+                    <li>
+                      <Link
+                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        href="/dashboard"
+                      >
+                        <span>Dashboard</span>
+                      </Link>
+                    </li>
+                  ) : null}
                 </ul>
               </div>
             </div>
@@ -82,6 +92,16 @@ export const HeroHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                       </Link>
                     </li>
                   ))}
+                  {isLoggedIn ? (
+                    <li>
+                      <Link
+                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        href="/dashboard"
+                      >
+                        <span>Dashboard</span>
+                      </Link>
+                    </li>
+                  ) : null}
                 </ul>
               </div>
               {!isLoggedIn ? (
