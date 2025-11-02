@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { Logo } from "@/components/logo";
 import { Menu, X } from "lucide-react";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -42,7 +41,7 @@ export const HeroHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
                 aria-label="home"
                 className="flex items-center space-x-2"
               >
-                <Logo />
+                <span className="font-bold text-lg">ProjectHub</span>
               </Link>
 
               <button
