@@ -2,35 +2,61 @@
 
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { LoadingOverlay } from "@/components/ui/loading-overlay";
+import { motion } from "motion/react";
 
 export default function LogedOut({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const handleLogOut = async () => {
-    const session = await authClient.getSession();
-    const token = session.data?.session.token;
-    if (token) {
-      await authClient.revokeSession({ token });
-    }
-    await authClient.signOut();
+  const [isLoading, setIsLoading] = useState(false);
 
-    router.push("/login");
-    router.refresh();
+  const handleLogOut = async () => {
+    setIsLoading(true);
+    try {
+      const session = await authClient.getSession();
+      const token = session.data?.session.token;
+      if (token) {
+        await authClient.revokeSession({ token });
+      }
+      await authClient.signOut();
+      
+      router.push("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Still redirect to login even if there's an error
+      router.push("/login");
+      router.refresh();
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
-    <div 
-      onClick={handleLogOut} 
-      className="w-full"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          handleLogOut();
-        }
-      }}
-      aria-label="Log out of your account"
-    >
-      {children}
-    </div>
+    <>
+      <LoadingOverlay 
+        message="Signing out..." 
+        isVisible={isLoading} 
+      />
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div 
+          onClick={handleLogOut} 
+          className="w-full"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleLogOut();
+            }
+          }}
+          aria-label="Log out of your account"
+        >
+          {children}
+        </div>
+      </motion.div>
+    </>
   );
 }
