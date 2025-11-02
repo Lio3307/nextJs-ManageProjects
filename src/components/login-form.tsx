@@ -40,6 +40,7 @@ export function LoginForm({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -64,6 +65,7 @@ export function LoginForm({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
+    setIsButtonDisabled(true)
     try {
       const { success, message } = await signIn(values.email, values.password);
       if (success) {
@@ -231,11 +233,11 @@ export function LoginForm({
 
                   <div>
                     <Button
-                      disabled={isLoading || isGoogleLoading}
+                      disabled={isButtonDisabled || isGoogleLoading}
                       type="submit"
                       className="w-full h-11 bg-neutral-950 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-gray-200 text-white dark:text-neutral-950 font-semibold rounded-lg"
                     >
-                      {isLoading ? (
+                      {isButtonDisabled ? (
                         <>
                           <Loader2 className="size-4 animate-spin mr-2" />
                           Signing in...
