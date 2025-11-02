@@ -2,15 +2,15 @@
 
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { ReactNode, useState } from "react";
-import { LoadingOverlay } from "@/components/ui/loading-overlay";
+import { ReactNode } from "react";
+import { useLoading } from "@/components/loading-context";
 
 export default function LogedOut({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const { showLoading, hideLoading } = useLoading();
 
   const handleLogOut = async () => {
-    setIsLoading(true);
+    showLoading("Signing out...");
     try {
       const session = await authClient.getSession();
       const token = session.data?.session.token;
@@ -21,38 +21,30 @@ export default function LogedOut({ children }: { children: ReactNode }) {
       
       router.push("/login");
       router.refresh();
+      hideLoading();
     } catch (error) {
       console.error("Logout error:", error);
-      // Still redirect to login even if there's an error
       router.push("/login");
       router.refresh();
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   return (
-    <>
-      <LoadingOverlay 
-        message="Signing out..." 
-        isVisible={isLoading} 
-      />
-      <div>
-        <div 
-          onClick={handleLogOut} 
-          className="w-full"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              handleLogOut();
-            }
-          }}
-          aria-label="Log out of your account"
-        >
-          {children}
-        </div>
+    <div>
+      <div 
+        onClick={handleLogOut} 
+        className="w-full"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleLogOut();
+          }
+        }}
+        aria-label="Log out of your account"
+      >
+        {children}
       </div>
-    </>
+    </div>
   );
 }

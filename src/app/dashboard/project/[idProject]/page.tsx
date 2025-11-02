@@ -132,7 +132,6 @@ export default async function DetailProject({
             </div>
           </div>
 
-          {/* Footer Actions */}
           <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-800">
             <Link
               href={`/dashboard/project/${idProject}/member`}
