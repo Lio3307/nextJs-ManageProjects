@@ -4,7 +4,7 @@ ProjectHub is a modern project management application built with Next.js 15, Typ
 
 ## Why ProjectHub?
 
-As a developer and project manager, I faced challenges keeping track of multiple projects, tasks, and reports. I needed a simple yet powerful solution to:
+As a developer, I faced challenges keeping track of multiple projects, tasks, and reports. I needed a simple yet powerful solution to:
 
 - Organize my projects in one central place
 - Keep track of what tasks I need to do
@@ -21,7 +21,7 @@ Existing tools were either too complex or lacked the specific features I needed.
 - **Task Tracking**: Create and assign tasks within projects
 - **Problem Reporting**: Document issues encountered in tasks
 - **Solution Tracking**: Record how problems were solved in task comments
-- **Team Collaboration**: Invite members to projects and collaborate in real-time
+- **Team Collaboration**: Invite members to projects and collaborate
 - **Reporting System**: Generate reports on project progress and task completion
 - **Commenting System**: Discuss tasks and reports with team members
 - **Public Projects**: Share projects with the community
@@ -48,7 +48,7 @@ The application uses a comprehensive data model with the following entities:
 - **Report**: Progress reports for tasks
 - **Comment**: Discussion threads on reports
 - **ReplyComment**: Replies to comments
-- **MemberList**: Project membership information
+- **MemberList**: Project members information
 - **RequestJoin**: Pending join requests for projects
 - **JoinStatus**: Status of user join requests
 
