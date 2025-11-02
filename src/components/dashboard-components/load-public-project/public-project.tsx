@@ -10,15 +10,22 @@ export default function PublicProject() {
   const [skip, setSkip] = useState<number>(0);
   const take = 15;
   const [loading, setLoading] = useState<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(true);
 
   const loadProjects = useCallback(async () => {
+    if (loading) return;
+    
     try {
       setLoading(true);
-      const newProject = await getProjects(skip, take);
+      const newProjects = await getProjects(skip, take);
+
+      if (newProjects.length < take) {
+        setHasMore(false);
+      }
 
       setProjects((prev) => {
         const ids = new Set(prev.map((p) => p.id));
-        const filtered = newProject.filter((p) => !ids.has(p.id));
+        const filtered = newProjects.filter((p) => !ids.has(p.id));
         return [...prev, ...filtered];
       });
 
@@ -26,11 +33,17 @@ export default function PublicProject() {
     } finally {
       setLoading(false);
     }
-  }, [skip, take]);
+  }, [skip, loading]);
 
   useEffect(() => {
     loadProjects();
   }, [loadProjects]);
+
+  const handleLoadMore = () => {
+    if (!loading && hasMore) {
+      loadProjects();
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -58,14 +71,16 @@ export default function PublicProject() {
 
       <div className="flex justify-center">
         <button
-          onClick={loadProjects}
-          disabled={loading}
+          onClick={handleLoadMore}
+          disabled={loading || !hasMore}
           className="inline-flex items-center gap-2 px-6 py-3 bg-black hover:bg-black disabled:bg-gray-400 text-white font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md disabled:cursor-not-allowed"
           aria-busy={loading}
         >
           {loading && <Loader2 className="w-4 h-4 animate-spin" />}
           {loading
             ? "Loading..."
+            : !hasMore
+            ? "No More Projects"
             : projects.length === 0
             ? "Load Public Projects"
             : "Load More"}
