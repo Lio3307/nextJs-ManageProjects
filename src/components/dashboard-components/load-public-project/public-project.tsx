@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { getProjects } from "@/app/actions/handle-pagination-public-project";
 import { Project } from "@prisma/client";
 import ProjectCard from "../card/project-card";
@@ -34,10 +34,6 @@ export default function PublicProject() {
       setLoading(false);
     }
   }, [skip, loading]);
-
-  useEffect(() => {
-    loadProjects();
-  }, [loadProjects]);
 
   const handleLoadMore = () => {
     if (!loading && hasMore) {
