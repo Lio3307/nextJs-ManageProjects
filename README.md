@@ -9,7 +9,6 @@ As a developer, I faced challenges keeping track of multiple projects, tasks, an
 - Organize my projects in one central place
 - Keep track of what tasks I need to do
 - Document problems I encounter in tasks and how I solve them
-- Collaborate with team members effectively
 - Have a clear overview of project progress
 
 Existing tools were either too complex or lacked the specific features I needed. So I built ProjectHub to solve these exact problems - a focused project management tool that helps me stay organized and productive.
